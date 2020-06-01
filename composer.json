@@ -1,0 +1,56 @@
+{
+  "name": "lasallesoftware/ls-librarybackend-pkg",
+  "description": "LaSalle Software Library Back-end Package.",
+  "keywords": [
+    "lasalle software",
+    "south lasalle",
+    "bob bloom",
+    "package",
+    "laravel"
+  ],
+  "homepage": "https://lasallesoftware.ca",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Bob Bloom",
+      "email": "bob.bloom@lasallesoftware.ca",
+      "homepage": "https://LasalleSoftware.ca",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.2"
+  },
+  "autoload": {
+      "classmap": [
+          "database/factories"
+      ],
+    "psr-4": {
+      "Lasallesoftware\\Librarybackend\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Lasallesoftware\\Librarybackend\\Test\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Lasallesoftware\\Librarybackend\\LibrarybackendServiceProvider"
+      ]
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  },
+  "suggest": {
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

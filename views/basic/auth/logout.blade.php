@@ -1,4 +1,4 @@
-@extends('lasallesoftwarelibrary::basic.layouts.app')
+@extends('lasallesoftwarelibrarybackend::basic.layouts.app')
 
 @section('content')
 

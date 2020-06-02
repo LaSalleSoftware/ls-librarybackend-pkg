@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Lasalle Software library package. 
+ * This file is part of the Lasalle Software library back-end package. 
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -14,14 +14,14 @@
  * @license    http://opensource.org/licenses/MIT
  * @author     Bob Bloom
  * @email      bob.bloom@lasallesoftware.ca
- * @link       https://lasallesoftware.ca
- * @link       https://packagist.org/packages/lasallesoftware/ls-library-pkg
- * @link       https://github.com/LaSalleSoftware/ls-library-pkg
  *
+ * @see       https://lasallesoftware.ca
+ * @see       https://packagist.org/packages/lasallesoftware/ls-librarybackend-pkg
+ * @see       https://github.com/LaSalleSoftware/ls-librarybackend-pkg
  */
 
 // LaSalle Software
-use Lasallesoftware\Library\Database\Migrations\BaseMigration;
+use Lasallesoftware\Librarybackend\Database\Migrations\BaseMigration;
 
 // Laravel classes
 use Illuminate\Support\Facades\Schema;

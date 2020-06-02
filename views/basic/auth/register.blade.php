@@ -1,18 +1,18 @@
-@extends('lasallesoftwarelibrary::basic.layouts.app')
+@extends('lasallesoftwarelibrarybackend::basic.layouts.app')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('lasallesoftwarelibrary::auth.title_register') }}</div>
+                <div class="card-header">{{ __('lasallesoftwarelibrarybackend::auth.title_register') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('lasallesoftwarelibrary::auth.first_name') }}</label>
+                            <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('lasallesoftwarelibrarybackend::auth.first_name') }}</label>
 
                             <div class="col-md-6">
                                 <input
@@ -33,7 +33,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('lasallesoftwarelibrary::auth.surname') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('lasallesoftwarelibrarybackend::auth.surname') }}</label>
 
                             <div class="col-md-6">
                                 <input
@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('lasallesoftwarelibrary::auth.email_address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('lasallesoftwarelibrarybackend::auth.email_address') }}</label>
 
                             <div class="col-md-6">
                                 <input
@@ -75,7 +75,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('lasallesoftwarelibrary::auth.password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('lasallesoftwarelibrarybackend::auth.password') }}</label>
 
                             <div class="col-md-6">
                                 <input
@@ -95,7 +95,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('lasallesoftwarelibrary::auth.confirm_password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('lasallesoftwarelibrarybackend::auth.confirm_password') }}</label>
 
                             <div class="col-md-6">
                                 <input
@@ -111,7 +111,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('lasallesoftwarelibrary::auth.submit_register') }}
+                                    {{ __('lasallesoftwarelibrarybackend::auth.submit_register') }}
                                 </button>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Lasalle Software library package. 
+ * This file is part of the Lasalle Software library back-end package. 
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -14,11 +14,12 @@
  * @license    http://opensource.org/licenses/MIT
  * @author     Bob Bloom
  * @email      bob.bloom@lasallesoftware.ca
- * @link       https://lasallesoftware.ca
- * @link       https://packagist.org/packages/lasallesoftware/ls-library-pkg
- * @link       https://github.com/LaSalleSoftware/ls-library-pkg
  *
+ * @see       https://lasallesoftware.ca
+ * @see       https://packagist.org/packages/lasallesoftware/ls-librarybackend-pkg
+ * @see       https://github.com/LaSalleSoftware/ls-librarybackend-pkg
  */
+
 
 // Laravel class
 use Illuminate\Support\Str;
@@ -28,7 +29,7 @@ use Faker\Generator as Faker;
 use Illuminate\Support\Carbon;
 
 
-$factory->define(Lasallesoftware\Library\Profiles\Models\Address::class, function (Faker $faker) {
+$factory->define(Lasallesoftware\Librarybackend\Profiles\Models\Address::class, function (Faker $faker) {
 
     $address_line_1     = $faker->streetAddress();
     $address_line_2     = $faker->secondaryAddress();
@@ -69,7 +70,7 @@ $factory->define(Lasallesoftware\Library\Profiles\Models\Address::class, functio
         //'featured_image'         => file(),
         'featured_image'         => null,
         //'uuid'                   => function () {
-        //    return \Lasallesoftware\Library\UniversallyUniqueIDentifiers\UuidGenerator(1, null, 1);
+        //    return \Lasallesoftware\Librarybackend\UniversallyUniqueIDentifiers\UuidGenerator(1, null, 1);
         //}
         'uuid'                   => $faker->uuid(),
         'created_at'             => Carbon::now(null),

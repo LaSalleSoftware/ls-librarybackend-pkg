@@ -1,11 +1,11 @@
-@extends('lasallesoftwarelibrary::basic.layouts.app')
+@extends('lasallesoftwarelibrarybackend::basic.layouts.app')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('lasallesoftwarelibrary::general.title_home') }}</div>
+                <div class="card-header">{{ __('lasallesoftwarelibrarybackend::general.title_home') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('lasallesoftwarelibrary::general.message_home') }}
+                    {{ __('lasallesoftwarelibrarybackend::general.message_home') }}
                 </div>
             </div>
         </div>

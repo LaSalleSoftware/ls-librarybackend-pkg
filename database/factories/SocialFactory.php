@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Lasalle Software library package. 
+ * This file is part of the Lasalle Software library back-end package. 
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -14,11 +14,12 @@
  * @license    http://opensource.org/licenses/MIT
  * @author     Bob Bloom
  * @email      bob.bloom@lasallesoftware.ca
- * @link       https://lasallesoftware.ca
- * @link       https://packagist.org/packages/lasallesoftware/ls-library-pkg
- * @link       https://github.com/LaSalleSoftware/ls-library-pkg
  *
+ * @see       https://lasallesoftware.ca
+ * @see       https://packagist.org/packages/lasallesoftware/ls-librarybackend-pkg
+ * @see       https://github.com/LaSalleSoftware/ls-librarybackend-pkg
  */
+
 
 // Laravel class
 use Illuminate\Support\Str;
@@ -27,7 +28,7 @@ use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Illuminate\Support\Carbon;
 
-$factory->define(Lasallesoftware\Library\Profiles\Models\Social::class, function (Faker $faker) {
+$factory->define(Lasallesoftware\Librarybackend\Profiles\Models\Social::class, function (Faker $faker) {
     return [
         'lookup_social_type_id' => $faker->numberBetween($min = 1, $max = 12),
         'url'                   => $faker->unique($reset = false)->url(),

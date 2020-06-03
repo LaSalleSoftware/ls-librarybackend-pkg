@@ -1,4 +1,4 @@
-# LaSalle Software's Library Package
+# LaSalle Software's Library Back-end Package
 
 <p align="center">
 <a href="https://packagist.org/packages/lasallesoftware/ls-librarybackend-pkg"><img src="https://poser.pugx.org/lasallesoftware/ls-librarybackend-pkg/v/stable.svg" alt="Latest Stable Version"></a>
@@ -6,7 +6,7 @@
 <a href="https://laravel.com/"><img src="https://img.shields.io/badge/Laravel-v7-brightgreen.svg?style=flat-square" alt="Laravel v7.x"></a> 
 </p>
 
-Library package for my LaSalle Software.
+Library back-end package for my LaSalle Software.
 
 ## Security
 

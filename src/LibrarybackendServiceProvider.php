@@ -16,8 +16,8 @@
  * @email      bob.bloom@lasallesoftware.ca
  *
  * @see        https://lasallesoftware.ca
- * @see       https://packagist.org/packages/lasallesoftware/ls-librarybackend-pkg
- * @see       https://github.com/LaSalleSoftware/ls-librarybackend-pkg
+ * @see        https://packagist.org/packages/lasallesoftware/ls-librarybackend-pkg
+ * @see        https://github.com/LaSalleSoftware/ls-librarybackend-pkg
  */
 
 namespace Lasallesoftware\Librarybackend;
@@ -35,6 +35,8 @@ use Lasallesoftware\Librarybackend\Commands\InstalleddomainseedCommand;
 use Lasallesoftware\Librarybackend\Commands\LasalleinstalladminappCommand;
 use Lasallesoftware\Librarybackend\Commands\LasalleinstallenvCommand;
 use Lasallesoftware\Librarybackend\Commands\LasalleinstallfrontendappCommand;
+use Lasallesoftware\Librarybackend\Firewall\Http\Middleware\Whitelist;
+use Lasallesoftware\Librarybackend\JWT\Middleware\JWTMiddleware;
 
 // Laravel Framework
 use Illuminate\Contracts\Http\Kernel;
@@ -106,11 +108,14 @@ class LibrarybackendServiceProvider extends ServiceProvider
      */
     public function registerMiddlewareRouter($router)
     {
-        $router->aliasMiddleware('whitelist', 'Lasallesoftware\Library\Firewall\Http\Middleware\Whitelist');
+        //$router->aliasMiddleware('whitelist', 'Lasallesoftware\Library\Firewall\Http\Middleware\Whitelist');
 
         // Add a middleware to the end of a middleware group
         // https://github.com/laravel/framework/blob/6.x/src/Illuminate/Routing/Router.php#L902
-        $router->pushMiddlewareToGroup('web', 'whitelist');
+        //$router->pushMiddlewareToGroup('web', 'whitelist');
+        $router->pushMiddlewareToGroup('web', Whitelist::class);
+
+        $router->pushMiddlewareToGroup('jwt_auth', JWTMiddleware::class);
     }
 
     /**
@@ -122,6 +127,7 @@ class LibrarybackendServiceProvider extends ServiceProvider
     {
         $kernel = $this->app->make(Kernel::class);
         $kernel->pushMiddleware(RedirectSomeRoutes::class);
+        
     }
 
     /**

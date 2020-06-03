@@ -228,7 +228,7 @@ class Telephone extends CommonModel
      */
     public function person()
     {
-        return $this->belongsToMany('Lasallesoftware\Library\Profiles\Models\Person', 'person_telephone', 'telephone_id', 'person_id');
+        return $this->belongsToMany('Lasallesoftware\Librarybackend\Profiles\Models\Person', 'person_telephone', 'telephone_id', 'person_id');
     }
 
     /*
@@ -245,6 +245,6 @@ class Telephone extends CommonModel
      */
     public function company()
     {
-        return $this->belongsToMany('Lasallesoftware\Library\Profiles\Models\Company', 'company_telephone', 'telephone_id', 'company_id');
+        return $this->belongsToMany('Lasallesoftware\Librarybackend\Profiles\Models\Company', 'company_telephone', 'telephone_id', 'company_id');
     }
 }

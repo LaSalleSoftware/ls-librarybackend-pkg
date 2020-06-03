@@ -251,7 +251,7 @@ class Person extends CommonModel
      */
     public function company()
     {
-        return $this->belongsToMany('Lasallesoftware\Library\Profiles\Models\Company', 'company_person', 'person_id', 'company_id');
+        return $this->belongsToMany('Lasallesoftware\Librarybackend\Profiles\Models\Company', 'company_person', 'person_id', 'company_id');
     }
 
     /*
@@ -269,7 +269,7 @@ class Person extends CommonModel
     public function address()
     {
         return $this->belongsToMany(
-            'Lasallesoftware\Library\Profiles\Models\Address',
+            'Lasallesoftware\Librarybackend\Profiles\Models\Address',
             'person_address',
             'person_id',
             'address_id'
@@ -290,7 +290,7 @@ class Person extends CommonModel
     */
     public function email()
     {
-        return $this->belongsToMany('Lasallesoftware\Library\Profiles\Models\Email', 'person_email', 'person_id', 'email_id');
+        return $this->belongsToMany('Lasallesoftware\Librarybackend\Profiles\Models\Email', 'person_email', 'person_id', 'email_id');
     }
 
     /*
@@ -307,7 +307,7 @@ class Person extends CommonModel
     */
     public function social()
     {
-        return $this->belongsToMany('Lasallesoftware\Library\Profiles\Models\Social', 'person_social', 'person_id', 'social_id');
+        return $this->belongsToMany('Lasallesoftware\Librarybackend\Profiles\Models\Social', 'person_social', 'person_id', 'social_id');
     }
 
     /*
@@ -324,7 +324,7 @@ class Person extends CommonModel
     */
     public function telephone()
     {
-        return $this->belongsToMany('Lasallesoftware\Library\Profiles\Models\Telephone', 'person_telephone', 'person_id', 'telephone_id');
+        return $this->belongsToMany('Lasallesoftware\Librarybackend\Profiles\Models\Telephone', 'person_telephone', 'person_id', 'telephone_id');
     }
 
     /*
@@ -341,6 +341,6 @@ class Person extends CommonModel
     */
     public function website()
     {
-        return $this->belongsToMany('Lasallesoftware\Library\Profiles\Models\Website', 'person_website', 'person_id', 'website_id');
+        return $this->belongsToMany('Lasallesoftware\Librarybackend\Profiles\Models\Website', 'person_website', 'person_id', 'website_id');
     }
 }

@@ -59,6 +59,6 @@ class PersonbydomainsCannotbanselfRule implements Rule
      */
     public function message()
     {
-        return __('lasallesoftwarelibrary::general.rules_personbydomains_cannotbanself_message');
+        return __('lasallesoftwarelibrarybackend::general.rules_personbydomains_cannotbanself_message');
     }
 }

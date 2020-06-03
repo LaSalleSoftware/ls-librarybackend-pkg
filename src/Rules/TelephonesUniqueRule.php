@@ -57,7 +57,7 @@ class TelephonesUniqueRule implements Rule
      */
     public function message()
     {
-        return __('lasallesoftwarelibrary::general.rules_telephones_unique_message');
+        return __('lasallesoftwarelibrarybackend::general.rules_telephones_unique_message');
     }
 
     private function isUnique()
@@ -88,7 +88,7 @@ class TelephonesUniqueRule implements Rule
     {
         $request = request();
 
-        // based on Lasallesoftware\Library\Profiles\Models\Telephone
+        // based on Lasallesoftware\Librarybackend\Profiles\Models\Telephone
 
         $country_code     = $this->formatCountryCode($request->country_code);
         $area_code        = $this->formatAreaCode($request->area_code);

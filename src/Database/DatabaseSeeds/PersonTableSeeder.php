@@ -170,7 +170,7 @@ class PersonTableSeeder extends BaseSeeder
 
 
             if ($this->doPopulateWithTestData()) {
-                factory(\Lasallesoftware\Library\Profiles\Models\Person::class, 300)->create();
+                factory(\Lasallesoftware\Librarybackend\Profiles\Models\Person::class, 300)->create();
             }
         }
     }

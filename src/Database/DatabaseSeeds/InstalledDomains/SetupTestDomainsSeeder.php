@@ -142,6 +142,6 @@ class SetupTestDomainsSeeder extends BaseSeeder
 
     private function getLastInstalledDomain()
     {
-        return \Lasallesoftware\Library\Profiles\Models\Installed_domain::orderBy('id', 'desc')->first();
+        return \Lasallesoftware\Librarybackend\Profiles\Models\Installed_domain::orderBy('id', 'desc')->first();
     }
 }

@@ -145,7 +145,7 @@ class Social extends CommonModel
      */
     public function person()
     {
-        return $this->belongsToMany('Lasallesoftware\Library\Profiles\Models\Person', 'person_social', 'social_id', 'person_id');
+        return $this->belongsToMany('Lasallesoftware\Librarybackend\Profiles\Models\Person', 'person_social', 'social_id', 'person_id');
     }
 
     /*
@@ -162,6 +162,6 @@ class Social extends CommonModel
      */
     public function company()
     {
-        return $this->belongsToMany('Lasallesoftware\Library\Profiles\Models\Company', 'company_social', 'social_id', 'company_id');
+        return $this->belongsToMany('Lasallesoftware\Librarybackend\Profiles\Models\Company', 'company_social', 'social_id', 'company_id');
     }
 }

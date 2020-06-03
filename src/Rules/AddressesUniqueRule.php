@@ -57,7 +57,7 @@ class AddressesUniqueRule implements Rule
      */
     public function message()
     {
-        return __('lasallesoftwarelibrary::general.rules_addresses_unique_message');
+        return __('lasallesoftwarelibrarybackend::general.rules_addresses_unique_message');
     }
 
     private function isUnique()
@@ -66,7 +66,7 @@ class AddressesUniqueRule implements Rule
 
         $request = request();
 
-        // this calculation is recreated from Lasallesoftware\Library\Profiles\Models\Address
+        // this calculation is recreated from Lasallesoftware\Librarybackend\Profiles\Models\Address
 
         $address_line_1 = trim($request->address_line_1) . ', ';
         $address_line_2 = $request->address_line_2 == null ? '' : trim($request->address_line_2) . ', ';

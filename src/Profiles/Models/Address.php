@@ -200,7 +200,7 @@ class Address extends CommonModel
     public function person()
     {
         return $this->belongsToMany(
-            'Lasallesoftware\Library\Profiles\Models\Person',
+            'Lasallesoftware\Librarybackend\Profiles\Models\Person',
             'person_address',
             'address_id',
             'person_id'
@@ -221,6 +221,6 @@ class Address extends CommonModel
      */
     public function company()
     {
-        return $this->belongsToMany('Lasallesoftware\Library\Profiles\Models\Company', 'company_address', 'address_id', 'company_id');
+        return $this->belongsToMany('Lasallesoftware\Librarybackend\Profiles\Models\Company', 'company_address', 'address_id', 'company_id');
     }
 }

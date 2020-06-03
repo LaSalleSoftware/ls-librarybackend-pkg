@@ -336,15 +336,15 @@ class ProfilesTablesSeeder extends BaseSeeder
             $do_it      = false;
             $iterations = 300;
 
-            $do_it ? factory(\Lasallesoftware\Library\Profiles\Models\Address::class,   $iterations)->create() : false ;
+            $do_it ? factory(\Lasallesoftware\Librarybackend\Profiles\Models\Address::class,   $iterations)->create() : false ;
 
-            $do_it ? factory(\Lasallesoftware\Library\Profiles\Models\Email::class,     $iterations)->create() : false ;
+            $do_it ? factory(\Lasallesoftware\Librarybackend\Profiles\Models\Email::class,     $iterations)->create() : false ;
 
-            $do_it ? factory(\Lasallesoftware\Library\Profiles\Models\Social::class,    $iterations)->create() : false ;
+            $do_it ? factory(\Lasallesoftware\Librarybackend\Profiles\Models\Social::class,    $iterations)->create() : false ;
 
-            $do_it ? factory(\Lasallesoftware\Library\Profiles\Models\Telephone::class, $iterations)->create() : false ;
+            $do_it ? factory(\Lasallesoftware\Librarybackend\Profiles\Models\Telephone::class, $iterations)->create() : false ;
 
-            $do_it ? factory(\Lasallesoftware\Library\Profiles\Models\Website::class,   $iterations)->create() : false ;
+            $do_it ? factory(\Lasallesoftware\Librarybackend\Profiles\Models\Website::class,   $iterations)->create() : false ;
         }
     }
 }

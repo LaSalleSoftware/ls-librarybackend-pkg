@@ -157,7 +157,7 @@ class Website extends CommonModel
      */
     public function person()
     {
-        return $this->belongsToMany('Lasallesoftware\Library\Profiles\Models\Person', 'person_website', 'website_id', 'person_id');
+        return $this->belongsToMany('Lasallesoftware\Librarybackend\Profiles\Models\Person', 'person_website', 'website_id', 'person_id');
     }
 
     /*
@@ -174,6 +174,6 @@ class Website extends CommonModel
      */
     public function company()
     {
-        return $this->belongsToMany('Lasallesoftware\Library\Profiles\Models\Company', 'company_website', 'website_id', 'company_id');
+        return $this->belongsToMany('Lasallesoftware\Librarybackend\Profiles\Models\Company', 'company_website', 'website_id', 'company_id');
     }
 }

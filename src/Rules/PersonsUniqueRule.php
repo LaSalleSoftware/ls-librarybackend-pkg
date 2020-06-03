@@ -57,7 +57,7 @@ class PersonsUniqueRule implements Rule
      */
     public function message()
     {
-        return __('lasallesoftwarelibrary::general.rules_persons_unique_message');
+        return __('lasallesoftwarelibrarybackend::general.rules_persons_unique_message');
     }
 
     private function isUnique()
@@ -88,7 +88,7 @@ class PersonsUniqueRule implements Rule
     {
         $request = request();
 
-        // this calculation is recreated from Lasallesoftware\Library\Profiles\Models\Person
+        // this calculation is recreated from Lasallesoftware\Librarybackend\Profiles\Models\Person
 
         $first_name  = $this->washName($request->first_name) . " ";
         $middle_name = $request->middle_name == null ? '' : $this->washName($request->middle_name) . " ";

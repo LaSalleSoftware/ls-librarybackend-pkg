@@ -63,7 +63,7 @@ class CommonModel extends Eloquent
      * Named "1" (stripCharactersFromText1) because it is bespoke, and maybe I will want another variation later (that
      * I can then call "stripCharactersFromText2")
      *
-     * Originally created for Lasallesoftware\Library\Profiles\Models\Telephone
+     * Originally created for Lasallesoftware\Librarybackend\Profiles\Models\Telephone
      *
      * @param  string  $text
      * @return string

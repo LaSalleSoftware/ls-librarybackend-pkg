@@ -74,7 +74,7 @@ class JWTValidation
         if (!$this->isSignatureValid($jwtToken)) return ['result' => false, 'claim' => 'signature'];
 
         if (!$this->isIssClaimValid($jwtToken))  return ['result' => false, 'claim' => 'iss'];
-
+        
         if (!$this->isAudClaimValid($jwtToken))  return ['result' => false, 'claim' => 'aud'];
 
         if (!$this->isExpClaimValid($jwtToken))  return ['result' => false, 'claim' => 'exp'];
@@ -162,7 +162,7 @@ class JWTValidation
     public function isAudClaimValid($jwtToken)
     {
         $url = $this->removeHttp($jwtToken->getClaim('aud'));
-        return (config('lasallesoftware-library.lasalle_app_domain_name') == $url) ? true : false;
+        return (config('lasallesoftware-librarybackend.lasalle_app_domain_name') == $url) ? true : false;
     }
 
     /**
@@ -222,6 +222,6 @@ class JWTValidation
      */
     public function isJtiClaimValid($jwtToken)
     {
-        return (!is_null($jwtToken->getClaim('jti'))) ? false : true;
+        return (!is_null($jwtToken->getClaim('jti'))) ? true : false;
     }
 }

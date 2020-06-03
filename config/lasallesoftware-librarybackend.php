@@ -90,7 +90,8 @@ return [
 	|
     | How many seconds until a JWT expires?
     |
-    | This EXP claim is set in the client domain.
+    | This EXP claim is set in the front-end domain, so you'll want all your domains 
+    | set with the same number.
 	|
     | https://tools.ietf.org/html/rfc7519#section-4.1.4
 	|

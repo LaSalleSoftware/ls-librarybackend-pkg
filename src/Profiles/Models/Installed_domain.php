@@ -140,7 +140,7 @@ class Installed_domain extends CommonModel
      */
     public function personbydomain()
     {
-        return $this->hasMany('\Lasallesoftware\Library\Authentication\Models\Personbydomain');
+        return $this->hasMany('\Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain');
     }
 
     /*

@@ -219,7 +219,7 @@ class Person extends CommonModel
      */
     public function personbydomain()
     {
-        return $this->hasOne('\Lasallesoftware\Library\Authentication\Models\Personbydomain');
+        return $this->hasOne('\Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain');
     }
 
     /*

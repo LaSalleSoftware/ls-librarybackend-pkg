@@ -50,8 +50,8 @@ class SocialPolicy extends CommonPolicy
     /**
      * Determine whether the user can view a social site's details.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Profiles\Models\Social                $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Profiles\Models\Social                $model
      * @return bool
      */
     public function view(User $user, Model $model)
@@ -62,7 +62,7 @@ class SocialPolicy extends CommonPolicy
     /**
      * Determine whether the user can create social sites.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
      * @return bool
      */
     public function create(User $user)
@@ -73,8 +73,8 @@ class SocialPolicy extends CommonPolicy
     /**
      * Determine whether the user can update a social site.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Profiles\Models\Social                $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Profiles\Models\Social                $model
      * @return bool
      */
     public function update(User $user, Model $model)
@@ -93,8 +93,8 @@ class SocialPolicy extends CommonPolicy
     /**
      * Determine whether the user can delete a social site.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Profiles\Models\Social                $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Profiles\Models\Social                $model
      * @return bool
      */
     public function delete(User $user, Model $model)
@@ -126,8 +126,8 @@ class SocialPolicy extends CommonPolicy
     /**
      * Determine whether the user can restore a social site.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Profiles\Models\Social                $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Profiles\Models\Social                $model
      * @return bool
      */
     public function restore(User $user, Model $model)
@@ -138,8 +138,8 @@ class SocialPolicy extends CommonPolicy
     /**
      * Determine whether the user can permanently delete a social site.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Profiles\Models\Social                $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Profiles\Models\Social                $model
      * @return bool
      */
     public function forceDelete(User $user, Model $model)

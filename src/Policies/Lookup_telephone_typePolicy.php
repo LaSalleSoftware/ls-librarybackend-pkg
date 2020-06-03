@@ -50,8 +50,8 @@ class Lookup_telephone_typePolicy extends CommonPolicy
     /**
      * Determine whether the user can view a lookup_telephone_type's details.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Profiles\Models\Lookup_telephone_type   $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Profiles\Models\Lookup_telephone_type   $model
      * @return bool
      */
     public function view(User $user, Model $model)
@@ -62,7 +62,7 @@ class Lookup_telephone_typePolicy extends CommonPolicy
     /**
      * Determine whether the user can create lookup_telephone_types.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
      * @return bool
      */
     public function create(User $user)
@@ -73,8 +73,8 @@ class Lookup_telephone_typePolicy extends CommonPolicy
     /**
      * Determine whether the user can update a lookup_telephone_type.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Profiles\Models\Lookup_telephone_type   $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Profiles\Models\Lookup_telephone_type   $model
      * @return bool
      */
     public function update(User $user, Model $model)
@@ -93,8 +93,8 @@ class Lookup_telephone_typePolicy extends CommonPolicy
     /**
      * Determine whether the user can delete a lookup_telephone_type.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Profiles\Models\Lookup_telephone_type   $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Profiles\Models\Lookup_telephone_type   $model
      * @return bool
      */
     public function delete(User $user, Model $model)
@@ -117,8 +117,8 @@ class Lookup_telephone_typePolicy extends CommonPolicy
     /**
      * Determine whether the user can restore a lookup_telephone_type.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Profiles\Models\Lookup_telephone_type   $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Profiles\Models\Lookup_telephone_type   $model
      * @return bool
      */
     public function restore(User $user, Model $model)
@@ -129,8 +129,8 @@ class Lookup_telephone_typePolicy extends CommonPolicy
     /**
      * Determine whether the user can permanently delete a lookup_telephone_type.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Profiles\Models\Lookup_telephone_type   $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Profiles\Models\Lookup_telephone_type   $model
      * @return bool
      */
     public function forceDelete(User $user, Model $model)

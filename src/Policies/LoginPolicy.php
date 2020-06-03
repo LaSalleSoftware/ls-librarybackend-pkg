@@ -47,8 +47,8 @@ class LoginPolicy extends CommonPolicy
     /**
      * Determine whether the user can view a login's details.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Login           $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Login           $model
      * @return bool
      */
     public function view(User $user, Model $model)
@@ -59,7 +59,7 @@ class LoginPolicy extends CommonPolicy
     /**
      * No one, not even owners, can create logins db records!
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
      * @return bool
      */
     public function create(User $user)
@@ -70,8 +70,8 @@ class LoginPolicy extends CommonPolicy
     /**
      * No one, not even owners, can update logins db records!
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Login           $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Login           $model
      * @return bool
      */
     public function update(User $user, Model $model)
@@ -82,8 +82,8 @@ class LoginPolicy extends CommonPolicy
     /**
      * Determine whether the user can delete a login.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Login           $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Login           $model
      * @return bool
      */
     public function delete(User $user, Model $model)
@@ -101,8 +101,8 @@ class LoginPolicy extends CommonPolicy
      *
      * ** NOT USE THIS FEATURE **
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Login           $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Login           $model
      * @return bool
      */
     public function restore(User $user, Model $model)
@@ -115,8 +115,8 @@ class LoginPolicy extends CommonPolicy
      *
      * ** NOT USE THIS FEATURE **
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Login           $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Login           $model
      * @return bool
      */
     public function forceDelete(User $user, Model $model)
@@ -127,8 +127,8 @@ class LoginPolicy extends CommonPolicy
     /**
      * No one can attach any personbydomain to the login.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Login           $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Login           $model
      * @return mixed
      */
     public function attachAnyPersonbydomain(User $user, Model $model)
@@ -139,8 +139,8 @@ class LoginPolicy extends CommonPolicy
     /**
      * No one can attach any personbydomain to the login.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Login           $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Login           $model
      * @return mixed
      */
     public function detachPersonbydomain(User $user, Model $model)
@@ -154,8 +154,8 @@ class LoginPolicy extends CommonPolicy
      *
      * See this fabulous post: https://github.com/laravel/nova-issues/issues/1003#issuecomment-497008278
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Login           $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Login           $model
      * @return bool
      */
     public function attachPersonbydomain(User $user, Model $model)

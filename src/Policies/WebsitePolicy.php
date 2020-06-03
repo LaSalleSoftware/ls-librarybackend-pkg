@@ -50,8 +50,8 @@ class WebsitePolicy extends CommonPolicy
     /**
      * Determine whether the user can view a website's details.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Profiles\Models\Website               $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Profiles\Models\Website               $model
      * @return bool
      */
     public function view(User $user, Model $model)
@@ -62,7 +62,7 @@ class WebsitePolicy extends CommonPolicy
     /**
      * Determine whether the user can create websites.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
      * @return bool
      */
     public function create(User $user)
@@ -73,8 +73,8 @@ class WebsitePolicy extends CommonPolicy
     /**
      * Determine whether the user can update a website.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Profiles\Models\Website               $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Profiles\Models\Website               $model
      * @return bool
      */
     public function update(User $user, Model $model)
@@ -93,8 +93,8 @@ class WebsitePolicy extends CommonPolicy
     /**
      * Determine whether the user can delete a website.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Profiles\Models\Website               $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Profiles\Models\Website               $model
      * @return bool
      */
     public function delete(User $user, Model $model)
@@ -126,8 +126,8 @@ class WebsitePolicy extends CommonPolicy
     /**
      * Determine whether the user can restore a website.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Profiles\Models\Website               $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Profiles\Models\Website               $model
      * @return bool
      */
     public function restore(User $user, Model $model)
@@ -138,8 +138,8 @@ class WebsitePolicy extends CommonPolicy
     /**
      * Determine whether the user can permanently delete a website.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Profiles\Models\Website               $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Profiles\Models\Website               $model
      * @return bool
      */
     public function forceDelete(User $user, Model $model)

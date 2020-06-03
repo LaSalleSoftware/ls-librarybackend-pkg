@@ -50,8 +50,8 @@ class Lookup_rolePolicy extends CommonPolicy
     /**
      * Owners & superadministrators can view lookup_roles.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Lookup_role     $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Lookup_role     $model
      * @return bool
      */
     public function view(User $user, Model $model)
@@ -62,7 +62,7 @@ class Lookup_rolePolicy extends CommonPolicy
     /**
      * Only owners can view lookup_roles.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
      * @return bool
      */
     public function create(User $user)
@@ -73,8 +73,8 @@ class Lookup_rolePolicy extends CommonPolicy
     /**
      * Only owners can update lookup_roles.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Lookup_role     $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Lookup_role     $model
      * @return bool
      */
     public function update(User $user, Model $model)
@@ -93,8 +93,8 @@ class Lookup_rolePolicy extends CommonPolicy
     /**
      * Determine whether the user can delete a lookup_roles.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Lookup_role     $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Lookup_role     $model
      * @return bool
      */
     public function delete(User $user, Model $model)
@@ -121,8 +121,8 @@ class Lookup_rolePolicy extends CommonPolicy
     /**
      * Determine whether the user can restore a lookup_role.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Lookup_role     $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Lookup_role     $model
      * @return bool
      */
     public function restore(User $user, Model $model)
@@ -133,8 +133,8 @@ class Lookup_rolePolicy extends CommonPolicy
     /**
      * Determine whether the user can permanently delete a lookup_role.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Lookup_role     $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Lookup_role     $model
      * @return bool
      */
     public function forceDelete(User $user, Model $model)
@@ -155,8 +155,8 @@ class Lookup_rolePolicy extends CommonPolicy
      *
      * Basically, no, cannot attach here. Go to the Personbydomains menu item!
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Lookup_role     $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Lookup_role     $model
      * @return bool
      */
     public function attachAnyPersonbydomain(User $user, Model $model)
@@ -169,8 +169,8 @@ class Lookup_rolePolicy extends CommonPolicy
      *
      * Basically, no, cannot detach here. Go to the Personbydomains menu item!
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Lookup_role     $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Lookup_role     $model
      * @return bool
      */
     public function detachPersonbydomain(User $user, Model $model)
@@ -184,8 +184,8 @@ class Lookup_rolePolicy extends CommonPolicy
      *
      * See this fabulous post: https://github.com/laravel/nova-issues/issues/1003#issuecomment-497008278
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Lookup_role     $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Lookup_role     $model
      * @return bool
      */
     public function attachPersonbydomain(User $user, Model $model)

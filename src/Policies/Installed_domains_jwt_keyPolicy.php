@@ -42,8 +42,8 @@ class Installed_domains_jwt_keyPolicy extends CommonPolicy
     /**
      * Determine whether the user can view details.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain            $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Installed_domains_jwt_key $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain            $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Installed_domains_jwt_key $model
      * @return bool
      */
     public function view(User $user, Model $model)
@@ -54,7 +54,7 @@ class Installed_domains_jwt_keyPolicy extends CommonPolicy
     /**
      * Determine whether the user can create.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain  $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
      * @return bool
      */
     public function create(User $user)
@@ -65,8 +65,8 @@ class Installed_domains_jwt_keyPolicy extends CommonPolicy
     /**
      * Determine whether the user can update.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain            $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Installed_domains_jwt_key $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain            $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Installed_domains_jwt_key $model
      * @return bool
      */
     public function update(User $user, Model $model)
@@ -77,8 +77,8 @@ class Installed_domains_jwt_keyPolicy extends CommonPolicy
     /**
      * Determine whether the user can delete.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain            $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Installed_domains_jwt_key $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain            $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Installed_domains_jwt_key $model
      * @return bool
      */
     public function delete(User $user, Model $model)
@@ -96,8 +96,8 @@ class Installed_domains_jwt_keyPolicy extends CommonPolicy
      *
      * ** NOT USE THIS FEATURE **
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain            $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Installed_domains_jwt_key $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain            $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Installed_domains_jwt_key $model
      * @return bool
      */
     public function restore(User $user, Model $model)
@@ -110,8 +110,8 @@ class Installed_domains_jwt_keyPolicy extends CommonPolicy
      *
      * ** NOT USE THIS FEATURE **
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain            $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Installed_domains_jwt_key $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain            $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Installed_domains_jwt_key $model
      * @return bool
      */
     public function forceDelete(User $user, Model $model)
@@ -122,8 +122,8 @@ class Installed_domains_jwt_keyPolicy extends CommonPolicy
     /**
      * No one can attach any Installed_domain to the JWT key.
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain            $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Installed_domains_jwt_key $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain            $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Installed_domains_jwt_key $model
      * @return mixed
      */
     public function attachAnyInstalled_domain(User $user, Model $model)
@@ -134,8 +134,8 @@ class Installed_domains_jwt_keyPolicy extends CommonPolicy
     /**
      * No one can attach any Installed_domain to the JWT key
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain            $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Installed_domains_jwt_key $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain            $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Installed_domains_jwt_key $model
      * @return mixed
      */
     public function detachInstalled_domain(User $user, Model $model)
@@ -149,8 +149,8 @@ class Installed_domains_jwt_keyPolicy extends CommonPolicy
      *
      * See this fabulous post: https://github.com/laravel/nova-issues/issues/1003#issuecomment-497008278
      *
-     * @param  \Lasallesoftware\Library\Authentication\Models\Personbydomain            $user
-     * @param  \Lasallesoftware\Library\Authentication\Models\Installed_domains_jwt_key $model
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain            $user
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Installed_domains_jwt_key $model
      * @return bool
      */
     public function attachInstalled_domain(User $user, Model $model)

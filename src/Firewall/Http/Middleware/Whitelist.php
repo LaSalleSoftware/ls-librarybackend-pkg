@@ -47,7 +47,7 @@ class Whitelist
         }
 
         // The remote IP address is NOT white listed
-        abort(401, __('lasallesoftwarelibrary::auth.unauthorized'));
+        abort(401, __('lasallesoftwarelibrarybackend::auth.unauthorized'));
     }
 
 

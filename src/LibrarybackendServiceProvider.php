@@ -108,7 +108,7 @@ class LibrarybackendServiceProvider extends ServiceProvider
      */
     public function registerMiddlewareRouter($router)
     {
-        //$router->aliasMiddleware('whitelist', 'Lasallesoftware\Library\Firewall\Http\Middleware\Whitelist');
+        //$router->aliasMiddleware('whitelist', 'Lasallesoftware\Librarybackend\Firewall\Http\Middleware\Whitelist');
 
         // Add a middleware to the end of a middleware group
         // https://github.com/laravel/framework/blob/6.x/src/Illuminate/Routing/Router.php#L902

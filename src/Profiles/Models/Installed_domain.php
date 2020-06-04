@@ -156,7 +156,7 @@ class Installed_domain extends CommonModel
      */
     public function installed_domains_jwt_key()
     {
-        return $this->hasMany('\Lasallesoftware\Library\Authentication\Models\Installed_domains_jwt_key');
+        return $this->hasMany('\Lasallesoftware\Librarybackend\Authentication\Models\Installed_domains_jwt_key');
     }
 
     /*

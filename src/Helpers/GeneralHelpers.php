@@ -50,7 +50,7 @@ trait GeneralHelpers
      * Is a value in an array?
      *
      * This helper exists as the base comparison in the Whitelist middleware
-     * (Lasallesoftware\Library\Firewall\Http\Middleware\Whitelist). I took this comparison out of the middleware and put
+     * (Lasallesoftware\Librarybackend\Firewall\Http\Middleware\Whitelist). I took this comparison out of the middleware and put
      * it here so I can unit test this comparison easily.
      *
      * Also, I looked through the Laravel array helpers and did not like any of them for this particular situation.

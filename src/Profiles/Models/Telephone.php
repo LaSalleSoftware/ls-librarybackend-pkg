@@ -149,7 +149,7 @@ class Telephone extends CommonModel
      */
     private static function populateCalculatedField(Telephone $telephone)
     {
-        // recreated the following in Lasallesoftware\Library\Rules\TelephonesUniqueRule
+        // recreated the following in Lasallesoftware\Librarybackend\Rules\TelephonesUniqueRule
 
         $country_code     = self::stripCharactersFromText1(trim($telephone->country_code));
 

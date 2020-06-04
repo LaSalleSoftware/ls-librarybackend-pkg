@@ -120,7 +120,7 @@ class Address extends CommonModel
      */
     protected static function populateCalculatedField(Address $address) {
 
-        // recreated the following in Lasallesoftware\Library\Rules\AddressUniqueRule
+        // recreated the following in Lasallesoftware\Librarybackend\Rules\AddressUniqueRule
 
         $address_line_1 = trim($address->address_line_1) . ', ';
         $address_line_2 = $address->address_line_2 == null ? '' : trim($address->address_line_2) . ', ';

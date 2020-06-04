@@ -86,6 +86,6 @@ class Lookup_lasallesoftware_event extends CommonModel
      */
     public function uuid()
     {
-        return $this->hasOne('Lasallesoftware\Library\UniversallyUniqueIDentifiers\Uuid');
+        return $this->hasOne('Lasallesoftware\Librarybackend\UniversallyUniqueIDentifiers\Uuid');
     }
 }

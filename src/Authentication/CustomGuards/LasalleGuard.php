@@ -158,7 +158,7 @@ class LasalleGuard implements StatefulGuard
     /**
      * The LaSalle Software's Login model instance.
      *
-     * @var Lasallesoftware\Library\Authentication\Models\Login;
+     * @var Lasallesoftware\Librarybackend\Authentication\Models\Login;
      */
     protected $loginModel;
 

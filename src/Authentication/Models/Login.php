@@ -265,7 +265,7 @@ class Login extends CommonModel
      * There is a unit test for this method at Tests\Unit\Library\Authentication\LoginsTable::DeleteOrphanedRecordsTest.
      *
      * There is a php artisan command for this, so it can be run in the scheduler, at
-     * Lasallesoftware\Library\Commands\DeleteInactiveLoginsRecordsCommand.
+     * Lasallesoftware\Librarybackend\Commands\DeleteInactiveLoginsRecordsCommand.
      *
      * @return void
      */

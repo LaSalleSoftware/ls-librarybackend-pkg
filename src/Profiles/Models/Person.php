@@ -186,7 +186,7 @@ class Person extends CommonModel
      */
     protected static function populateCalculatedField(Person $person)
     {
-        // recreated the following in Lasallesoftware\Library\Rules\PersonsUniqueRule
+        // recreated the following in Lasallesoftware\Librarybackend\Rules\PersonsUniqueRule
 
         $first_name  = trim($person->first_name) . " ";
         $middle_name = $person->middle_name == null ? '' : trim($person->middle_name) . " ";
@@ -235,7 +235,7 @@ class Person extends CommonModel
      */
     public function login()
     {
-        return $this->hasMany('\Lasallesoftware\Library\Authentication\Models\Login');
+        return $this->hasMany('\Lasallesoftware\Librarybackend\Authentication\Models\Login');
     }
 
     /*

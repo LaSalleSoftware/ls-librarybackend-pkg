@@ -170,7 +170,7 @@ return [
 	|
     | How many days until a record in the "uuids" database table expires?
     |
-    | Used in Lasallesoftware\Library\UniversallyUniqueIDentifiers\Models\Uuid's daysToExpiration() method.
+    | Used in Lasallesoftware\Librarybackend\UniversallyUniqueIDentifiers\Models\Uuid's daysToExpiration() method.
 	| 
 	*/
     'uuid_number_of_days_until_expiration' => 7,
@@ -184,7 +184,7 @@ return [
     |
     | "action_events" db table is Nova. 
     |
-    | Used in Lasallesoftware\Library\Nova\DeleteActioneventsRecords class.
+    | Used in Lasallesoftware\Librarybackend\Nova\DeleteActioneventsRecords class.
 	| 
 	*/
     'actionevents_number_of_days_until_deletion' => 14,
@@ -229,10 +229,10 @@ return [
 
     /*
 	|--------------------------------------------------------------------------
-	| Default Path for Lasallesoftware\Library\Authentication\Http\Middleware\RedirectSomeRoutes
+	| Default Path for Lasallesoftware\Librarybackend\Authentication\Http\Middleware\RedirectSomeRoutes
 	|--------------------------------------------------------------------------
 	|
-    | What path do you want Lasallesoftware\Library\Authentication\Http\Middleware\RedirectSomeRoutes
+    | What path do you want Lasallesoftware\Librarybackend\Authentication\Http\Middleware\RedirectSomeRoutes
     | middleware to redirect to?
     |
     | If you are logged into the admin, these paths will redirect to the default path

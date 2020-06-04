@@ -154,7 +154,7 @@ class ProfilesLookupTablesSeeder extends BaseSeeder
             'locked_by'   => null,
         ]);
 
-        // Lasallesoftware\Library\Authentication\Models\PersonbydomainNovaFormProcessing::populateEmailsTable(Personbydomain $personbydomain)
+        // Lasallesoftware\Librarybackend\Authentication\Models\PersonbydomainNovaFormProcessing::populateEmailsTable(Personbydomain $personbydomain)
         DB::table('lookup_email_types')->insert([
             'title'       => 'Created By Nova Personbydomain Form',
             'description' => 'Created By Nova Personbydomain Form',

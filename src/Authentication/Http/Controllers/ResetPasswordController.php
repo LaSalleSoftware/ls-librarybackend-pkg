@@ -82,7 +82,7 @@ class ResetPasswordController extends CommonController
      */
     public function showResetForm(Request $request, $token = null)
     {
-        return view('lasallesoftwarelibrarybackend::basic.auth.passwords.reset')->with(
+        return view( config('lasallesoftware-librarybackend.path_to_back_end_authentication_view_path') . '.passwords.reset' )->with(
             ['token' => $token, 'email' => $request->email]
         );
     }

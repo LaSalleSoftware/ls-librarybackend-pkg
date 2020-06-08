@@ -59,6 +59,6 @@ class LogoutController extends CommonController
      */
     public function showLogoutForm()
     {
-        return view('lasallesoftwarelibrarybackend::basic.auth.logout');
+        return view( config('lasallesoftware-librarybackend.path_to_back_end_authentication_view_path') . '.logout' );
     }
 }

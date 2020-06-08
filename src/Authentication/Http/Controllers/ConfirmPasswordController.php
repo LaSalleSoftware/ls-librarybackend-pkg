@@ -71,7 +71,6 @@ class ConfirmPasswordController extends CommonController
      */
     public function showConfirmForm()
     {
-       //return view('auth.passwords.confirm');
-        return view('lasallesoftwarelibrarybackend::basic.auth.passwords.confirm');
+        return view( config('lasallesoftware-librarybackend.path_to_back_end_authentication_view_path') . '.passwords.confirm' );
     }
 }

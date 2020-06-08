@@ -54,8 +54,6 @@ class ForgotPasswordController extends CommonController
      */
     public function showLinkRequestForm()
     {
-        //return view('auth.passwords.email');
-        return view('lasallesoftwarelibrarybackend::basic.auth.passwords.email');
-        
+        return view( config('lasallesoftware-librarybackend.path_to_back_end_authentication_view_path') . '.passwords.email' );        
     }
 }

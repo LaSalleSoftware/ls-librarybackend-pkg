@@ -83,6 +83,6 @@ class VerificationController extends CommonController
     {
         return $request->user()->hasVerifiedEmail()
                         ? redirect($this->redirectPath())
-                        : view('lasallesoftwarelibrarybackend::basic.auth.verify');
-    }
+                        : view( config('lasallesoftware-librarybackend.path_to_back_end_authentication_view_path') . '.verify' );
+    }   
 }

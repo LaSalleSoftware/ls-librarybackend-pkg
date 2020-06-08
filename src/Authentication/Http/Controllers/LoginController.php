@@ -94,8 +94,8 @@ class LoginController extends CommonController
      */
     public function showLoginForm()
     {
-        //return view('auth.login');
-        return view('lasallesoftwarelibrarybackend::basic.auth.login');
+        
+        return view( config('lasallesoftware-librarybackend.path_to_back_end_authentication_view_path') . '.login' );
     }
 
     /**

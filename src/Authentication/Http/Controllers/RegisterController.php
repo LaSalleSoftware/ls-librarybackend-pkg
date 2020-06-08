@@ -192,6 +192,6 @@ class RegisterController extends CommonController
      */
     public function showRegistrationForm()
     {
-        return view('lasallesoftwarelibrarybackend::basic.auth.register');
+        return view( config('lasallesoftware-librarybackend.path_to_back_end_authentication_view_path') . '.register' );
     }
 }

@@ -31,6 +31,9 @@ use Lasallesoftware\Librarybackend\Commands\DeleteExpiredJWTCommand;
 use Lasallesoftware\Librarybackend\Commands\DeleteExpiredLoginsCommand;
 use Lasallesoftware\Librarybackend\Commands\DeleteExpiredUUIDCommand;
 use Lasallesoftware\Librarybackend\Commands\DeleteActioneventsRecordsCommand;
+use Lasallesoftware\Librarybackend\Commands\DusktestusebanallusersenvCommand;
+use Lasallesoftware\Librarybackend\Commands\DusktestuseregularenvCommand;
+use Lasallesoftware\Librarybackend\Commands\DusktestusetwofactorauthenvCommand;
 use Lasallesoftware\Librarybackend\Commands\InstalleddomainseedCommand;
 use Lasallesoftware\Librarybackend\Commands\LasalleinstalladminappCommand;
 use Lasallesoftware\Librarybackend\Commands\LasalleinstallenvCommand;
@@ -183,6 +186,21 @@ class LibrarybackendServiceProvider extends ServiceProvider
         $this->app->bind('command.lslibrarybackend:deleteactioneventsrecords', DeleteActioneventsRecordsCommand::class);
         $this->commands([
             'command.lslibrarybackend:deleteactioneventsrecords',
+        ]);
+
+        $this->app->bind('command.lslibrarybackend:dusktestusetwofactorauthenv', DusktestusetwofactorauthenvCommand::class);
+        $this->commands([
+            'command.lslibrarybackend:dusktestusetwofactorauthenv',
+        ]);
+
+        $this->app->bind('command.lslibrarybackend:dusktestuseregularenv', DusktestuseregularenvCommand::class);
+        $this->commands([
+            'command.lslibrarybackend:dusktestuseregularenv',
+        ]);
+
+        $this->app->bind('command.lslibrarybackend:dusktestusebanallusersenv', DusktestusebanallusersenvCommand::class);
+        $this->commands([
+            'command.lslibrarybackend:dusktestusebanallusersenv',
         ]);
     }
 

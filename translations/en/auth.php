@@ -38,4 +38,21 @@ return [
     'throttle'          => 'Too many login attempts. Please try again in :seconds seconds.',
 
     'unauthorized'      => 'Unauthorized',
+
+    '2fa_step1_submit'  => 'Click to Proceed',
+    '2fa_step1_title'   => 'Two Factor Authorization Login: Step 1 -- Email Address',
+    '2fa_step1_submit'  => 'Click to Proceed',
+    '2fa_step2_title'   => 'Two Factor Authorization Login: Step 2 -- Two Factor Code (please check your email!)',
+    '2fa_step3_title'   => 'Two Factor Authorization Login: Step 3 -- Password',
+    
+  '2fa_two_factor_code' => 'Two Factor Code',
+    '2fa_email_subject' => 'Your Two Factor Authentication Code',
+    '2fa_email_line1'   => 'You are in the process of logging into ' . config('app.url') . '.',
+    '2fa_email_line2'   => 'Here is your two factor authentication code. Please enter this code into the form.',
+    '2fa_email_warn'    => 'This is a time sensitive code that will expire shortly.',
+
+    '2fa_step2_error_exceedallowedattempts' => 'Too many attempts! Please check your email to enter your fresh Two Factor Code',
+    '2fa_step2_error_expired'               => 'Your Two Factor Code has expired! Please check your email to enter your fresh Two Factor Code',
+    '2fa_step2_error_wrongcode'             => 'You entered an incorrect two factor code. Please try again.',
+    '2fa_step3_error_wrongpassword'         => 'You entered an incorrect password. Please try again.',
 ];

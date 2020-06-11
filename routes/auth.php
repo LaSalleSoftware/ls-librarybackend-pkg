@@ -36,9 +36,17 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/home', 'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\HomeController@index')->name('home');
 
+
 // Authentication Routes...
-    Route::get('login',   'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\LoginController@showLoginForm')->name('login');
-    Route::post('login',  'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\LoginController@login');
+    if (config('lasallesoftware-librarybackend.enable_two_factor_authentication')) {
+        Route::get('login',           'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\Login2FAController@stepOne')->name('login');
+        Route::post('login2fa_step1A', 'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\Login2FAController@stepOneA')->name('step1A');
+        Route::post('login2fa_step2B', 'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\Login2FAController@stepTwoB')->name('step2B');
+        Route::post('login2fa_step3A', 'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\Login2FAController@stepThreeA')->name('step3A');
+    } else {
+        Route::get('login',   'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\LoginController@showLoginForm')->name('login');
+        Route::post('login',  'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\LoginController@login');
+    }    
     Route::get('logout',  'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\LogoutController@showLogoutForm')->name('nova.logout');
     Route::post('logout', 'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\LogoutController@logout')->name('logout');
 

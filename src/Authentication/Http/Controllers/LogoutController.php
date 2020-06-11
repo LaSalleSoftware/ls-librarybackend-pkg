@@ -23,11 +23,12 @@
 
 namespace Lasallesoftware\Librarybackend\Authentication\Http\Controllers;
 
-// Laravel Framework
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
 // LaSalle Software
 use Lasallesoftware\Librarybackend\Common\Http\Controllers\CommonController;
+
+// Laravel Framework
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LogoutController extends CommonController
 {
@@ -60,5 +61,22 @@ class LogoutController extends CommonController
     public function showLogoutForm()
     {
         return view( config('lasallesoftware-librarybackend.path_to_back_end_authentication_view_path') . '.logout' );
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * From the Nova Laravel\Nova\Http\Controllers\LoginController override of AuthenticatesUsers::logout()
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect($this->redirectPath());
     }
 }

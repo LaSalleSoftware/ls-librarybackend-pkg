@@ -59,9 +59,7 @@ class LoginController extends CommonController
      *
      * @var string
      */
-    //protected $redirectTo = '/home';
-    //protected $redirectTo = RouteServiceProvider::HOME;
-    protected $redirectTo = '/nova/resources/personbydomains';
+    protected $redirectTo;
 
     /**
      * The UuidGenerator instance
@@ -83,6 +81,8 @@ class LoginController extends CommonController
         //$this->middleware('Nova.guest:'.config('Nova.guard'))->except('logout');
 
         $this->uuidGenerator = $uuidGenerator;
+
+        $this->redirectTo = config('lasallesoftware-librarybackend.web_middleware_default_path');
     }
 
     /**
@@ -94,8 +94,7 @@ class LoginController extends CommonController
      */
     public function showLoginForm()
     {
-        
-        return view( config('lasallesoftware-librarybackend.path_to_back_end_authentication_view_path') . '.login' );
+        return view( config('lasallesoftware-librarybackend.path_to_back_end_authentication_view_path') . '.login.no_2fa.login' );
     }
 
     /**
@@ -134,22 +133,5 @@ class LoginController extends CommonController
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
-    }
-
-    /**
-     * Log the user out of the application.
-     *
-     * From the Nova Laravel\Nova\Http\Controllers\LoginController override of AuthenticatesUsers::logout()
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function logout(Request $request)
-    {
-        $this->guard()->logout();
-
-        $request->session()->invalidate();
-
-        return redirect($this->redirectPath());
     }
 }

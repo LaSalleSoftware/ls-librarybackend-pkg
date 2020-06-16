@@ -1,6 +1,9 @@
 # CHANGE LOG
 
-## VERSION 2.0.1 (coming!)
+## VERSION 2.0.2 (coming!)
+
+## VERSION 2.0.1 (June 16, 2020)
+* [v2.0.1 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone/2?closed=1)
 
 ## VERSION 2.0.0 (June 15, 2020)
 Note: This is the first release for this package.

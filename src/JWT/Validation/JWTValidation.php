@@ -198,7 +198,7 @@ class JWTValidation
     public function isIatClaimValid($jwtToken)
     {
         $iatIsValidUntil = $jwtToken->getClaim('iat') +
-            config('lasallesoftware-library.lasalle_jwt_iat_claim_valid_for_how_many_seconds')
+            config('lasallesoftware-librarybackend.lasalle_jwt_iat_claim_valid_for_how_many_seconds')
         ;
 
         return (time() <= $iatIsValidUntil) ? true : false;

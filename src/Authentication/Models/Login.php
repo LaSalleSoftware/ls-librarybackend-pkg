@@ -257,7 +257,7 @@ class Login extends CommonModel
     /**
      * Delete logins records that have become inactive.
      *
-     * The default config value for lasallesoftware-library.lasalle_number_of_minutes_allowed_before_deleting_the_logins_record
+     * The default config value for lasallesoftware-librarybackend.lasalle_number_of_minutes_allowed_before_deleting_the_logins_record
      * is 10 minutes.
      *
      * So, if it's been at least 10 minutes since the last request, then logged out!

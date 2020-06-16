@@ -22,6 +22,13 @@
 
 return [
 
+
+    /*
+    | ========================================================================
+    | START: SET-UP
+    | ========================================================================
+    */
+
     /*
     |--------------------------------------------------------------------------
     | The name of this LaSalle Software app being installed?
@@ -52,36 +59,33 @@ return [
     | Set in the .env file.
     |
     */
-	'lasalle_app_domain_name' => env('LASALLE_APP_DOMAIN_NAME'),
-
+    'lasalle_app_domain_name' => env('LASALLE_APP_DOMAIN_NAME'),
+    
     /*
-    |--------------------------------------------------------------------------
-    | Default user role
-    |--------------------------------------------------------------------------
+	|--------------------------------------------------------------------------
+	| Seed database with test data
+	|--------------------------------------------------------------------------
+	|
+    | Seed database with test data? 
     |
-    | If not otherwise set, what user role should be automatically assigned to new registrants?
-    |
-    | There are 3 user roles (see the lookup_roles database table):
-    |
-    | * Owner (1) (very much not recommended as a default)
-    | * Super Administrator (2) (not recommended as a default either)
-    | * Administrator (3) (recommended)
-    |
+    | Test data will seed in the "testing" environment, even when this setting is false.
+    | 
     */
-    'lasalle_app_default_user_role' => 3,
+    'seed_database_with_test_data' => env('LASALLE_POPULATE_DATABASE_WITH_TEST_DATA', false),
 
-    /*
-	|--------------------------------------------------------------------------
-	| Login activity duration in minutes
-	|--------------------------------------------------------------------------
-	|
-	| After a certain number of minutes of not doing anything, a user will be logged out automatically.
-	| How many minutes do you want to allow inactivity before logging a user out automatically?
-	| This is a completely separate feature from Laravel's session inactivity setting (see
-    | https://stackoverflow.com/questions/41983976/laravel-5-session-lifetime)
-	|
-	*/
-    'lasalle_number_of_minutes_allowed_before_deleting_the_logins_record' => env('LASALLE_HOW_MANY_MINUTES_UNTIL_LOGINS_INACTIVITY', 60),
+     /*
+    | ========================================================================
+    | END: SET-UP
+    | ========================================================================
+    */
+
+
+
+     /*
+    | ========================================================================
+    | START: JWT AUTHENTICATION
+    | ========================================================================
+    */
 
     /*
 	|--------------------------------------------------------------------------
@@ -114,6 +118,20 @@ return [
 	*/
     'lasalle_jwt_iat_claim_valid_for_how_many_seconds' => 120,
 
+     /*
+    | ========================================================================
+    | END: JWT AUTHENTICATION
+    | ========================================================================
+    */
+
+
+
+    /*
+    | ========================================================================
+    | START: CONTENT GENERATION
+    | ========================================================================
+    */
+
     /*
 	|--------------------------------------------------------------------------
 	| Filesystem Disk Where Images Are Stored
@@ -142,6 +160,49 @@ return [
     'how_many_initial_chars_of_content_field_for_excerpt' => '250',
 
     /*
+    | ========================================================================
+    | END: CONTENT GENERATION
+    | ========================================================================
+    */
+
+
+
+    /*
+    | ========================================================================
+    | START: GENERAL
+    | ========================================================================
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | Default user role
+    |--------------------------------------------------------------------------
+    |
+    | If not otherwise set, what user role should be automatically assigned to new registrants?
+    |
+    | There are 3 user roles (see the lookup_roles database table):
+    |
+    | * Owner (1) (very much not recommended as a default)
+    | * Super Administrator (2) (not recommended as a default either)
+    | * Administrator (3) (recommended)
+    |
+    */
+    'lasalle_app_default_user_role' => 3,
+
+    /*
+	|--------------------------------------------------------------------------
+	| Login activity duration in minutes
+	|--------------------------------------------------------------------------
+	|
+	| After a certain number of minutes of not doing anything, a user will be logged out automatically.
+	| How many minutes do you want to allow inactivity before logging a user out automatically?
+	| This is a completely separate feature from Laravel's session inactivity setting (see
+    | https://stackoverflow.com/questions/41983976/laravel-5-session-lifetime)
+	|
+	*/
+    'lasalle_number_of_minutes_allowed_before_deleting_the_logins_record' => env('LASALLE_HOW_MANY_MINUTES_UNTIL_LOGINS_INACTIVITY', 60),
+
+    /*
 	|--------------------------------------------------------------------------
 	| Ban All Users
 	|--------------------------------------------------------------------------
@@ -150,18 +211,6 @@ return [
 	| 
 	*/
     'ban_all_users_from_logging_into_the_admin_backend' => env('LASALLE_EMERGENCY_BAN_ALL_USERS_FROM_ADMIN_APP_LOGIN', false),
-
-    /*
-	|--------------------------------------------------------------------------
-	| Seed database with test data
-	|--------------------------------------------------------------------------
-	|
-    | Seed database with test data? 
-    |
-    | Test data will seed in the "testing" environment, even when this setting is false.
-    | 
-    */
-    'seed_database_with_test_data' => env('LASALLE_POPULATE_DATABASE_WITH_TEST_DATA', false),
 
     /*
 	|--------------------------------------------------------------------------
@@ -188,6 +237,12 @@ return [
 	| 
 	*/
     'actionevents_number_of_days_until_deletion' => 14,
+
+    /*
+    | ========================================================================
+    | END: GENERAL
+    | ========================================================================
+    */
 
 
 
@@ -297,31 +352,32 @@ return [
     */
 
 
-   /*
-   | ========================================================================
-   | START: PATHS FOR FEATURED IMAGES
-   | ========================================================================
-   |
-   | You may want to store featured image images (!) in S3 folders, and not just
-   | in S3 buckets. And, you may want store Nova resource featured images in
-   | their own folders. You can specify individual S3 folders here for profile
-   | and blog resources.
-   |
-   | Must have a leading slash.
-   | Must not have a trailing slash.
-   |
-   | Do not want to use an S3 folder at all? Just put the images in the S3 bucket?
-   | Then, just specify '/',
-   |
-   | I designed this specifically for S3, but it applies generally because Nova
-   | uses Laravel's storage facade
-   | * https://laravel.com/docs/master/filesystem
-   | * https://nova.laravel.com/docs/2.0/resources/file-fields.html#file-fields
-   |
-   | IMPORTANT!!! ****You need to set up each S3 folder in your AWS console.****
-   | See https://github.com/LaSalleSoftware/ls-adminbackend-app/blob/master/AWS_S3_NOTES_README.md
-   |
-   */
+
+    /*
+	| ========================================================================
+	| START: PATHS FOR FEATURED IMAGES
+	| ========================================================================
+	|
+	| You may want to store featured image images (!) in S3 folders, and not just
+	| in S3 buckets. And, you may want store Nova resource featured images in
+	| their own folders. You can specify individual S3 folders here for profile
+	| and blog resources.
+	|
+	| Must have a leading slash.
+	| Must not have a trailing slash.
+	|
+	| Do not want to use an S3 folder at all? Just put the images in the S3 bucket?
+	| Then, just specify '/',
+	|
+	| I designed this specifically for S3, but it applies generally because Nova
+	| uses Laravel's storage facade
+	| * https://laravel.com/docs/master/filesystem
+	| * https://nova.laravel.com/docs/2.0/resources/file-fields.html#file-fields
+	|
+	| IMPORTANT!!! ****You need to set up each S3 folder in your AWS console.****
+	| See https://github.com/LaSalleSoftware/ls-adminbackend-app/blob/master/AWS_S3_NOTES_README.md
+	|
+    */
 
     // for Nova resources in the novabackend package
     'image_path_for_address_nova_resource' => '/',
@@ -342,18 +398,18 @@ return [
     //'image_path_for_post_nova_resource'     => '/post',
 
     /*
-   | ========================================================================
-   | END: PATHS FOR FEATURED IMAGES
-   | ========================================================================
+	| ========================================================================
+	| END: PATHS FOR FEATURED IMAGES
+	| ========================================================================
    */
 
 
 
-   /*
-   | ========================================================================
-   | START: BACK-END BLADE VIEW PATHS
-   | ========================================================================
-   */
+    /*
+	| ========================================================================
+	| START: BACK-END BLADE VIEW PATHS
+	| ========================================================================
+    */
 
     /*
 	|--------------------------------------------------------------------------
@@ -371,11 +427,11 @@ return [
 	*/
     'path_to_back_end_authentication_view_path' => 'lasalleuibackend::authentication',
 
-   /*
-   | ========================================================================
-   | END: BACK-END BLADE VIEW PATHS
-   | ========================================================================
-   */
+    /*
+	| ========================================================================
+	| END: BACK-END BLADE VIEW PATHS
+	| ========================================================================
+    */
 
 
 

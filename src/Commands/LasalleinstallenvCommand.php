@@ -113,6 +113,26 @@ class LasalleinstallenvCommand extends CommonCommand
 
 
         // -------------------------------------------------------------------------------------------------------------
+        // START: CREATE THE .ENV FILE WHEN IT DOES NOT EXIST
+        // -------------------------------------------------------------------------------------------------------------
+        if (!file_exists($this->laravel->environmentFilePath())) {
+
+            echo "\n\n";
+            $this->line('-----------------------------------------------------------------------');
+            $this->line('  .ENV file creation:');
+            $this->line('-----------------------------------------------------------------------');
+            $this->comment("Your environment file does not exist, so let's create it...");
+            $this->makeEnv();
+            $this->info("Your .env file now exists!");
+        } 
+        // -------------------------------------------------------------------------------------------------------------
+        // END: CREATE THE .ENV FILE WHEN IT DOES NOT EXIST
+        // -------------------------------------------------------------------------------------------------------------
+
+
+
+
+        // -------------------------------------------------------------------------------------------------------------
         // START: APP_KEY
         // -------------------------------------------------------------------------------------------------------------
         if (env('APP_KEY') == '') {
@@ -382,6 +402,17 @@ class LasalleinstallenvCommand extends CommonCommand
         $this->info('              ** lslibrarybackend:lasalleinstallenv has finished **');
         $this->info('====================================================================');
         echo "\n\n";
+    }
+
+    /**
+     * Create the .env file
+     *
+     * @return void
+     */
+    protected function makeEnv()
+    {
+        $envexampleFile = file_get_contents(base_path() . '/.env.example');
+        file_put_contents($this->laravel->environmentFilePath(), $envexampleFile);
     }
 
     /**

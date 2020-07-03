@@ -37,7 +37,6 @@ use Lasallesoftware\Librarybackend\Commands\DusktestusetwofactorauthenvCommand;
 use Lasallesoftware\Librarybackend\Commands\InstalleddomainseedCommand;
 use Lasallesoftware\Librarybackend\Commands\LasalleinstalladminappCommand;
 use Lasallesoftware\Librarybackend\Commands\LasalleinstallenvCommand;
-use Lasallesoftware\Librarybackend\Commands\LasalleinstallfrontendappCommand;
 use Lasallesoftware\Librarybackend\Firewall\Http\Middleware\Whitelist;
 use Lasallesoftware\Librarybackend\JWT\Middleware\JWTMiddleware;
 
@@ -161,11 +160,6 @@ class LibrarybackendServiceProvider extends ServiceProvider
         $this->app->bind('command.lslibrarybackend:lasalleinstalladminapp', LasalleinstalladminappCommand::class);
         $this->commands([
             'command.lslibrarybackend:lasalleinstalladminapp',
-        ]);
-
-        $this->app->bind('command.lslibrarybackend:lasalleinstallfrontendapp', LasalleinstallfrontendappCommand::class);
-        $this->commands([
-            'command.lslibrarybackend:lasalleinstallfrontendapp',
         ]);
 
         $this->app->bind('command.lslibrarybackend:deleteexpiredlogins', DeleteExpiredLoginsCommand::class);

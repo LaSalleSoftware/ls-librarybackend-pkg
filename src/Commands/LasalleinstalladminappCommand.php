@@ -83,15 +83,8 @@ class LasalleinstalladminappCommand extends CommonCommand
      */
     public function handle()
     {
-        // -------------------------------------------------------------------------------------------------------------
-        // START: INTRO
-        echo "\n\n";
-        $this->info('================================================================================');
-        $this->info('                  lslibrarybackend:lasalleinstalladminapp ');
-        $this->info('================================================================================');
-        echo "\n\n";
-
-        if ('adminbackendapp' != env('LASALLE_APP_NAME')) {
+        if (env('LASALLE_APP_NAME') != 'adminbackendapp') {
+            echo "\n\n";
             $this->line("This installation artisan command is specifically for my LaSalle Software's admin application.");
             $this->line('You are installing my '.mb_strtoupper(env('LASALLE_APP_NAME')).' LaSalle Software application.');
             $this->line('So I am exiting you out of this artisan command.');
@@ -102,37 +95,40 @@ class LasalleinstalladminappCommand extends CommonCommand
             return;
         }
 
+
         // -------------------------------------------------------------------------------------------------------------
         // START: INTRO
-        $this->line('--------------------------------------------------------------------------------');
+        // -------------------------------------------------------------------------------------------------------------
+        $this->info('================================================================================');
         $this->line('                       Welcome to my LaSalle Software\'s');
         $this->line('             Administrative Back-end App\' Installation Artisan Command!');
-        $this->line('--------------------------------------------------------------------------------');
+        $this->info('================================================================================');
         $this->line('  You are installing the '.mb_strtoupper(env('LASALLE_APP_NAME')).' LaSalle Software Application.');
-        echo "\n";
+        $this->info('================================================================================');
         $this->line('  You are installing to your '.$this->getLaravel()->environment().' environment.');
-        $this->line('--------------------------------------------------------------------------------');
-        $this->line('  This command does stuff to set up my admin app, stuff that does not happen');
-        $this->line('  with my other apps: Nova preparation, optional database drop, database');
-        $this->line('  migration, and database seeding.');
-        $this->line('--------------------------------------------------------------------------------');
-        $this->line('  Read my INSTALLATION.md *BEFORE* running this command.');
-        $this->line('--------------------------------------------------------------------------------');
+        $this->info('================================================================================');
+        $this->line('  This command does stuff to set up my admin app, including Nova and database prep.');
+        $this->info('================================================================================');
+        $this->line('  Read https://lasallesoftware.ca/docs/v2/gettingstarted_installation_backendapp ');
+        $this->line('  *BEFORE* running this command.');
+        $this->info('================================================================================');
         $this->line('  Have you run my environment variable installation artisan command? No?');
         $this->line('  Well, then! Type "oops" to exit this artisan command, and then run');
         $this->line('  "lslibrarybackend:lasalleinstallenv". Then, re-run this artisan command.');
-        $this->line('--------------------------------------------------------------------------------');
-        echo "\n";
+        $this->info('================================================================================');
         $this->line('  Thank you for installing my LaSalle Software!');
         $this->line('  --Bob Bloom');
-        $this->line('--------------------------------------------------------------------------------');
+        $this->info('================================================================================');
+        // -------------------------------------------------------------------------------------------------------------
         // END: INTRO
         // -------------------------------------------------------------------------------------------------------------
 
+
         // -------------------------------------------------------------------------------------------------------------
         // START: DID YOU RUN lslibrarybackend:LASALLEINSTALLENV ALREADY?
+        // -------------------------------------------------------------------------------------------------------------
         echo "\n\n";
-        $this->alert('Did you already run lslibrarybackend:lasalleinstallenv? You must run it first!');
+        $this->alert('You must run lslibrarybackend:lasalleinstallenv before running this artisan command? Did you run it first?');
         $runConfirmation = $this->ask('<fg=yellow;bg=red>(type the word "oops" to exit this artisan command, or just press enter to continue...)</>');
         if ($runConfirmation == strtolower('oops')) {
             $this->line('<fg=red;bg=yellow>Good stuff! Please run "php artisan lslibrarybackend:lasalleinstallenv" and then re-run this artisan command.</>');
@@ -141,13 +137,17 @@ class LasalleinstalladminappCommand extends CommonCommand
             return;
         }
         $this->comment('ok... Let us get this show on the road...');
+        // -------------------------------------------------------------------------------------------------------------
         // END: DID YOU RUN lslibrarybackend:LASALLEINSTALLENV ALREADY?
         // -------------------------------------------------------------------------------------------------------------
 
+
+
         // -------------------------------------------------------------------------------------------------------------
         // START: DID YOU SET UP YOUR DATABASE?
+        // -------------------------------------------------------------------------------------------------------------
         echo "\n\n\n";
-        $this->alert('Did you already set up your database, and double check that the DB vars are set in .env?');
+        $this->alert('Is your database already set-up? Are your database env vars ok in .env?');
         $runConfirmation = $this->ask('<fg=yellow;bg=red>(type the word "yes" to continue)</>');
         if ($runConfirmation != strtolower('yes')) {
             $this->line('<fg=red;bg=yellow>OK, you want to set up your DB, and check your vars in .env, so I am NOT going to continue running this command. Bye!</>');
@@ -156,46 +156,50 @@ class LasalleinstalladminappCommand extends CommonCommand
             return;
         }
         $this->comment('ok... you said that you want to continue running this command. Let us continue then...');
+        // -------------------------------------------------------------------------------------------------------------
         // END: DID YOU SET UP YOUR DATABASE?
         // -------------------------------------------------------------------------------------------------------------
 
+
+
         // -------------------------------------------------------------------------------------------------------------
         // START: THE adminbackendapp NEEDS LARAVEL's FIRST-PARTY "NOVA" ADMIN PACKAGE
-        if ('adminbackendapp' == env('LASALLE_APP_NAME')) {
-            echo "\n\n";
-            $this->line('-----------------------------------------------------------------------');
-            $this->line("  Now setting up Laravel Nova's first party admin package");
-            $this->line('-----------------------------------------------------------------------');
+        // -------------------------------------------------------------------------------------------------------------
+        echo "\n\n";
+        $this->line('-----------------------------------------------------------------------');
+        $this->line("  Now setting up Laravel Nova's first party admin package");
+        $this->line('-----------------------------------------------------------------------');
 
-            // if NOVA is not installed
-            if (!class_exists('Laravel\Nova\Nova')) {
-                echo "\n";
-                $this->line('  <fg=red;bg=yellow>The first party Laravel Nova commercial package is not installed.');
-                $this->line('  <fg=red;bg=yellow>Nova is critical to my admin app. You buy and must install Nova!');
-                $this->line('  <fg=red;bg=yellow>So please install Nova, then re-run this artisan command.');
-                $this->echoOutro();
-
-                return;
-            }
-            // NOVA is installed, so run "php artisan nova:install"
-            //echo "\n\n";
-            $this->comment('Now running Laravel\'s first-party administration package "Nova" set-up...');
-            //echo "\n\n";
-            $this->call('nova:install');
-
-            // delete the app/nova files because we definitely do not want this user resource showing up in our Nova menu
-            //echo "\n";
-            $this->deleteFile(app_path().'/Nova/Resource.php');
-            $this->deleteFile(app_path().'/Nova/User.php');
+        // if NOVA is not installed
+        if (!class_exists('Laravel\Nova\Nova')) {
             echo "\n";
-            $this->comment('Finished the Nova set-up.');
+            $this->line('  <fg=red;bg=yellow>The first party Laravel Nova commercial package is not installed.');
+            $this->line('  <fg=red;bg=yellow>Nova is critical to my admin app. You buy and must install Nova!');
+            $this->line('  <fg=red;bg=yellow>So please install Nova, then re-run this artisan command.');
+            $this->echoOutro();
+
+            return;
         }
+
+        // NOVA is installed, so run "php artisan nova:install"
+        $this->comment('Now running Laravel\'s first-party administration package "Nova" set-up...');
+        $this->call('nova:install');
+
+        // delete the app/nova files because we definitely do not want this user resource showing up in our Nova menu
+        $this->deleteFile(app_path().'/Nova/Resource.php');
+        $this->deleteFile(app_path().'/Nova/User.php');
+        echo "\n";
+        $this->comment('Finished the Nova set-up.');
+        // -------------------------------------------------------------------------------------------------------------
         // END: THE adminbackendapp NEEDS LARAVEL's FIRST-PARTY "NOVA" ADMIN PACKAGE
         // -------------------------------------------------------------------------------------------------------------
 
+
+
+
         // -------------------------------------------------------------------------------------------------------------
         // START: DATABASE DROP, MIGRATION, AND SEEDS
-
+        // -------------------------------------------------------------------------------------------------------------
         echo "\n\n";
         $this->line('-----------------------------------------------------------------------');
         $this->line('  Now setting up the database');
@@ -203,7 +207,7 @@ class LasalleinstalladminappCommand extends CommonCommand
 
         // Set an env var to false when production
         // (probably not really necessary)
-        if ('production' === strtolower($this->getLaravel()->environment())) {
+        if (strtolower($this->getLaravel()->environment()) === 'production') {
             $this->setLasallePopulateDatabaseWithTestDataToFalse();
         }
 
@@ -289,8 +293,11 @@ class LasalleinstalladminappCommand extends CommonCommand
             $this->line('<bg=red>Note: please change your password when you log in.</>');
             $this->line('================================================================================');
         }
+        // -------------------------------------------------------------------------------------------------------------
         // END: DATABASE DROP, MIGRATION, AND SEEDS
         // -------------------------------------------------------------------------------------------------------------
+
+
 
         // -------------------------------------------------------------------------------------------------------------
         // START: FINISHED!

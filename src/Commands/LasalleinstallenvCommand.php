@@ -73,11 +73,19 @@ class LasalleinstallenvCommand extends CommonCommand
         $this->line('                       Welcome to my LaSalle Software\'s');
         $this->line('               Environment Variables Installation Artisan Command!');
         $this->line('========================================================================================');
-        $this->line('  You are installing LaSalle Software\'s '.mb_strtoupper(env('LASALLE_APP_NAME')).' application.');
-        $this->line('========================================================================================');
-        $this->line('  You are installing to your '.$this->getLaravel()->environment().' environment.');
-        $this->line('========================================================================================');
-        $this->line('  This command sets some variables in your .env file.');
+        $this->line('  This command creates your .env, if necessary, and sets LaSalle Software specific ');
+        $this->line('   environment variables in your .env file.');
+        $this->line('================================================================================');
+
+        if (file_exists($this->laravel->environmentFilePath())) {
+            $this->line('  You are installing the '.mb_strtoupper(env('LASALLE_APP_NAME')).' LaSalle Software Application.');
+            $this->line('================================================================================');
+            $this->line('  You are installing to your '.$this->getLaravel()->environment().' environment.');
+            $this->line('================================================================================');
+        }
+
+        $this->line('  This artisan command assumes that the LaSalle Software specific environment');
+        $this->line('  variables exist in your .env with their original "dummy" values.');
         $this->line('========================================================================================');
         $this->line('  Read https://lasallesoftware.ca/docs/v2/gettingstarted_installation_backendapp ');
         $this->line('  *BEFORE* running this command.');
@@ -93,10 +101,7 @@ class LasalleinstallenvCommand extends CommonCommand
         // -------------------------------------------------------------------------------------------------------------
         // START: ARE YOU SURE YOU WANT TO RUN THIS COMMAND?
         // -------------------------------------------------------------------------------------------------------------
-        echo "\n\n\n";
-        $this->line('--------------------------------------------------------------------------------');
-        $this->line('  Please confirm that you really want to run this installation artisan command');
-        $this->line('--------------------------------------------------------------------------------');
+        echo "\n\n";
         $this->alert('Are you sure that you want to run this command?');
         $runConfirmation = $this->ask('<fg=yellow>(type the word "yes" to continue)</>');
         if ($runConfirmation != strtolower('yes')) {

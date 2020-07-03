@@ -83,13 +83,25 @@ class LasalleinstalladminappCommand extends CommonCommand
      */
     public function handle()
     {
-        if (env('LASALLE_APP_NAME') != 'adminbackendapp') {
+        if (file_exists($this->laravel->environmentFilePath())) {
+            if (env('LASALLE_APP_NAME') != 'adminbackendapp') {
+                echo "\n\n";
+                $this->line("This installation artisan command is specifically for my LaSalle Software's admin application.");
+                $this->line('You are installing my '.mb_strtoupper(env('LASALLE_APP_NAME')).' LaSalle Software application.');
+                $this->line('So I am exiting you out of this artisan command.');
+                $this->line('exiting...');
+                $this->line('You are now exited from lslibrarybackend:lasalleinstalladminapp.');
+                echo "\n\n";
+
+                return;
+            }
+        }
+
+
+        if (!file_exists($this->laravel->environmentFilePath())) {
             echo "\n\n";
-            $this->line("This installation artisan command is specifically for my LaSalle Software's admin application.");
-            $this->line('You are installing my '.mb_strtoupper(env('LASALLE_APP_NAME')).' LaSalle Software application.');
-            $this->line('So I am exiting you out of this artisan command.');
-            $this->line('exiting...');
-            $this->line('You are now exited from lslibrarybackend:lasalleinstalladminapp.');
+            $this->line('  Your .env environment file does not exist. ');
+            $this->line('  Please run "php artisan lslibrarybackend:lasalleinstallenv", then, re-run this artisan command.');
             echo "\n\n";
 
             return;
@@ -99,22 +111,23 @@ class LasalleinstalladminappCommand extends CommonCommand
         // -------------------------------------------------------------------------------------------------------------
         // START: INTRO
         // -------------------------------------------------------------------------------------------------------------
+        echo "\n\n";
         $this->info('================================================================================');
         $this->line('                       Welcome to my LaSalle Software\'s');
         $this->line('             Administrative Back-end App\' Installation Artisan Command!');
         $this->info('================================================================================');
-        $this->line('  You are installing the '.mb_strtoupper(env('LASALLE_APP_NAME')).' LaSalle Software Application.');
-        $this->info('================================================================================');
-        $this->line('  You are installing to your '.$this->getLaravel()->environment().' environment.');
-        $this->info('================================================================================');
+
+        if (file_exists($this->laravel->environmentFilePath())) {
+            $this->line('  You are installing the '.mb_strtoupper(env('LASALLE_APP_NAME')).' LaSalle Software Application.');
+            $this->info('================================================================================');
+            $this->line('  You are installing to your '.$this->getLaravel()->environment().' environment.');
+            $this->info('================================================================================');
+        }
+
         $this->line('  This command does stuff to set up my admin app, including Nova and database prep.');
         $this->info('================================================================================');
         $this->line('  Read https://lasallesoftware.ca/docs/v2/gettingstarted_installation_backendapp ');
         $this->line('  *BEFORE* running this command.');
-        $this->info('================================================================================');
-        $this->line('  Have you run my environment variable installation artisan command? No?');
-        $this->line('  Well, then! Type "oops" to exit this artisan command, and then run');
-        $this->line('  "lslibrarybackend:lasalleinstallenv". Then, re-run this artisan command.');
         $this->info('================================================================================');
         $this->line('  Thank you for installing my LaSalle Software!');
         $this->line('  --Bob Bloom');

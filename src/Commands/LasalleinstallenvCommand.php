@@ -103,7 +103,7 @@ class LasalleinstallenvCommand extends CommonCommand
         // -------------------------------------------------------------------------------------------------------------
         echo "\n\n";
         $this->alert('Are you sure that you want to run this command?');
-        $runConfirmation = $this->ask('<fg=yellow>(type the word "yes" to continue)</>');
+        $runConfirmation = $this->ask('<fg=yellow>(type the full word "yes" to continue)</>');
         if ($runConfirmation != strtolower('yes')) {
             $this->line('<fg=red;bg=yellow>You did *not* type "yes", so I am NOT going to continue running this command. Bye!</>');
             $this->echoOutro();
@@ -141,6 +141,8 @@ class LasalleinstallenvCommand extends CommonCommand
         // START: APP_KEY
         // -------------------------------------------------------------------------------------------------------------
         if (env('APP_KEY') == '') {
+            
+            echo "\n\n";
             $this->line('-----------------------------------------------------------------------');
             $this->line('  APP_KEY environment variable:');
             $this->line('-----------------------------------------------------------------------');
@@ -229,67 +231,6 @@ class LasalleinstallenvCommand extends CommonCommand
         // -------------------------------------------------------------------------------------------------------------
 
 
-  
-        // -------------------------------------------------------------------------------------------------------------
-        // START: SET THE LASALLE_JWT_KEY PARAM IN .ENV
-        // -------------------------------------------------------------------------------------------------------------
-        echo "\n\n";
-        $this->line('-----------------------------------------------------------------------');
-        $this->line('  Now setting your LASALLE_JWT_KEY environment variable');
-        $this->line('-----------------------------------------------------------------------');
-        $lasalleJwtKey = Str::random(64);
-        $this->comment('Attempting to set LASALLE_JWT_KEY in your .env to "'.$lasalleJwtKey.'"...');
-        $this->writeEnvironmentFileWithNewKey('DummyJwtKey', $lasalleJwtKey, false);
-        $this->info("Attempt to modify your env's LASALLE_JWT_KEY to ".$lasalleJwtKey.' is finished!');
-        // -------------------------------------------------------------------------------------------------------------
-        // END: SET THE LASALLE_JWT_KEY PARAM IN .ENV
-        // -------------------------------------------------------------------------------------------------------------
-
-
-
-        // -------------------------------------------------------------------------------------------------------------
-        // START: SET THE LASALLE_JWT_AUD_CLAIM PARAM IN .ENV
-        // -------------------------------------------------------------------------------------------------------------
-        echo "\n\n";
-        $this->line('-----------------------------------------------------------------------');
-        $this->line('  Now setting your LASALLE_JWT_AUD_CLAIM environment variable');
-        $this->line('-----------------------------------------------------------------------');
-        $this->comment(' ');
-        $this->comment('This front-end app needs to know what administrative back-end app it belongs to.');
-        $this->comment('So, you need to specify the name of the relevant admin app.');
-        $this->comment('The name of  your admin app is the value of the "LASALLE_APP_DOMAIN_NAME" in its .env file.');
-        $this->comment("Please go to your administrative app's .env file, and copy its LASALLE_APP_DOMAIN_NAME value here.");
-        $lasalleJwtAudClaim = $this->ask('What is the name of your admin app?');
-        $this->comment('Attempting to set LASALLE_JWT_AUD_CLAIM in your .env to "'.$lasalleJwtAudClaim.'"...');
-        $this->writeEnvironmentFileWithNewKey('DummyLasalleJwtAudClaim', $lasalleJwtAudClaim, false);
-        $this->info("Attempt to modify your env's LASALLE_JWT_AUD_CLAIM to ".$lasalleJwtAudClaim.' is finished!');
-        // -------------------------------------------------------------------------------------------------------------
-        // END: SET THE LASALLE_JWT_AUD_CLAIM PARAM IN .ENV
-        // -------------------------------------------------------------------------------------------------------------
-
-
-
-        // -------------------------------------------------------------------------------------------------------------
-        // START: SET THE LASALLE_ADMIN_API_URL PARAM IN .ENV
-        // -------------------------------------------------------------------------------------------------------------
-        echo "\n\n";
-        $this->line('-----------------------------------------------------------------------');
-        $this->line('  Now setting your LASALLE_ADMIN_API_URL environment variable');
-        $this->line('-----------------------------------------------------------------------');
-        $this->comment(' ');
-        $this->comment('This front-end app needs to know what administrative back-end app it belongs to.');
-        $this->comment('So, you need to specify the url of the relevant admin app.');
-        $this->comment('The url of  your admin app is the value of the "APP_URL" in its .env file.');
-        $this->comment("Please go to your administrative app's .env file, and copy its APP_URL value here.");
-        $lasalleAdminApiUrl = $this->ask('What is the URL of your admin app?');
-        $this->comment('Attempting to set LASALLE_ADMIN_API_URL in your .env to "'.$lasalleAdminApiUrl.'"...');
-        $this->writeEnvironmentFileWithNewKey('DummyLasalleAdminApiUrl', $lasalleAdminApiUrl, false);
-        $this->info("Attempt to modify your env's LASALLE_ADMIN_API_URL to ".$lasalleAdminApiUrl.' is finished!');
-        // -------------------------------------------------------------------------------------------------------------
-        // END: SET THE LASALLE_ADMIN_API_URL PARAM IN .ENV
-        // -------------------------------------------------------------------------------------------------------------
-
-
 
         // -------------------------------------------------------------------------------------------------------------
         // START: SET THE DB_DATABASE PARAM IN .ENV
@@ -298,19 +239,6 @@ class LasalleinstallenvCommand extends CommonCommand
         $this->line('-----------------------------------------------------------------------');
         $this->line('  Now setting your DB_DATABASE environment variable');
         $this->line('-----------------------------------------------------------------------');
-        $this->comment(' ');
-        $this->comment('This front-end app uses the same database that your back-end admin app uses.');
-        $this->comment("This means that can use your admin app's database settings in this front-end app's database settings.");
-        $this->comment('Well, actually, there are times when you need different settings even though both apps use the same database.');
-        $this->comment("You're going to have to figure out exactly what database settings to use for this front-end app!");
-        $this->comment(' ');
-        $this->comment('Also: are you installing with Forge? Then Forge, likely, already updated this environment variable,');
-        $this->comment('so this artisan command cannot do this update -- so just hit ENTER and edit your .env manually.');
-        $this->comment(' ');
-        $this->comment('So, with all that said, it is time to enter the name of your database. If you are entering');
-        $this->comment("the same database settings as exists in your admin app's .env file, then please enter the DB_DATABASE");
-        $this->comment('value in your admin app here.');
-        $this->comment(' ');
         $appDbDatabase = $this->ask('(What is the name of your database?)');
         $this->comment('Attempting to set DB_DATABASE in your .env to "'.$appDbDatabase.'"...');
         $this->writeEnvironmentFileWithNewKey('DummyDbDatabase', $appDbDatabase, false);
@@ -328,18 +256,6 @@ class LasalleinstallenvCommand extends CommonCommand
         $this->line('-----------------------------------------------------------------------');
         $this->line('  Now setting your DB_USERNAME environment variable');
         $this->line('-----------------------------------------------------------------------');
-        $this->comment(' ');
-        $this->comment('This front-end app uses the same database that your back-end admin app uses.');
-        $this->comment("This means that can use your admin app's database settings in this front-end app's database settings.");
-        $this->comment('Well, actually, there are times when you need different settings even though both apps use the same database.');
-        $this->comment("You're going to have to figure out exactly what database settings to use for this front-end app!");
-        $this->comment(' ');
-        $this->comment('Also: are you installing with Forge? Then Forge, likely, already updated this environment variable,');
-        $this->comment('so this artisan command cannot do this update -- so just hit ENTER and edit your .env manually.');
-        $this->comment(' ');
-        $this->comment("So, with all that said, it is time to enter your database's username. If you are entering");
-        $this->comment("the same database settings as exists in your admin app's .env file, then please enter the DB_USERNAME");
-        $this->comment('value in your admin app here.');
         $appDbUsername = $this->ask("What is the name of your database's user?");
         $this->comment('Attempting to set DB_USERNAME in your .env to "'.$appDbUsername.'"...');
         $this->writeEnvironmentFileWithNewKey('DummyDbUsername', $appDbUsername, false);
@@ -357,18 +273,6 @@ class LasalleinstallenvCommand extends CommonCommand
         $this->line('-----------------------------------------------------------------------');
         $this->line('  Now setting your DB_PASSWORD environment variable');
         $this->line('-----------------------------------------------------------------------');
-        $this->comment(' ');
-        $this->comment('This front-end app uses the same database that your back-end admin app uses.');
-        $this->comment("This means that can use your admin app's database settings in this front-end app's database settings.");
-        $this->comment('Well, actually, there are times when you need different settings even though both apps use the same database.');
-        $this->comment("You're going to have to figure out exactly what database settings to use for this front-end app!");
-        $this->comment(' ');
-        $this->comment('Also: are you installing with Forge? Then Forge, likely, already updated this environment variable,');
-        $this->comment('so this artisan command cannot do this update -- so just hit ENTER and edit your .env manually.');
-        $this->comment(' ');
-        $this->comment("So, with all that said, it is time to enter your database's user password. If you are entering");
-        $this->comment("the same database settings as exists in your admin app's .env file, then please enter the DB_PASSWORD");
-        $this->comment('value in your admin app here.');
         $appDbPassword = $this->ask("What is your database's user password?");
         $this->comment('Attempting to set DB_PASSWORD in your .env to "'.$appDbPassword.'"...');
         $this->writeEnvironmentFileWithNewKey('DummyDbPassword', $appDbPassword, false);

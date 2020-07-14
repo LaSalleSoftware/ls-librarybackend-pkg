@@ -37,6 +37,8 @@ use Lasallesoftware\Librarybackend\Commands\DusktestusetwofactorauthenvCommand;
 use Lasallesoftware\Librarybackend\Commands\InstalleddomainseedCommand;
 use Lasallesoftware\Librarybackend\Commands\LasalleinstalladminappCommand;
 use Lasallesoftware\Librarybackend\Commands\LasalleinstallenvCommand;
+use Lasallesoftware\Librarybackend\Commands\ReEncryptRunMeFirstCommand;
+use Lasallesoftware\Librarybackend\Commands\ReEncryptRunMeSecondCommand;
 use Lasallesoftware\Librarybackend\Firewall\Http\Middleware\Whitelist;
 use Lasallesoftware\Librarybackend\JWT\Middleware\JWTMiddleware;
 
@@ -195,6 +197,16 @@ class LibrarybackendServiceProvider extends ServiceProvider
         $this->app->bind('command.lslibrarybackend:dusktestusebanallusersenv', DusktestusebanallusersenvCommand::class);
         $this->commands([
             'command.lslibrarybackend:dusktestusebanallusersenv',
+        ]);
+
+        $this->app->bind('command.lslibrarybackend:reencryptrunmefirst', ReEncryptRunMeFirstCommand::class);
+        $this->commands([
+            'command.lslibrarybackend:reencryptrunmefirst',
+        ]);
+
+        $this->app->bind('command.lslibrarybackend:reencryptrunmesecond', ReEncryptRunMeSecondCommand::class);
+        $this->commands([
+            'command.lslibrarybackend:reencryptrunmesecond',
         ]);
     }
 

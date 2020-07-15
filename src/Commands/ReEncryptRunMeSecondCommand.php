@@ -241,15 +241,7 @@ class ReEncryptRunMeSecondCommand extends CommonCommand
         // -------------------------------------------------------------------------------------------------------------
         // START: RUN THE RE-ENCRYPTION
         // -------------------------------------------------------------------------------------------------------------
-        echo "\n";
-        $this->line('  Well, seems like everything is in order');
-
-        echo "\n";
-
-        echo "\n";
-
-
-        echo "\n";
+        echo "\n\n";
         if ($this->confirm("When you are ready to run the re-encryption, press any key to continue...")) {
             // blank on purpose
         }
@@ -260,7 +252,7 @@ class ReEncryptRunMeSecondCommand extends CommonCommand
         echo "\n\n";
         $this->line('  Starting the re-encryption process...');
 
-     //   $this->runReEncryption();
+        $this->runReEncryption();
         
         echo "\n\n";
         $this->line('  The re-encryption process is completed.');

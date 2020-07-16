@@ -220,7 +220,7 @@ class ReEncryptRunMeFirstCommand extends CommonCommand
         echo "\n";
         $this->line('    ii) paste a new value to "APP_KEY". A suggested value: '. $this->getNewAppKey() );
         echo "\n";
-        $this->line('  ** Store your new "APP_KEY" value in a safe place. Such as Amazon Web Services\' Secrets Manager (https://aws.amazon.com/secrets-manager) **');
+        $this->line('  ** Store your new "APP_KEY" value in a safe place. See https://lasallesoftware/docs/v2/system_aws_parameter_store **');
         echo "\n";
         $this->line('  Please remember to save your .env file!');
 

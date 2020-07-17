@@ -48,6 +48,6 @@ class HomeController extends CommonController
      */
     public function index()
     {
-        return view('lasallesoftwarelibrarybackend::basic.home');
+        return view( config('lasallesoftware-librarybackend.path_to_back_end_view_path') . '.home' );        
     }
 }

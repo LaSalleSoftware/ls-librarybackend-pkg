@@ -256,4 +256,49 @@ class Installed_domain extends CommonModel
     /*                      END: BLOG PACKAGE                      */
     /* *********************************************************** */
 
+    
+
+    /* *********************************************************** */
+    /*                   START: PODCAST PACKAGE                    */
+    /* *********************************************************** */
+
+    /*
+     * One to one relationship with podcast_show.
+     *
+     * Method name must be:
+     *    * the model name,
+     *    * NOT the table name,
+     *    * singular;
+     *    * lowercase.
+     *
+     * @return Eloquent
+     */
+    public function podcast_show()
+    {
+        if ( class_exists('Lasallesoftware\Podcastbackend\Models\Podcast_show') ) {
+            return $this->hasMany('\Lasallesoftware\Podcastbackend\Models\Podcast_show');
+        }
+    }
+
+    /*
+     * One to one relationship with podcast_episode.
+     *
+     * Method name must be:
+     *    * the model name,
+     *    * NOT the table name,
+     *    * singular;
+     *    * lowercase.
+     *
+     * @return Eloquent
+     */
+    public function podcast_episode()
+    {
+        if ( class_exists('Lasallesoftware\Podcastbackend\Models\Podcast_episode') ) {
+            return $this->hasMany('\Lasallesoftware\Podcastbackend\Models\Podcast_episode');
+        }
+    }
+
+    /* *********************************************************** */
+    /*                    END: PODCAST PACKAGE                     */
+    /* *********************************************************** */
 }

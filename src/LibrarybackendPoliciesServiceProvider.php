@@ -79,6 +79,7 @@ trait LibrarybackendPoliciesServiceProvider
 
             'Lasallesoftware\Librarybackend\Authentication\Models\Installed_domains_jwt_key'
                                                                             => 'Lasallesoftware\Librarybackend\Policies\Installed_domains_jwt_keyPolicy',
+            'Lasallesoftware\Librarybackend\Authentication\Models'                 =>  'Lasallesoftware\Librarybackend\Policies\ClientPolicy',                                                         
         ];
     }
 }

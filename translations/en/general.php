@@ -65,6 +65,9 @@ return [
     'resource_label_plural_installed_domains_jwt_keys'      => 'JWT Keys',
     'resource_label_singular_installed_domains_jwt_keys'    => 'JWT Key',
 
+    'resource_label_plural_clients'                         => 'Clients',
+    'resource_label_singular_clients'                       => 'Client',
+
     // Nova Panels Labels
     'panel_domain_fields'  => 'Domain',
     'panel_persons_fields' => 'Person',
@@ -178,11 +181,11 @@ return [
     'field_help_featured_image_external4' => 'If all the featured image fields are empty, the default image specified in the config will be used',
 
     'field_help_persons_salutation_message1'       => 'If you are here to create a person for a "personbydomain" (aka a "user"), then create a person here, and then click the "Create Personbydomain" in the screen that displays after you successfully created a person,',
-    'field_help_persons_salutation_message2'       => 'See <a href="https://lasallesoftware.com/docs/v2/persons" target="_blank">doc</a> (opens a new window)',   
+    'field_help_persons_salutation_message2'       => 'See <a href="https://lasallesoftware.ca/docs/v2/profiles_people" target="_blank">doc</a> (opens a new window)',   
 
     'field_help_personbydomain_email_preamble1'    => 'This is where you create a user who can log into this admin back-end.',
     'field_help_personbydomain_email_preamble2'    => 'Please see my docs on this. Really! Thank you!',
-    'field_help_personbydomain_email_see_website'  => '<a href="https://lasallesoftware.com/docs/v2/personbydomains" target="_blank">LaSalleSoftware.com/docs/v2/PersonByDomains</a> (opens a new window)',    
+    'field_help_personbydomain_email_see_website'  => '<a href="https://lasallesoftware.ca/docs/v2/authentication_authentication" target="_blank">LaSalleSoftware.ca/docs/v2/authentication_authentication</a> (opens a new window)',    
     'field_help_personbydomain_email_full'         => 'You must type in the full email address, there is no search -- sorry ;-(',
     'field_help_personbydomain_email_not_new'      => 'If this email address is new (ie, not yet in the emails table), then it will be created for you!',
     'field_help_personbydomain_email_unique'       => 'This email address must be UNIQUE! Otherwise, you will see the "There was a problem submitting this form" error.',

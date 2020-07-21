@@ -236,6 +236,22 @@ class Personbydomain extends Authenticatable
         return $this->belongsTo('Lasallesoftware\Blogbackend\Models\Post');
     }
 
+    /*
+     * One to one relationship with Client.
+     *
+     * Method name must be:
+     *    * the model name,
+     *    * NOT the table name,
+     *    * singular;
+     *    * lowercase.
+     *
+     * @return Eloquent
+     */
+    public function client()
+    {
+        return $this->hasOne('Lasallesoftware\Librarybackend\Authentication\Models\Client');
+    }
+
     
     ///////////////////////////////////////////////////////////////////
     //////////////          LOCAL SCOPES            ///////////////////

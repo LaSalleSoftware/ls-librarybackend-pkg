@@ -86,4 +86,20 @@ class Client extends CommonModel
     {
         return $this->belongsTo('Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain');
     }
+
+    /*
+     * One to one relationship with Company.
+     *
+     * Method name must be:
+     *    * the model name,
+     *    * NOT the table name,
+     *    * singular;
+     *    * lowercase.
+     *
+     * @return Eloquent
+     */
+    public function company()
+    {
+        return $this->belongsTo('Lasallesoftware\Librarybackend\Profiles\Models\Company');
+    }
 }

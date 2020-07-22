@@ -58,9 +58,13 @@ class CreateClientsTable extends BaseMigration
 
                 $table->increments('id')->unsigned();
 
-
                 $table->integer('personbydomain_id')->unsigned();
                 $table->foreign('personbydomain_id')->references('id')->on('personbydomains');
+
+                $table->integer('company_id')->unsigned()->nullable();
+                $table->foreign('company_id')->references('id')->on('companies');
+
+                $table->string('name')->unique();
 
                 $table->text('comments')->nullable();
 

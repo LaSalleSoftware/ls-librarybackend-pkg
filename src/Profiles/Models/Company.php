@@ -212,4 +212,20 @@ class Company extends CommonModel
     {
         return $this->belongsToMany('Lasallesoftware\Librarybackend\Profiles\Models\Website', 'company_website', 'company_id', 'website_id');
     }
+
+    /*
+     * One to one relationship with Client.
+     *
+     * Method name must be:
+     *    * the model name,
+     *    * NOT the table name,
+     *    * singular;
+     *    * lowercase.
+     *
+     * @return Eloquent
+     */
+    public function client()
+    {
+        return $this->hasOne('Lasallesoftware\Librarybackend\Profiles\Models\Client');
+    }
 }

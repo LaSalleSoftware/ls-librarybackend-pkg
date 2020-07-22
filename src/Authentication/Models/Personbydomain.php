@@ -249,7 +249,7 @@ class Personbydomain extends Authenticatable
      */
     public function client()
     {
-        return $this->hasOne('Lasallesoftware\Librarybackend\Authentication\Models\Client');
+        return $this->hasOne('Lasallesoftware\Librarybackend\Profiles\Models\Client');
     }
 
     

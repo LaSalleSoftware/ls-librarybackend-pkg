@@ -21,19 +21,16 @@
  *
  */
 
-namespace Lasallesoftware\Librarybackend\Authentication\Models;
+namespace Lasallesoftware\Librarybackend\Profiles\Models;
 
 // LaSalle Software
 use Lasallesoftware\Librarybackend\Common\Models\CommonModel;
 
 
 /**
- * This is the model class for login.
+ * This is the model class for clients.
  *
- * The personbydomain records that are logged in.
- * One personbydomain can have multiple logins.
- *
- * @package Lasallesoftware\Librarybackend\Authentication\Models
+ * @package Lasallesoftware\Librarybackend\Profiles\Models
  */
 class Client extends CommonModel
 {

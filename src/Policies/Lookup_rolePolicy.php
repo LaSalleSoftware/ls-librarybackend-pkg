@@ -44,7 +44,7 @@ class Lookup_rolePolicy extends CommonPolicy
      *
      * @var array
      */
-    protected $recordsDoNotDelete = [1,2,3];
+    protected $recordsDoNotDelete = [1,2,3,4];
 
 
     /**

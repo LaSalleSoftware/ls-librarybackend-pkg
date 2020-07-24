@@ -196,6 +196,11 @@ return [
     'field_help_personbydomain_person_searchbox'   => 'If this person is already set up, then click the down arrow, start typing their full name, and click their name when you see it.',
     'field_help_personbydomain_person_reminder'    => 'REMINDER: after creation, attach a ROLE!',
 
+    'field_help_slug_explanation'                  => 'We want to use the Title in the URL. But, we cannot use the Title as-is. So, we re-work it a little. I do not know why this is called a slug!',
+    'field_help_slug_can_leave_blank'              => 'To automatically generate a slug, just leave this field blank.',
+    'field_help_slug_recommendations'              => 'If you want to create your own slug, I recommend that you use underscores instead of spaces, use small caps only, streamline the title for the slug whenever possible, and do not use special characters. The goal is to concisely convey the title in the URL.',
+
+
     // Exceptions
     'exception_message_date_cast' => "Date field must cast to 'date' in Eloquent model.",
 

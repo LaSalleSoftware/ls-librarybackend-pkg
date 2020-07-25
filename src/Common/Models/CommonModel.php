@@ -225,4 +225,106 @@ class CommonModel extends Eloquent
 
         return trim($text);
     }
+
+
+    /**
+     * Perform slug processing on the given fields from the Nova resource form
+     *
+     * @param  model  $model                Object from the Nova resource form
+     * @param  array  $fields               Array of database/form fields requiring processing
+     * @param  string $databaseTableName    Name of the database the fields belong to
+     * @return void
+     */
+    public static function performSlugProcessing($model, $fields, $databaseTableName)
+    {
+        foreach ($fields as $field) {
+            $model->$field = self::makeSlug($model->$field, $model->title, $databaseTableName, $model->id);
+        }
+    }
+
+    /**
+     * Perform a text deep wash on the given fields from the Nova resource form
+     *
+     * @param  model  $model      Object from the Nova resource form
+     * @param  array  $fields     Array of database/form fields requiring processing
+     * @return void
+     */
+    public static function performTextDeepWash($model, $fields)
+    {
+        foreach ($fields as $field) {
+            $model->$field = self::deepWashText($model->$field);
+        }
+    }
+
+    /**
+     * Do the URL wash on the given fields from the Nova resource form
+     *
+     * @param  model  $model      Object from the Nova resource form
+     * @param  array  $fields     Array of database/form fields requiring processing
+     * @return void
+     */
+    public static function performUrlWash($model, $fields)
+    {
+        foreach ($fields as $field) {
+            $model->$field = self::washUrl($model->$field);
+        }
+    }
+
+    /**
+     * Wash content on the given fields from the Nova resource form
+     *
+     * @param  model  $model      Object from the Nova resource form
+     * @param  array  $fields     Array of database/form fields requiring processing
+     * @return void
+     */
+    public static function performWashContent($model, $fields)
+    {
+        foreach ($fields as $field) {
+            $model->$field = self::washContent($model->$field);
+        }
+    }
+
+    /**
+     * Perform excerpt processing on the given fields from the Nova resource form
+     *
+     * @param  model   $model                  Object from the Nova resource form
+     * @param  string  $fieldToExcerpt         Database/form field with the excerpt
+     * @param  string  $fieldToBaseExcerptOn   Database/form field the excerpt is based on
+     * @return void
+     */
+    public static function performExcerptProcessing($model, $fieldToExcerpt, $fieldToBaseExcerptOn)
+    {
+        $model->$field = self::makeExcerpt($model->$fieldToExcerpt, $fieldToBaseExcerptOn);
+    }
+
+    /**
+     * Perform meta description processing on the given fields from the Nova resource form
+     *
+     * @param  model  $model      Object from the Nova resource form
+     * @param  array  $fields     Array of database/form fields requiring processing
+     * @return void
+     */
+    public static function performMetadescriptiopnProcessing($model, $fields)
+    {
+        foreach ($fields as $field) {
+            $model->$field = self::makeSlug($model->$field);
+        }
+    }
+
+     /**
+     * Convert a form text field's "yes" or "no" to the database field's type boolean, 
+     * for the given fields from the Nova resource form
+     *
+     * @param [type] $podcast_show
+     * @param [type] $field
+     * @return void
+     */
+    private static function processConvertYesNoTextToBoolean($podcast_show, $field)
+    {
+        foreach ($fields as $field) {
+            $model->$field = self::makeSlug($model->$field);
+
+            $model->$field = (substr(strtolower($model->$field), 0, 3) == 'yes') ? true : false;
+        }
+    }
 }

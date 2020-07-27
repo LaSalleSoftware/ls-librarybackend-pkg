@@ -294,36 +294,33 @@ class CommonModel extends Eloquent
      */
     public static function performExcerptProcessing($model, $fieldToExcerpt, $fieldToBaseExcerptOn)
     {
-        $model->$field = self::makeExcerpt($model->$fieldToExcerpt, $fieldToBaseExcerptOn);
+        $model->$fieldToExcerpt = self::makeExcerpt($model->$fieldToExcerpt, $model->$fieldToBaseExcerptOn);
     }
 
     /**
      * Perform meta description processing on the given fields from the Nova resource form
      *
-     * @param  model  $model      Object from the Nova resource form
-     * @param  array  $fields     Array of database/form fields requiring processing
+     * @param  model   $model                         Object from the Nova resource form
+     * @param  string  $fieldToMetadescription        Database/form field with the meta_description
+     * @param  string  $fieldToBaseMetadescriptionOn  Database/form field the meta_description is based on
      * @return void
      */
-    public static function performMetadescriptiopnProcessing($model, $fields)
+    public static function performMetadescriptiopnProcessing($model, $fieldToMetadescription, $fieldToBaseMetadescriptionOn)
     {
-        foreach ($fields as $field) {
-            $model->$field = self::makeSlug($model->$field);
-        }
+        $model->$fieldToMetadescription = self::makeMetadescription($model->$fieldToMetadescription, $model->$fieldToBaseMetadescriptionOn);
     }
 
      /**
      * Convert a form text field's "yes" or "no" to the database field's type boolean, 
      * for the given fields from the Nova resource form
      *
-     * @param [type] $podcast_show
-     * @param [type] $field
+     * @param  model  $model      Object from the Nova resource form
+     * @param  array  $fields     Array of database/form fields requiring processing
      * @return void
      */
-    private static function processConvertYesNoTextToBoolean($podcast_show, $field)
+    public static function processConvertYesNoTextToBoolean($model, $fields)
     {
         foreach ($fields as $field) {
-            $model->$field = self::makeSlug($model->$field);
-
             $model->$field = (substr(strtolower($model->$field), 0, 3) == 'yes') ? true : false;
         }
     }

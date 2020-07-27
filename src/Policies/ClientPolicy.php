@@ -26,7 +26,7 @@ namespace Lasallesoftware\Librarybackend\Policies;
 // LaSalle Software class
 use Lasallesoftware\Librarybackend\Common\Policies\CommonPolicy;
 use Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain as User;
-use Lasallesoftware\Librarybackend\Authentication\Models\Client as Model;
+use Lasallesoftware\Librarybackend\Profiles\Models\Client as Model;
 
 // Laravel facade
 use Illuminate\Support\Facades\DB;

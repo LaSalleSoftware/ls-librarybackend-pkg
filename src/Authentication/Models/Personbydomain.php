@@ -330,4 +330,22 @@ class Personbydomain extends Authenticatable
 
         return $user ? true : false;
     }
+
+    /**
+     * Get the client_id associated with the given personbydomain_id, from the personbydomain_client pivot table. 
+     * 
+     *   **Note that the first record found is returned**
+     * 
+     * 
+     * 
+     * See the unit test: Tests\Unit\Library\Clients\PersonbydomainGetClientIdTest
+     *
+     * @param   int $personbydomain_id
+     * @return  int                         The client_id is returned when found. Else, return 0.
+     */
+    public function getClientId($personbydomain_id)
+    {
+        $result = Personbydomain::find($personbydomain_id)->client()->first();
+        return (!is_null($result)) ? $result->id : 0;
+    }
 }

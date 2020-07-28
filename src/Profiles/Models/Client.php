@@ -72,7 +72,9 @@ class Client extends CommonModel
     ///////////////////////////////////////////////////////////////////
 
     /*
-     * One to one relationship with Personbydomain.
+     * One client may have lots of personbydomains associated with it.
+     * One personbydomain may be associated with a lot of different clients.
+     * Therefore, need a pivot table to implement this "many to many" relationship.
      *
      * Method name must be:
      *    * the model name,
@@ -84,7 +86,8 @@ class Client extends CommonModel
      */
     public function personbydomain()
     {
-        return $this->belongsTo('Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain');
+        //return $this->belongsTo('Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain');
+        return $this->belongsToMany('Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain', 'personbydomain_client', 'client_id', 'personbydomain_id');
     }
 
     /*

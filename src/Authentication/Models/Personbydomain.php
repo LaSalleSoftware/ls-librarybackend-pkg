@@ -237,7 +237,8 @@ class Personbydomain extends Authenticatable
     }
 
     /*
-     * One to one relationship with Client.
+     * One client may have lots of personbydomains associated with it.
+     * One personbydomain may be associated with a lot of different clients.
      *
      * Method name must be:
      *    * the model name,
@@ -249,7 +250,7 @@ class Personbydomain extends Authenticatable
      */
     public function client()
     {
-        return $this->hasOne('Lasallesoftware\Librarybackend\Profiles\Models\Client');
+        return $this->belongsToMany('Lasallesoftware\Librarybackend\Profiles\Models\Client', 'personbydomain_client', 'personbydomain_id', 'client_id');
     }
 
     

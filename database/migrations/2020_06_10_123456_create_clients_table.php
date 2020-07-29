@@ -80,9 +80,5 @@ class CreateClientsTable extends BaseMigration
                 //$table->foreign('locked_by')->references('id')->on('persons');
             });
         }
-
-        //$startId = 80500;
-        //DB::table('$this->tableName')->insert(['id'=> $startId - 1]);
-        //DB::table('$this->tableName')->where('id',$startId - 1)->delete();
     }
 }

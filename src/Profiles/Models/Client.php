@@ -86,7 +86,6 @@ class Client extends CommonModel
      */
     public function personbydomain()
     {
-        //return $this->belongsTo('Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain');
         return $this->belongsToMany('Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain', 'personbydomain_client', 'client_id', 'personbydomain_id');
     }
 
@@ -104,5 +103,23 @@ class Client extends CommonModel
     public function company()
     {
         return $this->belongsTo('Lasallesoftware\Librarybackend\Profiles\Models\Company');
+    }
+
+    /*
+     * One to one relationship with podcast_show.
+     *
+     * Method name must be:
+     *    * the model name,
+     *    * NOT the table name,
+     *    * singular;
+     *    * lowercase.
+     *
+     * @return Eloquent
+     */
+    public function podcast_show()
+    {
+        if ( class_exists('Lasallesoftware\Podcastbackend\Models\Podcast_show') ) {
+            return $this->hasMany('\Lasallesoftware\Podcastbackend\Models\Podcast_show');
+        }
     }
 }

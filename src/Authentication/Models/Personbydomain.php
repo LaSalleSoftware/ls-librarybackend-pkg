@@ -287,6 +287,16 @@ class Personbydomain extends Authenticatable
         return $this->lookup_role()->where('lookup_role_id', 3)->exists();
     }
 
+    /**
+     * Is it the client role?
+     *
+     * @return bool
+     */
+    public function scopeIsClient()
+    {
+        return $this->lookup_role()->where('lookup_role_id', 4)->exists();
+    }
+
     ///////////////////////////////////////////////////////////////////
     //////////////          OTHER STUFF             ///////////////////
     ///////////////////////////////////////////////////////////////////
@@ -309,6 +319,10 @@ class Personbydomain extends Authenticatable
 
         if ($role == strtolower('administrator')) {
             return $this->IsAdministrator();
+        }
+
+        if ($role == strtolower('client')) {
+            return $this->IsClient();
         }
 
         return false;

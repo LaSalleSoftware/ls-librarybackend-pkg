@@ -196,7 +196,6 @@ class Personbydomain extends Authenticatable
     */
     public function login()
     {
-        //return $this->hasMany('Lasallesoftware\Librarybackend\Authentication\Models\Login', 'personbydomain_id', 'id');
         return $this->hasMany('Lasallesoftware\Librarybackend\Authentication\Models\Login');
     }
 

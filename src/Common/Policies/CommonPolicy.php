@@ -30,11 +30,12 @@ use Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 // Laravel facade
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
 /**
- * Class BasePolicy
+ * Class CommonPolicy
  *
  * @package Lasallesoftware\Librarybackend\Common\Policies
  */
@@ -69,5 +70,33 @@ class CommonPolicy
             ->pluck('lookup_role_id')
             ->first()
         ;
+    }
+
+
+    /**
+     * Should an action be accessible for a given individual podcast related model?
+     * 
+     * For the podcast related database tables, the most common permissions scenario is:
+     * (i)   owner can do everything
+     * (ii)  super admin and admin can do nothing
+     * (iii) a user with the new "Client" role can do stuff for records that have their "client_id". 
+     * 
+     * This means that podcast related database tables must have a "client_id" field. This field resides
+     * in the "personbydomain_client" db pivot table. So a **user** belongs to a client. Basically,
+     * a logged-in client can only see their client records. 
+     *
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @param  Eloquent model                                                        $model
+     * @return bool
+     */
+    public function getTypicalPodcastPermissions($user, $model)
+    {
+        if ($this->isRecordDoNotDelete($model)) return false;        
+
+        if ($user->hasRole('owner')) return true;
+
+        if ($user->hasRole('client') && ($model->client_id == $user->getClientId(Auth::id()))) return true; 
+
+        return false;
     }
 }

@@ -81,7 +81,7 @@ class RolesLookupTableSeeder extends BaseSeeder
             'title'       => 'Client',
             'description' => 'Client.',
             'enabled'     => 1,
-            'created_at'  => $this->getCurrentDatetimeImmutable(),
+            'created_at'  => Carbon::now(),
             'created_by'  => 1,
             'updated_at'  => null,
             'updated_by'  => null,

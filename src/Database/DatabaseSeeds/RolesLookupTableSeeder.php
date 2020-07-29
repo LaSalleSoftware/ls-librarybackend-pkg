@@ -76,5 +76,17 @@ class RolesLookupTableSeeder extends BaseSeeder
             'locked_at'   => null,
             'locked_by'   => null,
         ]);
+
+        DB::table('lookup_roles')->insert([
+            'title'       => 'Client',
+            'description' => 'Client.',
+            'enabled'     => 1,
+            'created_at'  => $this->getCurrentDatetimeImmutable(),
+            'created_by'  => 1,
+            'updated_at'  => null,
+            'updated_by'  => null,
+            'locked_at'   => null,
+            'locked_by'   => null,
+        ]);        
     }
 }

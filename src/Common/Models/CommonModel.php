@@ -25,6 +25,7 @@ namespace Lasallesoftware\Librarybackend\Common\Models;
 
 // LaSalle Software
 use Lasallesoftware\Librarybackend\UniversallyUniqueIDentifiers\UuidGenerator;
+use Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain;
 
 // Laravel classes
 use Illuminate\Database\Eloquent\Model as Eloquent;
@@ -32,6 +33,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 // Laravel facade
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CommonModel extends Eloquent
@@ -318,10 +320,37 @@ class CommonModel extends Eloquent
      * @param  array  $fields     Array of database/form fields requiring processing
      * @return void
      */
-    public static function processConvertYesNoTextToBoolean($model, $fields)
+    public static function performConvertYesNoTextToBooleanProcessing($model, $fields)
     {
         foreach ($fields as $field) {
             $model->$field = (substr(strtolower($model->$field), 0, 3) == 'yes') ? true : false;
         }
+    }
+
+    /**
+     * Perform date field type processing on the given fields from the Nova resource form
+     *
+     * @param  model  $model      Object from the Nova resource form
+     * @param  array  $fields     Array of database/form fields requiring processing
+     * @return void
+     */
+    public static function performDateFieldsProcessing($model, $fields)
+    {
+        foreach ($fields as $field) {
+            $model->$field = (($model->$field == "") || (is_null($model->$field))) ? Carbon::now(null) : $model->$field;
+        }
+    }
+
+    /**
+     * Populate the give field with the client_id from the personbydomain_client pivot table.
+     *
+     * @param  model  $model      Object from the Nova resource form
+     * @param  array  $field      Field requiring populating
+     * @return void
+     */
+    public static function populateClientIDField($model, $field)
+    {
+        $personbydomain = new Personbydomain;
+        $model->$field = ($personbydomain->getClientId(Auth::id()) == 0) ? null : $personbydomain->getClientId(Auth::id());
     }
 }

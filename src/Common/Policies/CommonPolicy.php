@@ -89,14 +89,46 @@ class CommonPolicy
      * @param  Eloquent model                                                        $model
      * @return bool
      */
-    public function getTypicalPodcastPermissions($user, $model)
+    public function getTypicalClientPermissions($user, $model)
     {
-        if ($this->isRecordDoNotDelete($model)) return false;        
-
-        if ($user->hasRole('owner')) return true;
-
-        if ($user->hasRole('client') && ($model->client_id == $user->getClientId(Auth::id()))) return true; 
+        if ($this->isUserRoleOwner($user)) return true;
+ 
+        if ($this->isUserRoleClient($user) && ($model->client_id == $user->getClientId(Auth::id()))) return true; 
 
         return false;
+    }
+
+    /**
+     * Is a given user an owner
+     *
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @return boolean
+     */
+    public function isUserRoleOwner($user)
+    {
+        return ($user->hasRole('owner')) ? true : false;
+    }
+
+    /**
+     * Is a given user a client
+     *
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @return boolean
+     */
+    public function isUserRoleClient($user)
+    {
+        return ($user->hasRole('client')) ? true : false;
+    }
+
+    /**
+     * Does a given user have a client_id? IOW, does a given personbydomain_id have a corresponding client_id in
+     * the personbydomain_client db table?
+     *
+     * @param  \Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain  $user
+     * @return boolean
+     */
+    public function doesUserHaveClientId($user)
+    {
+        return ($user->getClientId($user->id) == 0) ? false : true;
     }
 }

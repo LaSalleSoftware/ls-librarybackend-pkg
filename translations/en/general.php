@@ -140,6 +140,8 @@ return [
     'field_name_token'              => 'Token',
     'field_name_key'                => 'Key',
 
+    'field_name_client'             => 'Client',
+
     // Nova Field Headings
     'field_heading_system_fields'          => 'Automated system fields:',
     'field_heading_address_type'           => 'An address is associated with a "type":',
@@ -202,6 +204,7 @@ return [
 
     'field_help_clients_preamble'                  => 'The Clients database table exists to associate users (aka "personbydomains") with other database tables, so that multiple users can associate with the same records. Blog posts associate directly with a personbydomain. However, I want a podcast episode to associate with multiple personbydomains.',
     'field_help_client_company'                    => 'Generally, a client is associated with a company. Perhaps not always, which is why you can leave this field blank',
+    'field_help_client'                            => 'Which client is associated with this record?',
 
 
     // Exceptions

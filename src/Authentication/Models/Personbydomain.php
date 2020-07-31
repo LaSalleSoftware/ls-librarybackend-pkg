@@ -358,6 +358,9 @@ class Personbydomain extends Authenticatable
      */
     public function getClientId($personbydomain_id)
     {
+        // This check is here so my unit tests don't get "Error: Call to a member function client() on null"
+        if (is_null($personbydomain_id)) return 0;
+
         $result = Personbydomain::find($personbydomain_id)->client()->first();
         return (!is_null($result)) ? $result->id : 0;
     }

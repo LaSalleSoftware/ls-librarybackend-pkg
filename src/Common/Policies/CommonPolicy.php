@@ -94,9 +94,6 @@ class CommonPolicy
         if ($this->isUserRoleOwner($user)) return true;
  
         return ($this->isUserRoleClient($user) && ($model->client_id == $user->getClientId(Auth::id()))) ? true : false; 
-
-       // if ($this->isUserRoleClient($user)) return true;
-        //return false;
     }
 
     /**

@@ -228,4 +228,43 @@ class Company extends CommonModel
     {
         return $this->hasOne('Lasallesoftware\Librarybackend\Profiles\Models\Client');
     }
+
+    /*
+    * Many to many relationship with podcast_links.
+    *
+    * Method name must be:
+    *    * the model name,
+    *    * NOT the table name,
+    *    * singular;
+    *    * lowercase.
+    *
+    * @return Eloquent
+    */
+    public function podcast_link()
+    {
+        if ( class_exists('Lasallesoftware\Podcastbackend\Models\Podcast_link') ) {
+            return $this->belongsToMany('Lasallesoftware\Podcastbackend\Models\Podcast_link', 'podcast_link_company', 'company_id', 'podcast_link_id');
+        }
+    }
+
+    /*
+    * Many to many relationship with podcast_research_notes.
+    *
+    * Method name must be:
+    *    * the model name,
+    *    * NOT the table name,
+    *    * singular;
+    *    * lowercase.
+    *
+    * @return Eloquent
+    */
+    public function podcast_research_note()
+    {
+        if ( class_exists('Lasallesoftware\Podcastbackend\Models\Podcast_research_note') ) {
+            return $this->belongsToMany('Lasallesoftware\Podcastbackend\Models\podcast_research_note_company', 
+            'podcast_research_note_company', 
+            'company_id', 
+            'podcast_research_note_id');
+        }
+    }
 }

@@ -298,6 +298,24 @@ class Installed_domain extends CommonModel
         }
     }
 
+    /*
+     * One to one relationship with podcast_show_podcast_directories.
+     *
+     * Method name must be:
+     *    * the model name,
+     *    * NOT the table name,
+     *    * singular;
+     *    * lowercase.
+     *
+     * @return Eloquent
+     */
+    public function podcast_show_podcast_directory()
+    {
+        if ( class_exists('Lasallesoftware\Podcastbackend\Models\podcast_show_podcast_directory') ) {
+            return $this->hasMany('\Lasallesoftware\Podcastbackend\Models\podcast_show_podcast_directory');
+        }
+    }
+
     /* *********************************************************** */
     /*                    END: PODCAST PACKAGE                     */
     /* *********************************************************** */

@@ -268,7 +268,10 @@ class CommonModel extends Eloquent
     public static function performUrlWash($model, $fields)
     {
         foreach ($fields as $field) {
-            $model->$field = self::washUrl($model->$field);
+
+            if (($model->$field != "") && (!is_null($model->$field))) {
+                $model->$field = self::washUrl($model->$field);
+            }
         }
     }
 
@@ -352,5 +355,22 @@ class CommonModel extends Eloquent
     {
         $personbydomain = new Personbydomain;
         $model->$field = ($personbydomain->getClientId(Auth::id()) == 0) ? null : $personbydomain->getClientId(Auth::id());
+    }
+
+    /**
+     * Create a GUID.
+     *
+     * @return string
+     */
+    public static function createGUID()
+    {
+        $separator = '-';
+        $segment1  = STR::random(8);
+        $segment2  = STR::random(4);
+        $segment3  = STR::random(4);
+        $segment4  = STR::random(4);
+        $segment5  = STR::random(12);
+
+        return $segment1 . $separator . $segment2 . $separator . $segment3 . $separator . $segment4 . $separator . $segment5;
     }
 }

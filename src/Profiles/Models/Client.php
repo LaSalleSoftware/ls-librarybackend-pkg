@@ -122,4 +122,40 @@ class Client extends CommonModel
             return $this->hasMany('\Lasallesoftware\Podcastbackend\Models\Podcast_show');
         }
     }
+
+    /*
+     * One to one relationship with podcast_episode.
+     *
+     * Method name must be:
+     *    * the model name,
+     *    * NOT the table name,
+     *    * singular;
+     *    * lowercase.
+     *
+     * @return Eloquent
+     */
+    public function podcast_episode()
+    {
+        if ( class_exists('Lasallesoftware\Podcastbackend\Models\Podcast_episode') ) {
+            return $this->hasMany('\Lasallesoftware\Podcastbackend\Models\Podcast_episode');
+        }
+    }
+
+    /*
+     * One to one relationship with podcast_show_podcast_directories.
+     *
+     * Method name must be:
+     *    * the model name,
+     *    * NOT the table name,
+     *    * singular;
+     *    * lowercase.
+     *
+     * @return Eloquent
+     */
+    public function podcast_show_podcast_directory()
+    {
+        if ( class_exists('Lasallesoftware\Podcastbackend\Models\podcast_show_podcast_directory') ) {
+            return $this->hasMany('\Lasallesoftware\Podcastbackend\Models\podcast_show_podcast_directory');
+        }
+    }
 }

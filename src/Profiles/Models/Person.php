@@ -343,4 +343,25 @@ class Person extends CommonModel
     {
         return $this->belongsToMany('Lasallesoftware\Librarybackend\Profiles\Models\Website', 'person_website', 'person_id', 'website_id');
     }
+
+    /*
+    * Many to many relationship with podcast_episode.
+    *
+    * Method name must be:
+    *    * the model name,
+    *    * NOT the table name,
+    *    * singular;
+    *    * lowercase.
+    *
+    * @return Eloquent
+    */
+    public function podcast_episode()
+    {
+        if ( class_exists('Lasallesoftware\Podcastbackend\Models\Podcast_episode') ) {
+            return $this->belongsToMany('Lasallesoftware\Podcastbackend\Models\Podcast_episode', 
+            'podcast_episode_guest', 
+            'person_id', 
+            'podcast_episode_id');
+        }
+    }
 }

@@ -51,19 +51,25 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('logout', 'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\LogoutController@logout')->name('logout');
 
 // Registration Routes...
-    Route::get('register',  'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\RegisterController@showRegistrationForm')->name('register');
-    Route::post('register', 'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\RegisterController@register');
+    if (!config('lasallesoftware-librarybackend.suppress_registration_routes')) {
+        Route::get('register',  'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\RegisterController@showRegistrationForm')->name('register');
+        Route::post('register', 'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\RegisterController@register');
+    }
 
 // Password Reset Routes...
-    Route::get('password/reset',  'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-    Route::post('password/email', 'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-    Route::get('password/reset/{token}', 'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\ResetPasswordController@showResetForm')->name('password.reset');
-    Route::post('password/reset', 'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\ResetPasswordController@reset')->name('password.update');
+    if (!config('lasallesoftware-librarybackend.suppress_reset_password_routes')) {
+        Route::get('password/reset',  'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        Route::post('password/email', 'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+        Route::get('password/reset/{token}', 'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\ResetPasswordController@showResetForm')->name('password.reset');
+        Route::post('password/reset', 'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\ResetPasswordController@reset')->name('password.update');
+    }
 
 // Email Verification Routes...
-    Route::get('email/verify',      'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\VerificationController@show')->name('verification.notice');
-    Route::get('email/verify/{id}', 'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\VerificationController@verify')->name('verification.verify');
-    Route::get('email/resend',      'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\VerificationController@resend')->name('verification.resend');
+    if (!config('lasallesoftware-librarybackend.suppress_registration_verification_routes')) {
+        Route::get('email/verify',      'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\VerificationController@show')->name('verification.notice');
+        Route::get('email/verify/{id}', 'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\VerificationController@verify')->name('verification.verify');
+        Route::get('email/resend',      'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\VerificationController@resend')->name('verification.resend');
+    }
 
 // Password Confirm Routes...
     Route::get('password/confirm',  'Lasallesoftware\Librarybackend\Authentication\Http\Controllers\ConfirmPasswordController@showConfirmForm')->name('password.confirm');

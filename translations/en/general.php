@@ -142,6 +142,8 @@ return [
 
     'field_name_client'             => 'Client',
 
+    'field_name_preview_in_frontend' => 'Preview in the Front-end',
+
     // Nova Field Headings
     'field_heading_system_fields'          => 'Automated system fields:',
     'field_heading_address_type'           => 'An address is associated with a "type":',
@@ -173,6 +175,9 @@ return [
 
     'field_help_publish_on1'               => 'display on and after this date',
     'field_help_publish_on2'               => "when left blank, will be today's date",
+
+    'field_help_preview_in_frontend1'      => 'Check this box when you want to view in the front-end, but you do *not* want the world to see it (Enabled/Published is false).',
+    'field_help_preview_in_frontend2'      => 'You must append your front-end URL with "?preview_in_frontend_token=the-token\'s-value". Set this parameter in the lasallesoftware-libraryfrontend config file.',
 
     'field_help_featured_image_upload1'   => 'When specified, this field takes precedence and is the image used',
     'field_help_featured_image_code1'     => 'To use code, please leave the other two featured image fields empty',

@@ -25,7 +25,7 @@ namespace Lasallesoftware\Librarybackend\Authentication\Http\Controllers;
 
 // LaSalle Software
 use Lasallesoftware\Librarybackend\Common\Http\Controllers\CommonController;
-use App\Providers\RouteServiceProvider;
+use Lasallesoftware\Laravelapp\Providers\RouteServiceProvider;
 
 // Laravel Framework
 use Illuminate\Foundation\Auth\ConfirmsPasswords;

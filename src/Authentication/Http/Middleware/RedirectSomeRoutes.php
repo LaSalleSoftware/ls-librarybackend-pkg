@@ -23,9 +23,15 @@
 
 namespace Lasallesoftware\Librarybackend\Authentication\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
-use Closure;
+// LaSalle Software
+use Lasallesoftware\Laravelapp\Providers\RouteServiceProvider;
+
+// Laravel facade
 use Illuminate\Support\Facades\Auth;
+
+// Gool ol' PHP
+// https://www.php.net/manual/en/class.closure.php
+use Closure;
 
 class RedirectSomeRoutes
 {

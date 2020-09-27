@@ -25,16 +25,13 @@ namespace Lasallesoftware\Librarybackend\Authentication\Http\Controllers;
 
 // LaSalle Software
 use Lasallesoftware\Librarybackend\Common\Http\Controllers\CommonController;
-
+use Lasallesoftware\Laravelapp\Providers\RouteServiceProvider;
 use Lasallesoftware\Librarybackend\UniversallyUniqueIDentifiers\UuidGenerator;
 use Lasallesoftware\Librarybackend\Profiles\Models\Person;
 use Lasallesoftware\Librarybackend\Profiles\Models\Email;
 use Lasallesoftware\Librarybackend\Profiles\Models\Person_email;
 use Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain;
 use Lasallesoftware\Librarybackend\Profiles\Models\Installed_domain;
-
-// LaSalle Software App
-use App\Providers\RouteServiceProvider;
 
 // Laravel Framework
 use Illuminate\Foundation\Auth\RegistersUsers;

@@ -190,6 +190,25 @@ class LasalleGuard implements StatefulGuard
     }
 
 
+
+    /**
+     * Get the value of a given key and then forget it.
+     * 
+     * https://laravel.com/docs/8.x/upgrade
+     * The Illuminate\Contracts\Session\Session contract has received a new pull method. 
+     * If you are implementing this contract manually, you should update your implementation accordingly.
+     *
+     * @param  string  $key
+     * @param  mixed  $default
+     * @return mixed
+     */
+    public function pull($key, $default = null)
+    {
+        // Not planning on using this. Need a value to return. Going to re-do LaSalleGuard shortly from scratch.
+        return "text";
+    }
+
+
     ///////////////////////////////////////////////////////////////////
     ////////      START: METHODS FROM THE GUARD CONTRACT       ////////
     ///////////////////////////////////////////////////////////////////

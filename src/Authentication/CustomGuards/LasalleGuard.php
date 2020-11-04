@@ -21,6 +21,36 @@
  *
  */
 
+    // setting guard to work with the Auth facade
+    // https://github.com/laravel/framework/blob/8.x/src/Illuminate/Support/Facades/Auth.php
+
+/* 
+    \Illuminate\Auth\AuthManager                  @method static mixed guard(string|null $name = null)
+    \Illuminate\Auth\AuthManager                  @method static void shouldUse(string $name);
+    \Illuminate\Auth\GuardHelpers                 @method static bool check()
+    \Illuminate\Auth\GuardHelpers                 @method static bool guest()
+    LASALLEGUARD                                  @method static \Illuminate\Contracts\Auth\Authenticatable|null user()
+    LASALLEGUARD                                  @method static int|null id()
+    LASALLEGUARD                                  @method static bool validate(array $credentials = [])
+    LASALLEGUARD                                  @method static void setUser(\Illuminate\Contracts\Auth\Authenticatable $user)
+    LASALLEGUARD                                  @method static bool attempt(array $credentials = [], bool $remember = false)
+    LASALLEGUARD                                  @method static bool once(array $credentials = [])
+    LASALLEGUARD                                  @method static void login(\Illuminate\Contracts\Auth\Authenticatable $user, bool $remember = false)
+    LASALLEGUARD                                  @method static \Illuminate\Contracts\Auth\Authenticatable loginUsingId(mixed $id, bool $remember = false)
+    LASALLEGUARD                                  @method static bool onceUsingId(mixed $id)
+    LASALLEGUARD                                  @method static bool viaRemember()
+    LASALLEGUARD                                  @method static void logout()
+    \Illuminate\Contracts\Auth\SupportsBasicAuth  @method static \Symfony\Component\HttpFoundation\Response|null onceBasic(string $field = 'email',array $extraConditions = [])
+    LASALLEGUARD                                  @method static null|bool logoutOtherDevices(string $password, string $attribute = 'password')              ==> **NOT IMPLEMENTING!**
+    \Illuminate\Auth\CreatesUserProviders (TRAIT) @method static \Illuminate\Contracts\Auth\UserProvider|null createUserProvider(string $provider = null)    ==> use-d in AuthManger
+    \Illuminate\Auth\AuthManager                  @method static \Illuminate\Auth\AuthManager extend(string $driver, \Closure $callback)
+    \Illuminate\Auth\AuthManager                  @method static \Illuminate\Auth\AuthManager provider(string $name, \Closure $callback)
+         
+    @see \Illuminate\Auth\AuthManager            https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Application.php#L1242
+    @see \Illuminate\Contracts\Auth\Factory      "class AuthManager implements FactoryContract"
+    @see \Illuminate\Contracts\Auth\Guard        implements
+ */
+
 namespace Lasallesoftware\Librarybackend\Authentication\CustomGuards;
 
 // LaSalle Software
@@ -28,6 +58,8 @@ use Lasallesoftware\Librarybackend\Authentication\Models\Login as LoginModel;
 use Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain;
 
 // Laravel Framework
+use Illuminate\Auth\GuardHelpers;
+
 use Illuminate\Auth\Events\Attempting;
 use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Auth\Events\CurrentDeviceLogout;
@@ -36,21 +68,13 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Auth\Events\OtherDeviceLogout;
 use Illuminate\Auth\Events\Validated;
+use Illuminate\Contracts\Events\Dispatcher;
 
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\StatefulGuard;
-
-// Not supporting basic auth
-//use Illuminate\Contracts\Auth\SupportsBasicAuth;
 use Illuminate\Contracts\Auth\UserProvider;
-
-// I do not want to use cookies for authentication 
-//use Illuminate\Contracts\Cookie\QueueingFactory as CookieJar;
-
-use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Session\Session;
 
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 
@@ -59,29 +83,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 
-// Sure, being in the same folder means I do not need a "use" statement. 
-// OTOH, I want to see each class that I am using, because it helps me in my efforts
-// to upgrade my custom guard to the latest Laravel Framework version.
-// I'm upgrading from L6 to L7, and L8 is due in July 2020! 
-use Illuminate\Auth\GuardHelpers;
 
 
-/**
- * Class LasalleGuard.
- *
- * Custom guard for LaSalle Software.
- *
- * Based on https://github.com/laravel/framework/blob/5.8/src/Illuminate/Auth/SessionGuard.php.
- * For reference, I commented out some code that is in the original SessionGuard.php, instead of deleting it outright.
- *
- * @package Lasallesoftware\Librarybackend\Authentication\CustomGuards
- */
-
-//class SessionGuard implements StatefulGuard, SupportsBasicAuth
-class LasalleGuard implements StatefulGuard
+class LasalleGuard implements Guard
 {
     use GuardHelpers, Macroable;
-
 
     /**
      * The name of the Guard. Typically "session".
@@ -98,32 +104,6 @@ class LasalleGuard implements StatefulGuard
      * @var \Illuminate\Contracts\Auth\Authenticatable
      */
     protected $lastAttempted;
-
-    /**
-     * Indicates if the user was authenticated via a recaller cookie.
-     *
-     * The viaRemember() method exists in the StatefulGuard contract, and I am implementing this contract even
-     * though I am not implementing this feature, so this property is always false.
-     *
-     * @var bool
-     */
-    protected $viaRemember = false;
-
-    /**
-     * The session used by the guard.
-     *
-     * @var \Illuminate\Contracts\Session\Session
-     */
-    protected $session;
-
-    /**
-     * The Illuminate cookie creator service.
-     *
-     * Not implementing this feature.
-     *
-     * @var \Illuminate\Contracts\Cookie\QueueingFactory
-     */
-    //protected $cookie;
 
     /**
      * The request instance.
@@ -147,15 +127,6 @@ class LasalleGuard implements StatefulGuard
     protected $loggedOut = false;
 
     /**
-     * Indicates if a token user retrieval has been attempted.
-     *
-     * Not implementing this feature.
-     *
-     * @var bool
-     */
-    //protected $recallAttempted = false;
-
-    /**
      * The LaSalle Software's Login model instance.
      *
      * @var Lasallesoftware\Librarybackend\Authentication\Models\Login;
@@ -170,7 +141,7 @@ class LasalleGuard implements StatefulGuard
      * @param  \Illuminate\Contracts\Auth\UserProvider                      $provider
      * @param  \Symfony\Component\HttpFoundation\Request|null               $request
      * @param  \Illuminate\Contracts\Session\Session                        $session
-     * @param  Lasallesoftware\Librarybackend\Authentication\Models\Login   $loginModel  (added by Bob)
+     * @param  Lasallesoftware\Librarybackend\Authentication\Models\Login   $loginModel
      * @return void
      */
     public function __construct($name,
@@ -184,53 +155,13 @@ class LasalleGuard implements StatefulGuard
         $this->request    = $request;
         $this->provider   = $provider;
 
-
-        // added by Bob
         $this->loginModel = $loginModel;
     }
+    
 
-
-
-    /**
-     * Get the value of a given key and then forget it.
-     * 
-     * https://laravel.com/docs/8.x/upgrade
-     * The Illuminate\Contracts\Session\Session contract has received a new pull method. 
-     * If you are implementing this contract manually, you should update your implementation accordingly.
-     *
-     * @param  string  $key
-     * @param  mixed  $default
-     * @return mixed
-     */
-    public function pull($key, $default = null)
-    {
-        // Not planning on using this. Need a value to return. Going to re-do LaSalleGuard shortly from scratch.
-        return "text";
-    }
-
-
-    ///////////////////////////////////////////////////////////////////
-    ////////      START: METHODS FROM THE GUARD CONTRACT       ////////
-    ///////////////////////////////////////////////////////////////////
-
-
-    // Well, gee, this class does not implement the guard contract, nor is there a "use" statement for the guard
-    // contract. So what's happening? Well, this class implements the StatefulGuard contact which extends the
-    // guard contract. So, if this class was not going to implement the StatefulGuard contract, then this class
-    // would implement the Guard contract directly. Laravel's RequestGuard class does this exactly: implements the
-    // Guard contract directly because it does not implement StatefulGuard.
-    // https://github.com/laravel/framework/blob/5.8/src/Illuminate/Auth/RequestGuard.php
-    // https://github.com/laravel/framework/blob/5.8/src/Illuminate/Auth/TokenGuard.php
-
-    // The following methods in the Guard contract reside in the GuardHelper trait:
-    //  ** public function check();
-    //  ** public function guest();
-
-    // The following methods in the Guard contract reside in this class:
-    //  ** public function user();
-    //  ** public function id();  (in GuardHelpers but overridden here)
-    //  ** public function validate(array $credentials = []);
-    //  ** public function setUser(Authenticatable $user);
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////   START: METHODS IN THE AUTH FACADE                                                       //////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
      * Get the currently authenticated user.
@@ -302,17 +233,7 @@ class LasalleGuard implements StatefulGuard
         return $this->user;
     }
 
-
-    // See below @ "METHODS THAT ARE IN THE ORIGINAL SESSIONGUARD.php BUT ARE NOT IN A CONTRACT"
-    // This is where this function resides in SessionGuard.php
-    //protected function userFromRecaller($recaller)
-
-    // See below @ "METHODS THAT ARE IN THE ORIGINAL SESSIONGUARD.php BUT ARE NOT IN A CONTRACT"
-    // This is where this function resides in SessionGuard.php
-    // protected function recaller()  
- 
-    
-     /**
+    /**
      * Get the ID for the currently authenticated user.
      *
      * This method is implemented in the Illuminate\Auth\GuardHelpers trait BUT OVERRIDEN HERE.
@@ -331,16 +252,6 @@ class LasalleGuard implements StatefulGuard
             : $this->session->get($this->getName());
     }
 
-
-    // See below @ "METHODS FROM THE STATEFULGUARD CONTRACT" 
-    // This is where this function resides in SessionGuard.php
-    // public function once(array $credentials = [])
-
-    // See below @ "METHODS FROM THE STATEFULGUARD CONTRACT" 
-    // This is where this function resides in SessionGuard.php
-    // public function onceUsingId($id)
-
-
     /**
      * Validate a user's credentials.
      *
@@ -353,27 +264,6 @@ class LasalleGuard implements StatefulGuard
 
         return $this->hasValidCredentials($user, $credentials);
     }
-
-
-    // See below @ "METHODS FROM THE SUPPORTSBASICAUTH CONTRACT THAT EXIST IN THE ORIGINAL SESSIONGUARD.PHP 
-    // BUT ARE NOT USED IN MY LASALLEGUARD.php BECAUSE I DO NOT IMPLEMENT THE SUPPORTSBASICAUTH CONTRACT"
-    // This is where this function resides in SessionGuard.php
-    // public function basic($field = 'email', $extraConditions = [])
-
-    // See below @ "METHODS FROM THE SUPPORTSBASICAUTH CONTRACT THAT EXIST IN THE ORIGINAL SESSIONGUARD.PHP 
-    // BUT ARE NOT USED IN MY LASALLEGUARD.php BECAUSE I DO NOT IMPLEMENT THE SUPPORTSBASICAUTH CONTRACT"
-    // This is where this function resides in SessionGuard.php
-    // public function onceBasic($field = 'email', $extraConditions = [])
-
-    // This is where these functions would be in SessionGuard.php
-    // public function onceBasic($field = 'email', $extraConditions = [])
-    // protected function basicCredentials(Request $request, $field)
-    // protected function failedBasicResponse()
-
-    // See below
-    // This is where this function resides in SessionGuard.php 
-    // public function attempt(array $credentials = [], $remember = false)
-
 
     /**
      * Set the current user.
@@ -394,14 +284,6 @@ class LasalleGuard implements StatefulGuard
 
         return $this;
     }
-    ///////////////////////////////////////////////////////////////////
-    ////////      END: METHODS FROM THE GUARD CONTRACT       //////////
-    ///////////////////////////////////////////////////////////////////
-
-
-    ///////////////////////////////////////////////////////////////////
-    //////    START: METHODS FROM THE STATEFULGUARD CONTRACT     //////
-    ///////////////////////////////////////////////////////////////////
 
     /**
      * Attempt to authenticate a user using the given credentials.
@@ -435,27 +317,20 @@ class LasalleGuard implements StatefulGuard
         return false;
     }
 
-
-    // See below @ "METHODS THAT ARE IN THE ORIGINAL SESSIONGUARD.php BUT ARE NOT IN A CONTRACT"
-    // This is where these functions are in SessionGuard.php
-    // protected function hasValidCredentials($user, $credentials)
-
-
     /**
-     * Log the given user ID into the application.
+     * Log a user into the application without sessions or cookies. 
      *
-     * @param  mixed  $id
-     * @param  bool   $remember
-     * @return \Illuminate\Contracts\Auth\Authenticatable|false
+     * @param  array  $credentials
+     * @return bool
      */
-    public function loginUsingId($id, $remember = false)
+    public function once(array $credentials = [])
     {
-        // modified by Bob
-        //if (! is_null($user = $this->provider->retrieveById($id))) {
-        if (! is_null($user = $this->getUserById($id))) {
-            $this->login($user, $remember);
+        $this->fireAttemptEvent($credentials);
 
-            return $user;
+        if ($this->validate($credentials)) {
+            $this->setUser($this->lastAttempted);
+
+            return true;
         }
 
         return false;
@@ -501,33 +376,26 @@ class LasalleGuard implements StatefulGuard
     }
 
     /**
-     * Log a user into the application without sessions or cookies. 
+     * Log the given user ID into the application.
      *
-     * @param  array  $credentials
-     * @return bool
+     * @param  mixed  $id
+     * @param  bool   $remember
+     * @return \Illuminate\Contracts\Auth\Authenticatable|false
      */
-    public function once(array $credentials = [])
+    public function loginUsingId($id, $remember = false)
     {
-        $this->fireAttemptEvent($credentials);
+        // modified by Bob
+        //if (! is_null($user = $this->provider->retrieveById($id))) {
+        if (! is_null($user = $this->getUserById($id))) {
+            $this->login($user, $remember);
 
-        if ($this->validate($credentials)) {
-            $this->setUser($this->lastAttempted);
-
-            return true;
+            return $user;
         }
 
         return false;
     }
 
-    // see below @ "METHODS THAT ARE IN THE ORIGINAL SESSIONGUARD.php BUT ARE NOT IN A CONTRACT"
-    // This is where this function would be in SessionGuard.php
-    // protected function updateSession($id)
 
-    // Not implemented
-    // This is where these functions are in SessionGuard.php
-    // protected function ensureRememberTokenIsSet(AuthenticatableContract $user)
-    // protected function queueRecallerCookie(AuthenticatableContract $user)
-    // protected function createRecaller($value)
 
     /**
      * Log the given user ID into the application without sessions or cookies.
@@ -593,182 +461,120 @@ class LasalleGuard implements StatefulGuard
         $this->loggedOut = true;
     }
 
-    ///////////////////////////////////////////////////////////////////
-    //////     END: METHODS FROM THE STATEFULGUARD CONTRACT     ///////
-    ///////////////////////////////////////////////////////////////////
-
-
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //////     START: METHODS FROM THE SUPPORTSBASICAUTH CONTRACT THAT EXIST IN THE ORIGINAL SESSIONGUARD.PHP  ///////
-    //////            BUT ARE NOT USED IN MY LASALLEGUARD.php BECAUSE I DO NOT IMPLEMENT THE                  ///////
-    //////            SUPPORTSBASICAUTH CONTRACT                                                               ///////
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    // ** public function basic($field = 'email', $extraConditions = []);
-    // ** public function onceBasic($field = 'email', $extraConditions = []);
-
-    // There are a number of methods that the original SESSIONGUARD.php uses to implement the SUPPORTSBASICAUTH contract
-    // but I am not listing them!
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //////       END: METHODS FROM THE SUPPORTSBASICAUTH CONTRACT THAT EXIST IN THE ORIGINAL SESSIONGUARD.PHP  ///////
-    //////            BUT ARE NOT USED IN MY LASALLEGUARD.php BECAUSE I DO NOT IMPLEMENT THE                  ///////
-    //////            SUPPORTSBASICAUTH CONTRACT                                                               ///////
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////   START: METHODS THAT ARE IN THE ORIGINAL SESSIONGUARD.php BUT ARE NOT IN A CONTRACT      //////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Update the session with the given ID and Login Token.
-     *
-     * @param  string  $id
-     * @param  string  $loginToken
-     * @return void
-     */
-    protected function updateSession($id, $loginToken)
-    {
-        // added by Bob
-        $this->session->put('loginToken', $loginToken);
-
-
-        $this->session->put($this->getName(), $id);
-
-        $this->session->migrate(true);
-    }
-
-    /**
-     * Pull a user from the repository by its "remember me" cookie token.
-     *
-     * Not implementing this feature.
-     *
-     * @param  \Illuminate\Auth\Recaller  $recaller
-     * @return mixed
-     */
-    //protected function userFromRecaller($recaller) {}
-
-    /**
-     * Get the decrypted recaller cookie for the request.
-     *
-     * Not implementing this feature.
-     *
-     * @return \Illuminate\Auth\Recaller|null
-     */
-    //protected function recaller() {}
-
-
-    /**
-     * Determine if the user matches the credentials.
-     *
-     * @param  mixed  $user
-     * @param  array  $credentials
-     * @return bool
-     */
-    protected function hasValidCredentials($user, $credentials)
-    {
-        return ! is_null($user) && $this->provider->validateCredentials($user, $credentials);
-    }
-
-    /**
-     * Remove the user data from the session and cookies.
-     *
-     * @return void
-     */
-    protected function clearUserDataFromStorage()
-    {
-        $this->session->remove($this->getName());
-        $this->session->remove('loginToken');
-
-        // commented out by Bob
-        /*
-        if (! is_null($this->recaller())) {
-            $this->getCookieJar()->queue($this->getCookieJar()
-                ->forget($this->getRecallerName()));
-        }
-        */
-    }
-
-    // Not implemented
-    // protected function cycleRememberToken(AuthenticatableContract $user)
-
-    /**
-     * Log the user out of the application on their current device only.
-     *
-     * @return void
-     */
-    public function logoutCurrentDevice()
-    {
-        $user = $this->user();
-
-        $this->clearUserDataFromStorage();
-
-        // If we have an event dispatcher instance, we can fire off the logout event
-        // so any further processing can be done. This allows the developer to be
-        // listening for anytime a user signs out of this application manually.
-        if (isset($this->events)) {
-            $this->events->dispatch(new CurrentDeviceLogout($this->name, $user));
-        }
-
-        // Once we have fired the logout event we will clear the users out of memory
-        // so they are no longer available as the user is no longer considered as
-        // being signed into this application and should not be available here.
-        $this->user = null;
-
-        $this->loggedOut = true;
-    }
-
     /**
      * Invalidate other sessions for the current user.
-     *
-     * The application must be using the AuthenticateSession middleware.
-     *
-     * Laravel also provides a mechanism for invalidating and "logging out" a user's sessions that are active on
-     * other devices WITHOUT invalidating the session on their current device. Before getting started, you should
-     * make sure that the  Illuminate\Session\Middleware\AuthenticateSession middleware is present and un-commented
-     * in your app/Http/Kernel.php class' web middleware group.
-     *
-     * https://laravel.com/docs/5.8/authentication#invalidating-sessions-on-other-devices
      *
      * @param  string  $password
      * @param  string  $attribute
      * @return bool|null
      */
-    public function logoutOtherDevices($password, $attribute = 'password')   //
+    public function logoutOtherDevices($password, $attribute = 'password')
     {
-        // TODO: logout other devices feature for a future release? For now, this feature returns false
         return false;
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////   END: METHODS IN THE AUTH FACADE                                                       //////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        /*
-        if (! $this->user()) {
-            return;
-        }
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////   START: METHODS THAT ARE IN THE ORIGINAL SESSIONGUARD.php BUT ARE NOT IN A CONTRACT      //////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        $result = tap($this->user()->forceFill([
-            $attribute => Hash::make($password),
-        ]))->save();
-
-        $this->queueRecallerCookie($this->user());
-
-        return $result;
-        */
+    /**
+     * Get the last user we attempted to authenticate.
+     *
+     * @return \Illuminate\Contracts\Auth\Authenticatable
+     */
+    public function getLastAttempted()
+    {
+        return $this->lastAttempted;
     }
 
     /**
-     * Register an authentication attempt event listener.
+     * Get a unique identifier for the en session value.
      *
-     * @param  mixed  $callback
+     * @return string
+     */
+    public function getName()
+    {
+        return 'login_'.$this->name.'_'.sha1(static::class);
+    }
+
+    
+
+    /**
+     * Get the session store used by the guard.
+     *
+     * @return \Illuminate\Contracts\Session\Session
+     */
+    public function getSession()
+    {
+        return $this->session;
+    }
+
+    /**
+     * Return the currently cached user.
+     *
+     * @return \Illuminate\Contracts\Auth\Authenticatable|null
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Get the current request instance.
+     *
+     * @return \Symfony\Component\HttpFoundation\Request
+     */
+    public function getRequest()
+    {
+        return $this->request ?: Request::createFromGlobals();
+    }
+
+    /**
+     * Set the current request instance.
+     *
+     * @param  \Symfony\Component\HttpFoundation\Request  $request
+     * @return $this
+     */
+    public function setRequest(Request $request)
+    {
+        $this->request = $request;
+
+        return $this;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////     END: METHODS THAT ARE IN THE ORIGINAL SESSIONGUARD.php BUT ARE NOT IN A CONTRACT      //////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////     START: GUARD EVENTS                                                                   //////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Get the event dispatcher instance.
+     *
+     * @return \Illuminate\Contracts\Events\Dispatcher
+     */
+    public function getDispatcher()
+    {
+        return $this->events;
+    }
+
+    /**
+     * Set the event dispatcher instance.
+     *
+     * @param  \Illuminate\Contracts\Events\Dispatcher  $events
      * @return void
      */
-    public function attempting($callback)
+    public function setDispatcher(Dispatcher $events)
     {
-        if (isset($this->events)) {
-            $this->events->listen(Events\Attempting::class, $callback);
-        }
+        $this->events = $events;
     }
 
     /**
@@ -863,92 +669,8 @@ class LasalleGuard implements StatefulGuard
             ));
         }
     }
-
-    /**
-     * Get the last user we attempted to authenticate.
-     *
-     * @return \Illuminate\Contracts\Auth\Authenticatable
-     */
-    public function getLastAttempted()
-    {
-        return $this->lastAttempted;
-    }
-
-    /**
-     * Get a unique identifier for the en session value.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return 'login_'.$this->name.'_'.sha1(static::class);
-    }
-
-    /**
-     * Get the event dispatcher instance.
-     *
-     * @return \Illuminate\Contracts\Events\Dispatcher
-     */
-    public function getDispatcher()
-    {
-        return $this->events;
-    }
-
-    /**
-     * Set the event dispatcher instance.
-     *
-     * @param  \Illuminate\Contracts\Events\Dispatcher  $events
-     * @return void
-     */
-    public function setDispatcher(Dispatcher $events)
-    {
-        $this->events = $events;
-    }
-
-    /**
-     * Get the session store used by the guard.
-     *
-     * @return \Illuminate\Contracts\Session\Session
-     */
-    public function getSession()
-    {
-        return $this->session;
-    }
-
-    /**
-     * Return the currently cached user.
-     *
-     * @return \Illuminate\Contracts\Auth\Authenticatable|null
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Get the current request instance.
-     *
-     * @return \Symfony\Component\HttpFoundation\Request
-     */
-    public function getRequest()
-    {
-        return $this->request ?: Request::createFromGlobals();
-    }
-
-    /**
-     * Set the current request instance.
-     *
-     * @param  \Symfony\Component\HttpFoundation\Request  $request
-     * @return $this
-     */
-    public function setRequest(Request $request)
-    {
-        $this->request = $request;
-
-        return $this;
-    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////     END: METHODS THAT ARE IN THE ORIGINAL SESSIONGUARD.php BUT ARE NOT IN A CONTRACT      //////////
+    ////////     END: GUARD EVENTS                                                                     //////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -992,8 +714,6 @@ class LasalleGuard implements StatefulGuard
     }
 
     /**
-     * @param $id
-     *
      * Retrieve a user by their unique identifier.
      *
      * This method exists to help with unit testing.

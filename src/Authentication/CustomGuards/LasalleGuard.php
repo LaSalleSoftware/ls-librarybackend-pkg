@@ -484,6 +484,61 @@ class LasalleGuard implements Guard
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
+     * Update the session with the given ID and Login Token.
+     *
+     * @param  string  $id
+     * @param  string  $loginToken
+     * @return void
+     */
+    protected function updateSession($id, $loginToken)
+    {
+        // added by Bob
+        $this->session->put('loginToken', $loginToken);
+
+
+        $this->session->put($this->getName(), $id);
+
+        $this->session->migrate(true);
+    }
+
+    /**
+     * Determine if the user matches the credentials.
+     *
+     * @param  mixed  $user
+     * @param  array  $credentials
+     * @return bool
+     */
+    protected function hasValidCredentials($user, $credentials)
+    {
+        $validated = ! is_null($user) && $this->provider->validateCredentials($user, $credentials);
+
+        if ($validated) {
+            $this->fireValidatedEvent($user);
+        }
+
+        return $validated;
+    }
+
+    /**
+     * Remove the user data from the session and cookies.
+     *
+     * @return void
+     */
+    protected function clearUserDataFromStorage()
+    {
+        $this->session->remove($this->getName());
+        $this->session->remove('loginToken');
+
+        // commented out by Bob
+        /*
+        if (! is_null($this->recaller())) {
+            $this->getCookieJar()->queue($this->getCookieJar()
+                ->forget($this->getRecallerName()));
+        }
+        */
+    }
+
+    /**
      * Get the last user we attempted to authenticate.
      *
      * @return \Illuminate\Contracts\Auth\Authenticatable

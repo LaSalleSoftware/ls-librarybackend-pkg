@@ -319,4 +319,49 @@ class Installed_domain extends CommonModel
     /* *********************************************************** */
     /*                    END: PODCAST PACKAGE                     */
     /* *********************************************************** */
+
+
+    /* *********************************************************** */
+    /*                   START: VIDEO PACKAGE                      */
+    /* *********************************************************** */
+
+    /*
+     * One to one relationship with video_show.
+     *
+     * Method name must be:
+     *    * the model name,
+     *    * NOT the table name,
+     *    * singular;
+     *    * lowercase.
+     *
+     * @return Eloquent
+     */
+    public function video_show()
+    {
+        if ( class_exists('Lasallesoftware\Videobackend\Models\Video_show') ) {
+            return $this->hasMany('\Lasallesoftware\Videobackend\Models\Video_show');
+        }
+    }
+
+    /*
+     * One to one relationship with video_episode.
+     *
+     * Method name must be:
+     *    * the model name,
+     *    * NOT the table name,
+     *    * singular;
+     *    * lowercase.
+     *
+     * @return Eloquent
+     */
+    public function video_episode()
+    {
+        if ( class_exists('Lasallesoftware\Videobackend\Models\Video_episode') ) {
+            return $this->hasMany('\Lasallesoftware\Videobackend\Models\Video_episode');
+        }
+    }
+
+    /* *********************************************************** */
+    /*                    END: VIDEO PACKAGE                       */
+    /* *********************************************************** */
 }

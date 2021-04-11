@@ -95,9 +95,6 @@ class LibrarybackendServiceProvider extends ServiceProvider
         $this->loadTranslations();
         //$this->publishTranslations();
 
-        $this->loadViews();
-        //$this->publishViews();
-
         $this->registerPolicies();
 
         $this->registerMiddlewareRouter($router);
@@ -286,24 +283,5 @@ class LibrarybackendServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../translations' => resource_path('lang/vendor/lasallesoftwarelibrarybackend'),
         ]);
-    }
-
-    /**
-     * Load this package's views.
-     */
-    protected function loadViews()
-    {
-        $this->loadViewsFrom(__DIR__.'/../views', 'lasallesoftwarelibrarybackend');
-    }
-
-    /**
-     * Publish this package's views to the application's
-     * resources/views/vendor directory.
-     */
-    protected function publishViews()
-    {
-        $this->publishes([
-            __DIR__.'/../views' => resource_path('views/vendor/lasallesoftwarelibrary'),
-        ], 'views');
     }
 }

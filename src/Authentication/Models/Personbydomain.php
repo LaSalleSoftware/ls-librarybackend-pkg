@@ -337,7 +337,7 @@ class Personbydomain extends Authenticatable
     public function isBanned(int $id): bool 
     {
         $user = $this->where([
-            ['id', '=', '1'], 
+            ['id', '=', $id], 
             ['banned_enabled', '=', '1']
         ])->first();
 

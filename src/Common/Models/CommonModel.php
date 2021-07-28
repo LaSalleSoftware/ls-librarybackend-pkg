@@ -83,7 +83,7 @@ class CommonModel extends Eloquent
      * @param  string   $content   The text that you want excerpted
      * @return string
      */
-    public static function makeExcerpt($excerpt = null, $content)
+    public static function makeExcerpt($excerpt, $content)
     {
         $text = (($excerpt == "") || (is_null($excerpt))) ? $content : $excerpt;
         $text = self::deepWashText($text);
@@ -98,7 +98,7 @@ class CommonModel extends Eloquent
      * @param  string   $content           The text that you want excerpted
      * @return string
      */
-    public static function makeMetadescription($metadescription = null, $content)
+    public static function makeMetadescription($metadescription, $content)
     {
         $text = (($metadescription == "") || (is_null($metadescription))) ? $content : $metadescription;
         $text = self::deepWashText($text);
@@ -131,7 +131,7 @@ class CommonModel extends Eloquent
      * @param  int     $id      The ID of the current database record, if we're doing an update
      * @return string
      */
-    public static function makeSlug($slug = null, $title, $table, $id = 0)
+    public static function makeSlug($slug, $title, $table, $id = 0)
     {
         // If there is a slug, then let's start with that. Otherwise, let's base the slug on the title
         $text = (($slug == "") || (is_null($slug))) ? $title : $slug;

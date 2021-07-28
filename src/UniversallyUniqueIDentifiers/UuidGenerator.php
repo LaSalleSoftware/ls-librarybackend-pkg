@@ -109,13 +109,39 @@ class UuidGenerator
      *
      * @return void
      */
-    public function insertUuidIntoDatabase($lasallesoftware_event_id = 1, $newUuid, $comments = null, $created_by = 1)
+    //public function insertUuidIntoDatabase($lasallesoftware_event_id = 1, $newUuid, $comments = null, $created_by = 1)
+    public function insertUuidIntoDatabase($lasallesoftware_event_id, $newUuid, $comments, $created_by = 1)
     {
         $uuid = new Uuid;
 
-        if ($comments) {
+
+        // START: quick and dirty way to deal with PHP8 throwing error. I just upgraded to PHP8.
+        if (! isset($comments)) {
+            $comments = "";
+        }
+
+        if (is_null($comments)) {
+            $comments = "";
+        } else {
             $comments = mb_substr(trim($comments), 0, 255);
         }
+        // END: quick and dirty way to deal with PHP8 throwing error. I just upgraded to PHP8.        
+
+
+        // START: quick and dirty way to deal with PHP8 throwing error. I just upgraded to PHP8.
+        if (! isset($lasallesoftware_event_id)) {
+            $lasallesoftware_event_id = 1;
+        }
+
+        if (is_null($lasallesoftware_event_id)) {
+            $lasallesoftware_event_id = 1;
+        }
+
+        if ($lasallesoftware_event_id == "") {
+            $lasallesoftware_event_id = 1;
+        }
+        // END: quick and dirty way to deal with PHP8 throwing error. I just upgraded to PHP8.
+
 
         $uuid->lasallesoftware_event_id = $lasallesoftware_event_id;
         $uuid->uuid                     = $newUuid;

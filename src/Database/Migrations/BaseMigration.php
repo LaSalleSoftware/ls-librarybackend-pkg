@@ -26,6 +26,10 @@ namespace Lasallesoftware\Librarybackend\Database\Migrations;
 // Laravel classes
 use Illuminate\Database\Migrations\Migration;
 
+// Laravel facade
+use Illuminate\Support\Facades\DB;
+
+
 class BaseMigration extends Migration
 {
     /**
@@ -50,5 +54,18 @@ class BaseMigration extends Migration
         }
 
         return true;
+    }
+
+
+    /**
+     * Get the field type, given the database table's name, and the field's name.
+     *
+     * @param  string   $tableName               The name of the table in the database.
+     * @param  string   $columnName              The name of the field in the table.
+     * @return string
+     */
+    public function getColumnType(string $tableName, string $columnName) : string
+    {
+        return DB::getSchemaBuilder()->getColumnType($tableName, $columnName);
     }
 }

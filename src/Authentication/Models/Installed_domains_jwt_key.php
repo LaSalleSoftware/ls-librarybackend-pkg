@@ -94,4 +94,31 @@ class Installed_domains_jwt_key extends CommonModel
     {
         return $this->belongsTo('Lasallesoftware\Librarybackend\Profiles\Models\Installed_domain');
     }
+
+
+
+
+    ///////////////////////////////////////////////////////////////////
+    //////////////            GOODIES!              ///////////////////
+    ///////////////////////////////////////////////////////////////////
+
+
+    /**
+     * Get the key for a give installed domain's ID
+     *
+     * @param  int        $installed_domain_id       The installed domain's ID
+     * @return string
+     */
+    public function getKeyGivenId(int $installed_domain_id) : string
+    {
+        $key = Installed_domains_jwt_key::where('installed_domain_id', $installed_domain_id)
+            ->where('enabled', 1)
+            ->pluck('key')
+            ->first()
+        ;   
+    
+        if (is_null($key)) return 'key not found for installed domain #' . $installed_domain_id;
+
+        return $key;
+    }
 }

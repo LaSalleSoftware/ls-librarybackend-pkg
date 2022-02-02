@@ -364,4 +364,31 @@ class Installed_domain extends CommonModel
     /* *********************************************************** */
     /*                    END: VIDEO PACKAGE                       */
     /* *********************************************************** */
+
+
+
+
+
+    ///////////////////////////////////////////////////////////////////
+    //////////////            GOODIES!              ///////////////////
+    ///////////////////////////////////////////////////////////////////
+
+    /**
+     * Get the ID given the title
+     *
+     * @param  string     $title        The "title" field
+     * @return int
+     */
+    public function getIdGivenTitle(string $title) : int
+    {
+        $id = Installed_domain::where('title', $title)
+            ->where('enabled', 1)
+            ->pluck('id')
+            ->first()
+        ;   
+        
+        if (is_null($id)) return 0;
+
+        return $id;        
+    }
 }

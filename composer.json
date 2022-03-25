@@ -19,7 +19,7 @@
     }
   ],
   "require": {
-    "php": "^7.3|^8.0"
+    "php": "^8.0.2"
   },
   "autoload": {
       "classmap": [
@@ -29,27 +29,12 @@
       "Lasallesoftware\\Librarybackend\\": "src/"
     }
   },
-  "autoload-dev": {
-    "psr-4": {
-      "Lasallesoftware\\Librarybackend\\Test\\": "tests/"
-    }
-  },
   "extra": {
     "laravel": {
       "providers": [
         "Lasallesoftware\\Librarybackend\\LibrarybackendServiceProvider"
       ]
     }
-  },
-  "scripts": {
-    "test": "phpunit"
-  },
-  "suggest": {
-  },
-  "config": {
-    "preferred-install": "dist",
-    "sort-packages": true,
-    "optimize-autoloader": true
   },
   "minimum-stability": "dev",
   "prefer-stable": true

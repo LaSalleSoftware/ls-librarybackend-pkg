@@ -65,7 +65,6 @@ class JWTValidation
 
 
     /**
-     * @param  \Lcobucci\JWT\Validation\Constraint\SignedWith   $signedWith
      * @param  \Lasallesoftware\Librarybackend\JWT\JWTHelpers   $jwtHelpers
      * @return void
      */

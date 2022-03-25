@@ -463,6 +463,9 @@ class LasalleGuard implements Guard
 
     /**
      * Invalidate other sessions for the current user.
+     * 
+     * March 2022: leaving this method as is.
+     *             https://github.com/laravel/framework/blob/447f6203a3322d3af624df651627a7480df7f3a7/src/Illuminate/Auth/SessionGuard.php#L642
      *
      * @param  string  $password
      * @param  string  $attribute

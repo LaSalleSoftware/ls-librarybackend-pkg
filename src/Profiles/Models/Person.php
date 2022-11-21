@@ -26,6 +26,7 @@ namespace Lasallesoftware\Librarybackend\Profiles\Models;
 // LaSalle Software
 use Lasallesoftware\Librarybackend\Common\Models\CommonModel;
 use Lasallesoftware\Librarybackend\Events\PersonPopulateNamecalculatedField;
+use Lasallesoftware\Podcastguestmanagementbackend\Models\Podcast_guest_status;
 
 /**
  * This is the model class for person.
@@ -362,6 +363,14 @@ class Person extends CommonModel
             'podcast_episode_guest', 
             'person_id', 
             'podcast_episode_id');
+        }
+    }
+
+   
+    public function podcast_guest_status()
+    {
+        if ( class_exists('Lasallesoftware\Podcastguestmanagementbackend\Models\Podcast_guest_status') ) {
+            return $this->hasMany('Lasallesoftware\Podcastguestmanagementbackend\Models\Podcast_guest_status');
         }
     }
 }

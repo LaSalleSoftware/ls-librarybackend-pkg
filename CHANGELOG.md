@@ -1,6 +1,9 @@
 # CHANGE LOG
 
-## VERSION 2.7.2 (coming!)
+## VERSION 2.7.3 (coming!)
+
+## VERSION 2.7.2 (November 21, 2022)
+* [v2.7.2 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone26?closed=1)
 
 ## VERSION 2.7.1 (March 26, 2022)
 * [v2.7.1 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone25?closed=1)

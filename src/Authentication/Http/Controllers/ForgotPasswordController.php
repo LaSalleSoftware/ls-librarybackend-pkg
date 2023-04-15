@@ -45,6 +45,18 @@ class ForgotPasswordController extends CommonController
 
     use SendsPasswordResetEmails;
 
+
+
+    public function __construct()
+    {
+        if (! $this->executeTheWhitelistManually() ) {
+            // The remote IP address is NOT white listed
+            abort(401, __('lasallesoftwarelibrarybackend::auth.unauthorized'));
+        }
+    }
+
+    
+
     /**
      * Display the form to request a password reset link.
      * 

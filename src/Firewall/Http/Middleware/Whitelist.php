@@ -12,10 +12,29 @@ class Whitelist
 {
     use GeneralHelpers;
 
-    public function bob()
+
+
+    /**
+     * Method to run this middleware manually.
+     * https://github.com/LaSalleSoftware/ls-librarybackend-pkg/issues/68
+     *
+     * @return bool
+     */
+    public function isAllow(): bool
     {
-        return "bob!";
+        // Get the white listed IP addresses
+        $whitelistedIpAddresses = $this->getWhitelistedIpAddresses();
+
+        // Get the remote IP addresses where the request is coming from
+        $remoteIpAddress = $this->getRemoteIpAddress();
+
+        // Do the comparison
+        // true = allow, the IP is OK
+        // false = disallow, the IP is NOT ok
+       return $this->isValueInArray($remoteIpAddress, $whitelistedIpAddresses);
     }
+
+
 
     /**
      * Handle an incoming request.

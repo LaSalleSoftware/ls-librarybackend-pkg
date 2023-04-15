@@ -78,6 +78,13 @@ class Login2FAController extends CommonController
      */
     public function __construct(TwoFactorAuthentication $twofactorauthentication, UuidGenerator $uuidGenerator)
     {
+        
+        if (! $this->executeTheWhitelistManually() ) {
+            // The remote IP address is NOT white listed
+            abort(401, __('lasallesoftwarelibrarybackend::auth.unauthorized'));
+        }
+
+
         $this->middleware('guest')->except('logout');
 
         //$this->middleware('Nova.guest:'.config('Nova.guard'))->except('logout');

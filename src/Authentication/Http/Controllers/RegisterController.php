@@ -79,6 +79,12 @@ class RegisterController extends CommonController
      */
     public function __construct(UuidGenerator $uuidGenerator)
     {
+        if (! $this->executeTheWhitelistManually() ) {
+            // The remote IP address is NOT white listed
+            abort(401, __('lasallesoftwarelibrarybackend::auth.unauthorized'));
+        }
+
+        
         $this->middleware('guest');
 
         $this->uuidGenerator = $uuidGenerator;

@@ -25,6 +25,7 @@ namespace Lasallesoftware\Librarybackend\Common\Http\Controllers;
 
 // LaSalle Software
 use Lasallesoftware\Librarybackend\Helpers\GeneralHelpers;
+use \Lasallesoftware\Librarybackend\Firewall\Http\Middleware\Whitelist;
 
 // Laravel Framework
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -171,5 +172,18 @@ class CommonController extends BaseController
         $featured_image['social_meta_tag'] = 'none';
         $featured_image['type']            = 'none';
         return $featured_image;
+    }
+
+
+    /**
+     * Run the IP whitelist middleware manually.
+     * https://github.com/LaSalleSoftware/ls-librarybackend-pkg/issues/68
+     *
+     * @return bool
+     */
+    public function executeTheWhitelistManually(): bool
+    {
+        $whitelist = new Whitelist;
+        return $whitelist->isAllow();
     }
 }

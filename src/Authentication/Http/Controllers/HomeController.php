@@ -38,6 +38,12 @@ class HomeController extends CommonController
      */
     public function __construct()
     {
+        if (! $this->executeTheWhitelistManually() ) {
+            // The remote IP address is NOT white listed
+            abort(401, __('lasallesoftwarelibrarybackend::auth.unauthorized'));
+        }
+
+        
         $this->middleware('auth');
     }
 

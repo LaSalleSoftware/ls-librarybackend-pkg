@@ -22,6 +22,13 @@ class Whitelist
      */
     public function isAllow(): bool
     {
+        // Are we supposed to be doing this check?
+        // true = yes, so continue with this method, and return true deem as "allowed"
+        // false = no, so exit this method
+        if (! isPerformWhitelistCheck()) {
+            return true;
+        }
+
         // Get the white listed IP addresses
         $whitelistedIpAddresses = $this->getWhitelistedIpAddresses();
 
@@ -46,7 +53,9 @@ class Whitelist
     public function handle($request, Closure $next)
     {
         // Are we supposed to be doing this check?
-        if (strtolower(config('lasallesoftware-librarybackend.web_middleware_do_whitelist_check') != 'yes')) {
+        // true = yes, so continue with this method
+        // false = no, so exit this method
+        if (! isPerformWhitelistCheck()) {
             return $next($request);
         }
 
@@ -101,4 +110,20 @@ class Whitelist
         );
     }
 
+    /**
+     * Are we supposed to be doing this check??
+     *
+     * @return bool
+     */
+    public function isPerformWhitelistCheck(): bool
+    {
+        if (strtolower(config('lasallesoftware-librarybackend.web_middleware_do_whitelist_check') == 'yes')) {
+
+            // yes, perform this check
+            return true;
+        }
+
+        // no, do not perform this check
+        return false;
+    }
 }

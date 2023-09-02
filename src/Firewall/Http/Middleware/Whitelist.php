@@ -25,7 +25,7 @@ class Whitelist
         // Are we supposed to be doing this check?
         // true = yes, so continue with this method, and return true deem as "allowed"
         // false = no, so exit this method
-        if (! isPerformWhitelistCheck()) {
+        if (! $this->isPerformWhitelistCheck()) {
             return true;
         }
 
@@ -55,7 +55,7 @@ class Whitelist
         // Are we supposed to be doing this check?
         // true = yes, so continue with this method
         // false = no, so exit this method
-        if (! isPerformWhitelistCheck()) {
+        if (! $this->isPerformWhitelistCheck()) {
             return $next($request);
         }
 

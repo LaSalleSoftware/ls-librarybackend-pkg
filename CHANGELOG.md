@@ -1,15 +1,16 @@
 # CHANGE LOG
 
-## VERSION 2.7.6 (coming!)
+## VERSION 2.7.6 (April 02, 2024)
+* [v2.7.6 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone31?closed=1)
 
 ## VERSION 2.7.5 (September 02, 2023)
-* [v2.7.5 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone29?closed=1)
+* [v2.7.5 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone30?closed=1)
 
 ## VERSION 2.7.4 (September 01, 2023)
-* [v2.7.4 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone28?closed=1)
+* [v2.7.4 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone29?closed=1)
 
 ## VERSION 2.7.3 (April 15, 2023)
-* [v2.7.3 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone27?closed=1)
+* [v2.7.3 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone28?closed=1)
 
 ## VERSION 2.7.2 (November 21, 2022)
 * [v2.7.2 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone26?closed=1)

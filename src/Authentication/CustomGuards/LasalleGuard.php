@@ -75,6 +75,7 @@ use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Session\Session;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 
@@ -96,7 +97,7 @@ class LasalleGuard implements Guard
      *
      * @var string
      */
-    protected $name;
+    public readonly string $name;
 
     /**
      * The user we last attempted to retrieve.
@@ -118,6 +119,13 @@ class LasalleGuard implements Guard
      * @var \Illuminate\Contracts\Events\Dispatcher
      */
     protected $events;
+
+    /**
+     * Indicates if passwords should be rehashed on login if needed.
+     *
+     * @var bool
+     */
+    protected $rehashOnLogin;
 
     /**
      * Indicates if the logout method has been called.
@@ -154,6 +162,11 @@ class LasalleGuard implements Guard
         $this->session    = $session;
         $this->request    = $request;
         $this->provider   = $provider;
+
+        // NOT DOING Laravel 11's new reHashing
+        // https://laravel.com/docs/11.x/upgrade#password-rehashing
+        // https://github.com/laravel/framework/blob/209800f04a1b6012a70c25f9e2164cbe28c9d0ed/src/Illuminate/Auth/SessionGuard.php#L143
+        // $this->rehashOnLogin = $rehashOnLogin;
 
         $this->loginModel = $loginModel;
     }
@@ -304,6 +317,9 @@ class LasalleGuard implements Guard
         // to validate the user against the given credentials, and if they are in
         // fact valid we'll log the users into the application and return true.
         if ($this->hasValidCredentials($user, $credentials)) {
+            // https://github.com/laravel/framework/blob/209800f04a1b6012a70c25f9e2164cbe28c9d0ed/src/Illuminate/Auth/SessionGuard.php#L399
+            // $this->rehashPassword... is here for reference only. NOT putting this new line everywhere it goes since not using it
+            // $this->rehashPasswordIfRequired($user, $credentials);
             $this->login($user, $remember);
 
             return true;

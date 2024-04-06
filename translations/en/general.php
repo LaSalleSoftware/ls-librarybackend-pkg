@@ -75,6 +75,8 @@ return [
     'panel_roles_fields'   => 'Role',
     'panel_system_fields'  => 'System Fields',
     'panel_featured_image_fields' => 'Featured Image Fields',
+    'panel_general_fields' => 'General Fields',
+    'panel_client_fields'  => 'Client Fields',
 
     // Nova Field Labels
     'field_name_featured_image'         => 'Featured Image',

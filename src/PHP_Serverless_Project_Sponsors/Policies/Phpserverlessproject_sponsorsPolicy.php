@@ -21,7 +21,7 @@
  *
  */
 
-namespace Lasallesoftware\Librarybackend\Policies;
+namespace Lasallesoftware\Librarybackend\PHP_Serverless_Project_Sponsors\Policies\Phpserverlessproject_sponsors;
 
 // LaSalle Software class
 use Lasallesoftware\Librarybackend\Common\Policies\CommonPolicy;

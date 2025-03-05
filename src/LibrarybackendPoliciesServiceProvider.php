@@ -78,10 +78,11 @@ trait LibrarybackendPoliciesServiceProvider
             'Lasallesoftware\Librarybackend\Authentication\Models\Login'           => 'Lasallesoftware\Librarybackend\Policies\LoginPolicy',
 
             'Lasallesoftware\Librarybackend\Authentication\Models\Installed_domains_jwt_key'
-                                                                            => 'Lasallesoftware\Librarybackend\Policies\Installed_domains_jwt_keyPolicy',
+                    => 'Lasallesoftware\Librarybackend\Policies\Installed_domains_jwt_keyPolicy',
             'Lasallesoftware\Librarybackend\Profiles\Models\Client'                =>  'Lasallesoftware\Librarybackend\Policies\ClientPolicy',   
             
-            'Lasallesoftware\Librarybackend\PHP_Serverless_Project_Sponsors\Models\Phpserverlessproject_sponsors' => 'Lasallesoftware\Librarybackend\PHP_Serverless_Project_Sponsors\Policies\Phpserverlessproject_sponsors\Phpserverlessproject_sponsorsPolicy',
+            'Lasallesoftware\Librarybackend\PHP_Serverless_Project_Sponsors\Models\Phpserverlessproject_sponsors' 
+                    => 'Lasallesoftware\Librarybackend\PHP_Serverless_Project_Sponsors\Policies\Phpserverlessproject_sponsorsPolicy',
         ];
     }
 }

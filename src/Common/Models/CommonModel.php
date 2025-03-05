@@ -48,7 +48,7 @@ class CommonModel extends Eloquent
     {
         if ((substr($url,0,7) == "http://")  ||
             (substr($url,0,8) == "https://") ||
-            (is_null($url))                               ||
+            (is_null($url))                  ||
             (trim($url) == '')
         ) {
             return $url;

@@ -10,7 +10,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright  (c) 2019-2024 The South LaSalle Trading Corporation
+ * @copyright  (c) 2019-2025 The South LaSalle Trading Corporation
  * @license    http://opensource.org/licenses/MIT
  * @author     Bob Bloom
  * @email      bob.bloom@lasallesoftware.ca
@@ -29,14 +29,14 @@ class Version
      *
      * @var string
      */
-    const VERSION = '2.7.7';
+    const VERSION = '2.8.0';
 
     /**
      * This package's release date.
      *
      * @var string
      */
-    const RELEASEDATE = 'April 06, 2024';
+    const RELEASEDATE = 'March 05, 2025';
 
     /**
      * This package's name.

@@ -72,7 +72,10 @@ class CreatePhpserverlessprojectSponsorsTable extends BaseMigration
                 $table->string('image_url')->nullable();
                 $table->string('image_thumbnail_url')->nullable();
 
-                $table->text('profile');
+                $table->text('profile_full');
+                $table->string('profile_short')->nullable();
+
+                $table->string('link_to_sponsor_website')->nullable();
 
                 $table->string('email_address')->comment('NOT related to my email table'); // **NOT** related to the email table
 
@@ -80,9 +83,9 @@ class CreatePhpserverlessprojectSponsorsTable extends BaseMigration
                 $table->boolean('basecamp_sponsor')->default(false);
                 $table->boolean('restream_sponsor')->default(false);
 
+                $table->boolean('former_sponsor')->default(false);
 
                 $table->text('internal_comment')->nullable()->comment('My own comments. Not for publishing');        
- 
 
                 $table->boolean('enabled')->default(true);
 

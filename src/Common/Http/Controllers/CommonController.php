@@ -10,7 +10,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright  (c) 2019-2024 The South LaSalle Trading Corporation
+ * @copyright  (c) 2019-2025 The South LaSalle Trading Corporation
  * @license    http://opensource.org/licenses/MIT
  * @author     Bob Bloom
  * @email      bob.bloom@lasallesoftware.ca
@@ -26,6 +26,7 @@ namespace Lasallesoftware\Librarybackend\Common\Http\Controllers;
 // LaSalle Software
 use Lasallesoftware\Librarybackend\Helpers\GeneralHelpers;
 use \Lasallesoftware\Librarybackend\Firewall\Http\Middleware\Whitelist;
+use \Lasallesoftware\Librarybackend\PHP_Serverless_Project_Sponsors\PhpserverlessprojectsponsorsHelpers;
 
 // Laravel Framework
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -185,5 +186,19 @@ class CommonController extends BaseController
     {
         $whitelist = new Whitelist;
         return $whitelist->isAllow();
+    }
+
+
+    /**
+     * Get the PHP Serverless Project sponsors' data. 
+     * Data is transformed because it will be sent to the front-ends.
+     *
+     * @return array
+     */
+    public function get_PHP_Serverless_Project_Sponsors(): array
+    {
+        $phpserverlessprojectsponsorsHelpers = new PhpserverlessprojectsponsorsHelpers;
+
+        return $phpserverlessprojectsponsorsHelpers->getSponsors();
     }
 }

@@ -1,5 +1,8 @@
 # CHANGE LOG
 
+## VERSION 3.0 (June 22, 2025)
+* [v3.0 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone/37?closed=1)
+
 ## VERSION 2.8.3 (March 06, 2025)
 * [v2.8.3 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone/36?closed=1)
 

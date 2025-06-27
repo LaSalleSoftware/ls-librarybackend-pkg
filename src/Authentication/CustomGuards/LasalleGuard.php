@@ -72,7 +72,14 @@ use Illuminate\Contracts\Events\Dispatcher;
 
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\UserProvider;
-use Illuminate\Contracts\Auth\Guard;
+
+
+// For Laravel/Fortify, used by Nova version 5
+// See: https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone/39
+//use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\StatefulGuard as Guard;
+
+
 use Illuminate\Contracts\Session\Session;
 
 use Illuminate\Support\Facades\Hash;

@@ -14,3 +14,8 @@ Well, Nova is not just the CRUD screens and stuff. It wants to be the full app, 
 
 For this librarybackend package, I am deleting all the AUTH, and whatever else I find that needs pruning. From here on in, using the Laravel AUTH, not my custom AUTH. I will tag this as VERSION 4. 
 
+
+I am keeping the "personsbydomain" table. However, this is *NOT* the user table for authentication. Instead, it is for roles, and other non-auth-ish stuff that I want to keep. And, to prevent me from basically gutting this package, which I do not want to do because I do want the features! 
+
+SO... just make sure to MANUALLY copy the users in the "users" table with the "personsbydomain" table !!! (Of which there is basically just one single user anyways!).
+

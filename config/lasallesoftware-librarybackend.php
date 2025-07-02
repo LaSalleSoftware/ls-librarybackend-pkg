@@ -201,29 +201,7 @@ return [
     */
     'lasalle_app_default_user_role' => 3,
 
-    /*
-	|--------------------------------------------------------------------------
-	| Login activity duration in minutes
-	|--------------------------------------------------------------------------
-	|
-	| After a certain number of minutes of not doing anything, a user will be logged out automatically.
-	| How many minutes do you want to allow inactivity before logging a user out automatically?
-	| This is a completely separate feature from Laravel's session inactivity setting (see
-    | https://stackoverflow.com/questions/41983976/laravel-5-session-lifetime)
-	|
-	*/
-    'lasalle_number_of_minutes_allowed_before_deleting_the_logins_record' => env('LASALLE_HOW_MANY_MINUTES_UNTIL_LOGINS_INACTIVITY', 60),
-
-    /*
-	|--------------------------------------------------------------------------
-	| Ban All Users
-	|--------------------------------------------------------------------------
-	|
-	| Ban all users from logging into the admin back-end.
-	| 
-	*/
-    'ban_all_users_from_logging_into_the_admin_backend' => env('LASALLE_EMERGENCY_BAN_ALL_USERS_FROM_ADMIN_APP_LOGIN', false),
-
+    
     /*
 	|--------------------------------------------------------------------------
 	| UUID Expiration
@@ -255,50 +233,6 @@ return [
     | END: GENERAL
     | ========================================================================
     */
-
-
-
-    /*
-    | ========================================================================
-    | START: TWO FACTOR AUTHENTICATION
-    | ========================================================================
-    */
-
-    /*
-	|--------------------------------------------------------------------------
-	| Enable Two Factor Authentication
-	|--------------------------------------------------------------------------
-	| 
-	*/
-    'enable_two_factor_authentication' => env('LASALLE_ENABLE_TWO_FACTOR_AUTHENTICATION', false),
-
-    /*
-	|--------------------------------------------------------------------------
-	| Number of Validation Attempts Allowed for 2FA Code
-	|--------------------------------------------------------------------------
-    | 
-    | How many times will you let the same two factor authentication code to be 
-    | validated? 
-    | 
-	*/
-    'number_of_attempts_allowed_to_validate_a_two_factor_code' => 3,
-
-    /*
-	|--------------------------------------------------------------------------
-	| How many minutes is a 2FA code is live?
-	|--------------------------------------------------------------------------
-    | 
-    | How many minutes until a 2FA has expired?
-    | 
-	*/
-    'number_of_minutes_until_a_two_factor_code_expires' => 5,
-
-    /*
-    | ========================================================================
-    | END: TWO FACTOR AUTHENTICATION
-    | ========================================================================
-    */
-
 
 
     /*
@@ -337,25 +271,6 @@ return [
 	|
 	*/
     'web_middleware_whitelist_ip_addresses' => [],
-
-    /*
-	|--------------------------------------------------------------------------
-	| Default Path for Lasallesoftware\Librarybackend\Authentication\Http\Middleware\RedirectSomeRoutes
-	|--------------------------------------------------------------------------
-	|
-    | What path do you want Lasallesoftware\Librarybackend\Authentication\Http\Middleware\RedirectSomeRoutes
-    | middleware to redirect to?
-    |
-    | If you are logged into the admin, these paths will redirect to the default path
-    | * home
-    | * nova
-    | * nova/dashboards
-    | * nova/dashboards/main
-    | * nova/resources
-	|
-    */
-    //'web_middleware_default_path' => '/nova/resources/personbydomains',
-    'web_middleware_default_path' => '/nova/resources/websites',
 
     /*
     | ========================================================================
@@ -444,45 +359,4 @@ return [
 	| END: BACK-END BLADE VIEW PATHS
 	| ========================================================================
     */
-
-
-
-    /*
-	| ========================================================================
-	| START: REGISTER, RESETPASSWORD, AND VERIFICATION ROUTE SUPPRESSION
-	| ========================================================================
-    */
-
-    /*
-	|--------------------------------------------------------------------------
-	| Suppress the registration routes
-	|--------------------------------------------------------------------------
-	|
-	*/
-    'suppress_registration_routes' => false,
-
-    /*
-	|--------------------------------------------------------------------------
-	| Suppress the reset password routes
-	|--------------------------------------------------------------------------
-	|
-	*/
-    'suppress_reset_password_routes' => false,
-
-    /*
-	|--------------------------------------------------------------------------
-	| Suppress the registration verification routes
-	|--------------------------------------------------------------------------
-	|
-	*/
-    'suppress_registration_verification_routes' => false,
-
-    /*
-	| ========================================================================
-	| END: REGISTER, RESETPASSWORD, AND VERIFICATION ROUTE SUPPRESSION
-	| ========================================================================
-    */
-
-
-
 ];

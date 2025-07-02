@@ -83,7 +83,7 @@ class LibrarybackendServiceProvider extends ServiceProvider
         $this->publishConfig();
 
         $this->loadMigrations();
-        $this->loadDatabaseFactories();
+      //  $this->loadDatabaseFactories();
 
         $this->loadTranslations();
 

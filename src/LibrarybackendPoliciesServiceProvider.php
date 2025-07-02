@@ -75,7 +75,6 @@ trait LibrarybackendPoliciesServiceProvider
             'Lasallesoftware\Librarybackend\Profiles\Models\Person'                => 'Lasallesoftware\Librarybackend\Policies\PersonPolicy',
 
             'Lasallesoftware\Librarybackend\Authentication\Models\Personbydomain'  => 'Lasallesoftware\Librarybackend\Policies\PersonbydomainPolicy',
-            'Lasallesoftware\Librarybackend\Authentication\Models\Login'           => 'Lasallesoftware\Librarybackend\Policies\LoginPolicy',
 
             'Lasallesoftware\Librarybackend\Authentication\Models\Installed_domains_jwt_key'
                     => 'Lasallesoftware\Librarybackend\Policies\Installed_domains_jwt_keyPolicy',

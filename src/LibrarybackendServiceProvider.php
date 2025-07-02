@@ -71,8 +71,6 @@ class LibrarybackendServiceProvider extends ServiceProvider
         });
 
         $this->registerArtisanCommands();
-
-        $this->registerCustomAuthenticationGuard();
     }
 
     /**
@@ -93,12 +91,10 @@ class LibrarybackendServiceProvider extends ServiceProvider
         $this->loadDatabaseFactories();
 
         $this->loadTranslations();
-        //$this->publishTranslations();
 
         $this->registerPolicies();
 
         $this->registerMiddlewareRouter($router);
-        $this->registerMiddleware();
     }
 
 
@@ -117,18 +113,6 @@ class LibrarybackendServiceProvider extends ServiceProvider
         $router->pushMiddlewareToGroup('web', Whitelist::class);
 
         $router->pushMiddlewareToGroup('jwt_auth', JWTMiddleware::class);
-    }
-
-    /**
-     * Register middleare
-     *
-     * @return void
-     */
-    protected function registerMiddleware()
-    {
-        $kernel = $this->app->make(Kernel::class);
-        $kernel->pushMiddleware(RedirectSomeRoutes::class);
-        
     }
 
     /**
@@ -207,27 +191,7 @@ class LibrarybackendServiceProvider extends ServiceProvider
         ]);
     }
 
-    /**
-     * Register the bindings for the custom authentication guard.
-     *
-     * Referenced https://github.com/tymondesigns/jwt-auth/blob/develop/src/Providers/AbstractServiceProvider.php#L96
-     */
-    protected function registerCustomAuthenticationGuard()
-    {
-        $this->app['auth']->extend('lasalle', function ($app, $name, array $config) {
-            $guard = new LasalleGuard(
-                'session',
-                $app['auth']->createUserProvider($config['provider']),
-                //$app['request']->session(),
-                $this->app['session.store'],
-                $app['request'],
-                $app->make('Lasallesoftware\Librarybackend\Authentication\Models\Login')
-            );
-            $app->refresh('request', $guard, 'setRequest');
-
-            return $guard;
-        });
-    }
+    
 
     /**
      * Publish this package's configuration file.
@@ -272,16 +236,5 @@ class LibrarybackendServiceProvider extends ServiceProvider
     protected function loadTranslations()
     {
         $this->loadTranslationsFrom(__DIR__.'/../translations/', 'lasallesoftwarelibrarybackend');
-    }
-
-    /**
-     * Publish this package's translation files to the application's
-     * resources/lang/vendor directory.
-     */
-    protected function publishTranslations()
-    {
-        $this->publishes([
-            __DIR__.'/../translations' => resource_path('lang/vendor/lasallesoftwarelibrarybackend'),
-        ]);
     }
 }

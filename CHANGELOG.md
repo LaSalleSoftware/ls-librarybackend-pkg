@@ -1,5 +1,8 @@
 # CHANGE LOG
 
+## VERSION 4.1 (July 03, 2025)
+* [v4.1 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone/39?closed=1)
+
 ## VERSION 4.0 (July 02, 2025)
 ## REMOVING MY CUSTOM AUTHENTICATION ;-(
 * [v4.0 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone/38?closed=1)

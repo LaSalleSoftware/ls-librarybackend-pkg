@@ -29,14 +29,14 @@ class Version
      *
      * @var string
      */
-    const VERSION = '4.0 (removed custom auth)';
+    const VERSION = '4.1 (removed custom auth)';
 
     /**
      * This package's release date.
      *
      * @var string
      */
-    const RELEASEDATE = 'July 02, 2025';
+    const RELEASEDATE = 'July 03, 2025';
 
     /**
      * This package's name.

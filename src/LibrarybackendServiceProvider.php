@@ -23,8 +23,6 @@
 namespace Lasallesoftware\Librarybackend;
 
 // LaSalle Software classes
-use Lasallesoftware\Librarybackend\Authentication\CustomGuards\LasalleGuard;
-use Lasallesoftware\Librarybackend\Authentication\Http\Middleware\RedirectSomeRoutes;
 use Lasallesoftware\Librarybackend\Commands\CustomdropCommand;
 use Lasallesoftware\Librarybackend\Commands\CustomseedCommand;
 use Lasallesoftware\Librarybackend\Commands\DeleteExpiredJWTCommand;

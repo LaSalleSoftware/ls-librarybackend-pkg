@@ -42,6 +42,7 @@ use Lasallesoftware\Librarybackend\JWT\Middleware\JWTMiddleware;
 
 // Laravel Framework
 use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 // Laravel Nova 

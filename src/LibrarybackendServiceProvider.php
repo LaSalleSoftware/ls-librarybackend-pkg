@@ -42,7 +42,6 @@ use Lasallesoftware\Librarybackend\JWT\Middleware\JWTMiddleware;
 
 // Laravel Framework
 use Illuminate\Contracts\Http\Kernel;
-use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 // Laravel Nova 
@@ -83,8 +82,6 @@ class LibrarybackendServiceProvider extends ServiceProvider
     {
         $this->publishConfig();
 
-        $this->loadRoutes();
-
         $this->loadMigrations();
         $this->loadDatabaseFactories();
 
@@ -103,13 +100,8 @@ class LibrarybackendServiceProvider extends ServiceProvider
      */
     public function registerMiddlewareRouter($router)
     {
-        //$router->aliasMiddleware('whitelist', 'Lasallesoftware\Librarybackend\Firewall\Http\Middleware\Whitelist');
-
         // Add a middleware to the end of a middleware group
-        // https://github.com/laravel/framework/blob/6.x/src/Illuminate/Routing/Router.php#L902
-        //$router->pushMiddlewareToGroup('web', 'whitelist');
         $router->pushMiddlewareToGroup('web', Whitelist::class);
-
         $router->pushMiddlewareToGroup('jwt_auth', JWTMiddleware::class);
     }
 
@@ -189,8 +181,6 @@ class LibrarybackendServiceProvider extends ServiceProvider
         ]);
     }
 
-    
-
     /**
      * Publish this package's configuration file.
      */
@@ -199,14 +189,6 @@ class LibrarybackendServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/lasallesoftwarebackend-library.php' => config_path('lasallesoftwarebackend-library.php'),
         ], 'config');
-    }
-
-    /**
-     * Load this package's routes.
-     */
-    protected function loadRoutes()
-    {
-        $this->loadRoutesFrom(__DIR__.'/../routes/auth.php');
     }
 
     /**

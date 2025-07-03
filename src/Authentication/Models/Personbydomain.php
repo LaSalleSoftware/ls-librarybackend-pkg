@@ -184,22 +184,6 @@ class Personbydomain extends Authenticatable
     }
 
     /*
-    * One to many relationship with login.
-    *
-    * Method name must be:
-    *    * the model name,
-    *    * NOT the table name,
-    *    * singular;
-    *    * lowercase.
-    *
-    * @return Eloquent
-    */
-    public function login()
-    {
-        return $this->hasMany('Lasallesoftware\Librarybackend\Authentication\Models\Login');
-    }
-
-    /*
     * Many to many relationship with lookup_role.
     *
     * Method name must be:

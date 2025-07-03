@@ -26,7 +26,6 @@ namespace Lasallesoftware\Librarybackend;
 use Lasallesoftware\Librarybackend\Commands\CustomdropCommand;
 use Lasallesoftware\Librarybackend\Commands\CustomseedCommand;
 use Lasallesoftware\Librarybackend\Commands\DeleteExpiredJWTCommand;
-use Lasallesoftware\Librarybackend\Commands\DeleteExpiredLoginsCommand;
 use Lasallesoftware\Librarybackend\Commands\DeleteExpiredUUIDCommand;
 use Lasallesoftware\Librarybackend\Commands\DeleteActioneventsRecordsCommand;
 use Lasallesoftware\Librarybackend\Commands\DusktestusebanallusersenvCommand;
@@ -134,11 +133,6 @@ class LibrarybackendServiceProvider extends ServiceProvider
         $this->app->bind('command.lslibrarybackend:lasalleinstalladminapp', LasalleinstalladminappCommand::class);
         $this->commands([
             'command.lslibrarybackend:lasalleinstalladminapp',
-        ]);
-
-        $this->app->bind('command.lslibrarybackend:deleteexpiredlogins', DeleteExpiredLoginsCommand::class);
-        $this->commands([
-            'command.lslibrarybackend:deleteexpiredlogins',
         ]);
 
         $this->app->bind('command.lslibrarybackend:deleteexpiredjwt', DeleteExpiredJWTCommand::class);

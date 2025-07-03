@@ -25,7 +25,6 @@ namespace Lasallesoftware\Librarybackend\Commands;
 
 // LaSalle Software class
 use Lasallesoftware\Librarybackend\APP_KEY_rotation\ReEncryptDatabaseFields;
-use Lasallesoftware\Librarybackend\Authentication\Models\Login;
 use Lasallesoftware\Librarybackend\Common\Commands\CommonCommand;
 use Lasallesoftware\Librarybackend\Profiles\Models\Website;
 
@@ -185,17 +184,6 @@ class ReEncryptRunMeSecondCommand extends CommonCommand
         // END: LASALLE_EMERGENCY_BAN_ALL_USERS_FROM_ADMIN_APP_LOGIN CHECK
 
 
-        // START: LOGINS RECORDS DELETED
-        if ($this->isLoginsRecords()) {
-            echo "\n\n";
-            $this->line("Logins database records exist. A user(s) may be logged into your admin. Please login to your admin and delete all the logins records.");
-            $this->exitOutroWhenCheckFails();  
-
-            return;
-        }
-        // END: LOGINS RECORD DELETED
-
-
         // START: APP_KEY VERIFICATION
         echo "\n\n";
         $this->line('  Your "APP_KEY" environment variable is: ' . config('app.key'));
@@ -317,16 +305,6 @@ class ReEncryptRunMeSecondCommand extends CommonCommand
         return $websites->isNotEmpty();
     }
 
-    /**
-     * Are there any records in the logins database table?
-     *
-     * @return boolean
-     */
-    private function isLoginsRecords()
-    {
-        $logins = Login::all();
-        return $logins->isNotEmpty();
-    }
 
     /**
      * Run the re-encryption

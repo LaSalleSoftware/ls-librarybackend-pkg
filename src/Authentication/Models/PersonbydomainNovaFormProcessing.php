@@ -23,8 +23,6 @@
 
 namespace Lasallesoftware\Librarybackend\Authentication\Models;
 
-// LaSalle Software
-use Lasallesoftware\Librarybackend\Authentication\Models\Login;
 
 // Laravel Facade
 use Illuminate\Support\Facades\DB;
@@ -376,7 +374,6 @@ trait PersonbydomainNovaFormProcessing
     {
         self::populatedBannedAtField($personbydomain);
         self::populatedBannedCommentsField($personbydomain);
-        self::deleteLoginsRecordsByPersonbydomainId($personbydomain->id);
     }
 
     /**
@@ -405,22 +402,5 @@ trait PersonbydomainNovaFormProcessing
     protected static function populatedBannedCommentsField(Personbydomain $personbydomain)
     {
         $personbydomain->banned_comments = (is_null($personbydomain->banned_comments)) ? NULL : trim($personbydomain->banned_comments);
-    }
-
-
-    ///////////////////////////////////////////////////////////////////
-    ////////////            LOGINS TABLE            ///////////////////
-    ///////////////////////////////////////////////////////////////////
-
-    /**
-     * Delete logins database table records with a specific personbydomain_id
-     *
-     * @param  int    $personbydomainId     The personbydomain_id
-     * @return mixed
-     */
-    protected static function deleteLoginsRecordsByPersonbydomainId($personbydomainId)
-    {
-        $login = new Login;
-        $login->deleteLoginsByPersonbydomainId($personbydomainId);
     }
 }

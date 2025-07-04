@@ -65,7 +65,7 @@ class BaseMigration extends Migration
      *
      * @param string $tableName            Database table that is being referenced.
      * @param string $foreignColumnName    Name of the FK field.
-     * @param object $table                Database table that is doing the foreign key.
+     * @param object $table                Database table object that is doing the foreign key.
      * @param boolean $unsigned            Do you want the FK field to be indexed? Usually, is not indexed.
      * @return void
      */
@@ -89,6 +89,26 @@ class BaseMigration extends Migration
         }
 
         $table->foreign($foreignColumnName)->references($columnName)->on($tableName);
+    }
+
+
+    /**
+     * Create the foreign key to the Clients database table
+     * 
+     * Mpte that this FK field is nullable.
+     *
+     * @param object $table   Database table object that is doing the foreign key.
+     * @return void
+     */
+    public function createClientTableForeignReference($table)
+    {
+        if ($this->getColumnType('clients', 'id') == "int") {
+            $table->integer('client_id')->unsigned()->nullable();
+        } 
+        if ($this->getColumnType('clients', 'id') == "biginit") {
+            $table->bigInteger('client_id')->unsigned()->nullable();
+        }                
+        $table->foreign('client_id')->references('id')->on('clients');
     }
 
 

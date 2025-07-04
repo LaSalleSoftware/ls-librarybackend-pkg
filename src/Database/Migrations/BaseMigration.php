@@ -58,6 +58,41 @@ class BaseMigration extends Migration
 
 
     /**
+     * Create the foreign key, and the foreign key reference.
+     * 
+     * There are two explicit field types.
+     * If there other field types involved in the future, they will have to be explicitly handled.
+     *
+     * @param string $tableName            Database table that is being referenced.
+     * @param string $foreignColumnName    Name of the FK field.
+     * @param object $table                Database table that is doing the foreign key.
+     * @param boolean $unsigned            Do you want the FK field to be indexed? Usually, is not indexed.
+     * @return void
+     */
+    public function createForeignIdFieldAndReference(string $tableName, string $columnName, string $foreignColumnName, object $table, bool $indexed = false) : void
+    {
+        $columnType = DB::getSchemaBuilder()->getColumnType($tableName, $columnName); 
+
+        if (($columnType == "int") && (! $indexed)) {
+            $table->integer($foreignColumnName)->unsigned();
+        }
+        if (($columnType == "int") && ($indexed)) {
+            $table->integer($foreignColumnName)->unsigned()->index();
+        }
+
+
+        if (($columnType == "biginit") && (! $indexed)) {
+            $table->bigInteger($foreignColumnName)->unsigned();
+        }
+        if (($columnType == "biginit") && ($indexed)) {
+            $table->bigInteger($foreignColumnName)->unsigned()->index();
+        }
+
+        $table->foreign($foreignColumnName)->references($columnName)->on($tableName);
+    }
+
+
+    /**
      * Get the field type, given the database table's name, and the field's name.
      *
      * @param  string   $tableName               The name of the table in the database.

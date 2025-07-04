@@ -58,6 +58,5 @@ class CreatePivottablefordomainbytypeTable extends BaseMigration
                
             });
         }
-        die("\n\ndid the FK work??");
     }
 }

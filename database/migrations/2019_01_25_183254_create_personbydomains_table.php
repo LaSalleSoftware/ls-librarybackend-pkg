@@ -76,6 +76,9 @@ class CreatePersonbydomainsTable extends BaseMigration
                 $table->integer('person_id')->unsigned();
                 $table->foreign('person_id')->references('id')->on('persons');
 
+                // Needed for Laravel's default AUTH
+                $table->string('name');
+                
                 $table->text('name_calculated')->nullable();
                 $table->string('person_first_name');
                 //$table->foreign('person_first_name')->references('first_name')->on('persons'); --> not an index so can't FK

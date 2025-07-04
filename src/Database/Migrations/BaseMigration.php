@@ -62,16 +62,32 @@ class BaseMigration extends Migration
      * 
      * There are two explicit field types.
      * If there other field types involved in the future, they will have to be explicitly handled.
+     * 
+     * ASSUMPTION: if nullable, then not indexed
      *
-     * @param string $tableName            Database table that is being referenced.
-     * @param string $foreignColumnName    Name of the FK field.
-     * @param object $table                Database table object that is doing the foreign key.
-     * @param boolean $unsigned            Do you want the FK field to be indexed? Usually, is not indexed.
+     * @param string  $tableName           Database table that is being referenced.
+     * @param string  $foreignColumnName   Name of the FK field.
+     * @param object  $table               Database table object that is doing the foreign key.
+     * @param boolean $indexed             Do you want the FK field to be indexed? Usually, is not indexed.
+     * @param boolean $nullable            Do you want the FK field to be nullable? Usually, is not nullable.
      * @return void
      */
-    public function createForeignIdFieldAndReference(string $tableName, string $columnName, string $foreignColumnName, object $table, bool $indexed = false)
+    public function createForeignIdFieldAndReference(
+        string $tableName,
+        string $columnName,
+        string $foreignColumnName,
+        object $table,
+        bool $indexed = false,
+        bool $nullable = false
+    )
     {
         $columnType = DB::getSchemaBuilder()->getColumnType($tableName, $columnName); 
+
+        // ASSUMPTION: if nullable, then not indexed
+        if (($columnType == "int") && ($nullable)) {
+            $table->integer($foreignColumnName)->unsigned()->nullable();
+            return;
+        }
 
         if (($columnType == "int") && (! $indexed)) {
             $table->integer($foreignColumnName)->unsigned();
@@ -81,6 +97,11 @@ class BaseMigration extends Migration
         }
 
 
+        // ASSUMPTION: if nullable, then not indexed
+        if (($columnType == "biginit") && ($nullable)) {
+            $table->bigInteger($foreignColumnName)->unsigned()->nullable();
+            return;
+        }
         if (($columnType == "biginit") && (! $indexed)) {
             $table->bigInteger($foreignColumnName)->unsigned();
         }

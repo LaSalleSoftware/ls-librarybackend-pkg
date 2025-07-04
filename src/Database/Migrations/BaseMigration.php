@@ -69,7 +69,7 @@ class BaseMigration extends Migration
      * @param boolean $unsigned            Do you want the FK field to be indexed? Usually, is not indexed.
      * @return void
      */
-    public function createForeignIdFieldAndReference(string $tableName, string $columnName, string $foreignColumnName, object $table, bool $indexed = false) : void
+    public function createForeignIdFieldAndReference(string $tableName, string $columnName, string $foreignColumnName, object $table, bool $indexed = false)
     {
         $columnType = DB::getSchemaBuilder()->getColumnType($tableName, $columnName); 
 

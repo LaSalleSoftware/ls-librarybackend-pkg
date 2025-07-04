@@ -64,7 +64,8 @@ class CreateJsonwebtokensTable extends BaseMigration
                 $table->text('jwt');
 
                 // https://laravel.io/forum/02-04-2016-is-there-a-way-to-specify-the-length-of-an-index
-                $table->index([DB::raw('jwt(100)')]);
+                // $table->index([DB::raw('jwt(100)')]);
+                $table->rawIndex('jwt(100)', 'jwt_index');
 
                 $table->timestamp('created_at')->useCurrent();
             });

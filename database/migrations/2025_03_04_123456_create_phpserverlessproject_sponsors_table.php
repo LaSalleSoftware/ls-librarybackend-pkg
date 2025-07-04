@@ -103,6 +103,11 @@ class CreatePhpserverlessprojectSponsorsTable extends BaseMigration
                 $table->timestamp('locked_at')->nullable();
                 $table->integer('locked_by')->unsigned()->nullable();
                 //$table->foreign('locked_by')->references('id')->on('persons');
+
+                $table->text('profile_full')
+                    ->nullable()
+                    ->comment('This field is here because the Nova resource is mysteriously inserting into it.')
+                ;
             });
         }
     }

@@ -52,11 +52,12 @@ class CreatePivottablefordomainbytypeTable extends BaseMigration
 
                 $table->increments('id')->unsigned();
 
-                $table->integer('installed_domain_id')->unsigned()->index();
-                $table->foreign('installed_domain_id')->references('id')->on('installed_domains');
-                $table->integer('lookup_domain_type_id')->unsigned()->index();
-                $table->foreign('lookup_domain_type_id')->references('id')->on('lookup_domain_types');
+                $this->createForeignIdFieldAndReference('installed_domains', 'id', 'installed_domain_id', $table, false);
+
+                $this->createForeignIdFieldAndReference('lookup_domain_types', 'id', 'lookup_domain_type_id', $table, false);
+               
             });
         }
+        die("\n\ndid the FK work??");
     }
 }

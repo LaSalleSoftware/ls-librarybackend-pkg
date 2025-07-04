@@ -57,8 +57,7 @@ class CreateInstalleddomainsjwtkeysTable extends BaseMigration
 
                 $table->increments('id')->unsigned();
 
-                $table->integer('installed_domain_id')->unsigned()->index();
-                $table->foreign('installed_domain_id')->references('id')->on('installed_domains');
+                $this->createForeignIdFieldAndReference('installed_domains', 'id', 'installed_domain_id', $table, true);
 
                 $table->text('key');
 

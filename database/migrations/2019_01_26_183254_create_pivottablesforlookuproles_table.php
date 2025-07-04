@@ -53,10 +53,9 @@ class CreatePivottablesforlookuprolesTable extends BaseMigration
 
                 $table->increments('id')->unsigned();
 
-                $table->integer('personbydomain_id')->unsigned()->index();
-                $table->foreign('personbydomain_id')->references('id')->on('personbydomains');
-                $table->integer('lookup_role_id')->unsigned()->index();
-                $table->foreign('lookup_role_id')->references('id')->on('lookup_roles');
+                $this->createForeignIdFieldAndReference('personbydomains', 'id', 'personbydomain_id', $table, false);
+
+                $this->createForeignIdFieldAndReference('lookup_roles', 'id', 'lookup_role_id', $table, false);
             });
         }
     }

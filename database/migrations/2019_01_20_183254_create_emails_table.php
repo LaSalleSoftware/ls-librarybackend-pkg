@@ -52,8 +52,7 @@ class CreateEmailsTable extends BaseMigration
 
                 $table->increments('id');
 
-                $table->integer('lookup_email_type_id')->unsigned();
-                $table->foreign('lookup_email_type_id')->references('id')->on('lookup_email_types');
+                $this->createForeignIdFieldAndReference('lookup_email_types', 'id', 'lookup_email_type_id', $table, false);
 
                 $table->string('email_address')->unique();
                 $table->string('description')->nullable();

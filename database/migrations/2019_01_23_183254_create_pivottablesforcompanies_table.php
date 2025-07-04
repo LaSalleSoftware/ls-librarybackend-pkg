@@ -46,10 +46,9 @@ class CreatePivottablesforcompaniesTable extends BaseMigration
 
                 $table->increments('id')->unsigned();
 
-                $table->integer('company_id')->unsigned()->index();
-                $table->foreign('company_id')->references('id')->on('companies');
-                $table->integer('person_id')->unsigned()->index();
-                $table->foreign('person_id')->references('id')->on('persons');
+                $this->createForeignIdFieldAndReference('companies', 'id', 'company_id', $table, true);
+
+                $this->createForeignIdFieldAndReference('persons', 'id', 'person_id', $table, false);
             });
         }
 
@@ -62,10 +61,9 @@ class CreatePivottablesforcompaniesTable extends BaseMigration
 
                 $table->increments('id')->unsigned();
 
-                $table->integer('company_id')->unsigned()->index();
-                $table->foreign('company_id')->references('id')->on('companies');
-                $table->integer('address_id')->unsigned()->index();
-                $table->foreign('address_id')->references('id')->on('addresses');
+                $this->createForeignIdFieldAndReference('companies', 'id', 'company_id', $table, true);
+
+                $this->createForeignIdFieldAndReference('addresses', 'id', 'address_id', $table, false);
             });
         }
 
@@ -78,10 +76,9 @@ class CreatePivottablesforcompaniesTable extends BaseMigration
 
                 $table->increments('id')->unsigned();
 
-                $table->integer('company_id')->unsigned()->index();
-                $table->foreign('company_id')->references('id')->on('companies');
-                $table->integer('email_id')->unsigned()->index();
-                $table->foreign('email_id')->references('id')->on('emails');
+                $this->createForeignIdFieldAndReference('companies', 'id', 'company_id', $table, true);
+
+                $this->createForeignIdFieldAndReference('emails', 'id', 'email_id', $table, false);
             });
         }
 
@@ -94,10 +91,9 @@ class CreatePivottablesforcompaniesTable extends BaseMigration
 
                 $table->increments('id')->unsigned();
 
-                $table->integer('company_id')->unsigned()->index();
-                $table->foreign('company_id')->references('id')->on('companies');
-                $table->integer('social_id')->unsigned()->index();
-                $table->foreign('social_id')->references('id')->on('socials');
+                $this->createForeignIdFieldAndReference('companies', 'id', 'company_id', $table, true);
+
+                $this->createForeignIdFieldAndReference('socials', 'id', 'social_id', $table, false);
             });
         }
 
@@ -110,10 +106,9 @@ class CreatePivottablesforcompaniesTable extends BaseMigration
 
                 $table->increments('id')->unsigned();
 
-                $table->integer('company_id')->unsigned()->index();
-                $table->foreign('company_id')->references('id')->on('companies');
-                $table->integer('telephone_id')->unsigned()->index();
-                $table->foreign('telephone_id')->references('id')->on('telephones');
+                $this->createForeignIdFieldAndReference('companies', 'id', 'company_id', $table, true);
+
+                $this->createForeignIdFieldAndReference('telephones', 'id', 'telephone_id', $table, false);
             });
         }
 
@@ -126,10 +121,9 @@ class CreatePivottablesforcompaniesTable extends BaseMigration
 
                 $table->increments('id')->unsigned();
 
-                $table->integer('company_id')->unsigned()->index();
-                $table->foreign('company_id')->references('id')->on('companies');
-                $table->integer('website_id')->unsigned()->index();
-                $table->foreign('website_id')->references('id')->on('websites');
+                $this->createForeignIdFieldAndReference('companies', 'id', 'company_id', $table, true);
+
+                $this->createForeignIdFieldAndReference('websites', 'id', 'website_id', $table, false);
             });
         }
     }

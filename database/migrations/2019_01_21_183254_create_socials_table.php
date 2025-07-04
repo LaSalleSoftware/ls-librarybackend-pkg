@@ -52,8 +52,7 @@ class CreateSocialsTable extends BaseMigration
 
                 $table->increments('id');
 
-                $table->integer('lookup_social_type_id')->unsigned();
-                $table->foreign('lookup_social_type_id')->references('id')->on('lookup_social_types');
+                $this->createForeignIdFieldAndReference('lookup_social_types', 'id', 'lookup_social_type_id', $table, false);
 
                 $table->string('url')->unique();
                 $table->string('description')->nullable();

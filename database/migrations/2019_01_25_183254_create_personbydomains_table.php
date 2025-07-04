@@ -89,8 +89,8 @@ class CreatePersonbydomainsTable extends BaseMigration
                 $table->string('password');
                 $table->rememberToken();
 
-                $table->integer('installed_domain_id')->unsigned();
-                $table->foreign('installed_domain_id')->references('id')->on('installed_domains');
+                $this->createForeignIdFieldAndReference('installed_domains', 'id', 'installed_domain_id', $table, false);
+
                 $table->string('installed_domain_title');
 
                 $table->boolean('banned_enabled')->default(false);

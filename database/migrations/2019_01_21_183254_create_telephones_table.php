@@ -52,8 +52,7 @@ class CreateTelephonesTable extends BaseMigration
 
                 $table->increments('id');
 
-                $table->integer('lookup_telephone_type_id')->unsigned();
-                $table->foreign('lookup_telephone_type_id')->references('id')->on('lookup_telephone_types');
+                $this->createForeignIdFieldAndReference('lookup_telephone_types', 'id', 'lookup_telephone_type_id', $table, false);
 
                 $table->text('telephone_calculated')->nullable();
 

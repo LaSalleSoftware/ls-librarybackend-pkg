@@ -58,8 +58,7 @@ class CreateClientsTable extends BaseMigration
 
                 $table->increments('id')->unsigned();
 
-                $table->integer('company_id')->unsigned()->nullable();
-                $table->foreign('company_id')->references('id')->on('companies');
+                $this->createForeignIdFieldAndReference('companies', 'id', 'company_id', $table, false);
 
                 $table->string('name')->unique();
 

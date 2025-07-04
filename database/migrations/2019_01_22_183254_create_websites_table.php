@@ -52,8 +52,7 @@ class CreateWebsitesTable extends BaseMigration
 
                 $table->increments('id');
 
-                $table->integer('lookup_website_type_id')->unsigned();
-                $table->foreign('lookup_website_type_id')->references('id')->on('lookup_website_types');
+                $this->createForeignIdFieldAndReference('lookup_website_types', 'id', 'lookup_website_type_id', $table, false);
 
                 $table->string('url');
                 $table->string('description')->nullable();

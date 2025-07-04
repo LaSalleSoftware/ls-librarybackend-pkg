@@ -52,10 +52,9 @@ class CreatePivotClientsPersonbydomainsTable extends BaseMigration
 
                 $table->increments('id')->unsigned();
 
-                $table->integer('personbydomain_id')->unsigned()->index();
-                $table->foreign('personbydomain_id')->references('id')->on('personbydomains');
-                $table->integer('client_id')->unsigned()->index();
-                $table->foreign('client_id')->references('id')->on('clients');
+                $this->createForeignIdFieldAndReference('personbydomains', 'id', 'personbydomain_id', $table, true);
+
+                $this->createForeignIdFieldAndReference('clients', 'id', 'client_id', $table, true);
             });
         }
     }

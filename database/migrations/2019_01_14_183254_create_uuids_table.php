@@ -52,8 +52,7 @@ class CreateUuidsTable extends BaseMigration
 
                 $table->increments('id')->unsigned();
 
-                $table->integer('lasallesoftware_event_id')->unsigned();
-                $table->foreign('lasallesoftware_event_id')->references('id')->on('lookup_lasallesoftware_events');
+                $this->createForeignIdFieldAndReference('lookup_lasallesoftware_events', 'id', 'lasallesoftware_event_id', $table, false);
 
                 $table->uuid('uuid');
 

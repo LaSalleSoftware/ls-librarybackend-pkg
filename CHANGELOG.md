@@ -1,5 +1,8 @@
 # CHANGE LOG
 
+## VERSION 4.4 (July 05, 2025)
+* [v4.4 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone/42?closed=1)
+
 ## VERSION 4.3 (July 03, 2025)
 * [v4.3 issues](https://github.com/LaSalleSoftware/ls-librarybackend-pkg/milestone/41?closed=1)
 

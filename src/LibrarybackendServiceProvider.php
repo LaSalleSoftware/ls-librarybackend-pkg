@@ -90,6 +90,8 @@ class LibrarybackendServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         $this->registerMiddlewareRouter($router);
+
+        $this->loadRoutes();
     }
 
 
@@ -212,4 +214,15 @@ class LibrarybackendServiceProvider extends ServiceProvider
     {
         $this->loadTranslationsFrom(__DIR__.'/../translations/', 'lasallesoftwarelibrarybackend');
     }
+
+    /**
+     * Load this package's routes
+     *
+     * @return void
+     */
+    protected function loadRoutes()
+    {
+        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+    }
+
 }
